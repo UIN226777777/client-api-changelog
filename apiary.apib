@@ -2456,3 +2456,91 @@ List of offered programs
             "status": "completed",
             "invoice": null
         }]
+        
+# Group Shipping calculator
+## /api/v1/shipping-calculator/rates{?warehouseId,package%5Blength%5D,package%5Bwidth%5D,package%5Bheight%5D,package%5Bweight%5D,package%5Bvalue%5D,address%5Bcity%5D,address%5Bzip%5D,address%5Bcountry%5D}
+
++ Parameters
+
+    + warehouseId (int)
+    + package%5Blength%5D (numeric)
+    + package%5Bwidth%5D (numeric)
+    + package%5Bheight%5D (numeric)
+    + package%5Bweight%5D (numeric)
+    + package%5Bvalue%5D (numeric, optional)
+    + address%5Bcity%5D (string)
+    + address%5Bzip%5D (string, optional)
+    + address%5Bcountry%5D (string)
+
+### GET
+
++ Response 200 (application/json)
+
+        [
+            {
+                "name": "USPS Express Mail",
+                "alias": "EXPRESS",
+                "shippingRate": 48.9,
+                "insurance": [
+                    {
+                        "name": "delivery",
+                        "available": true,
+                        "price": 2.2
+                    },
+                    {
+                        "name": "delivery_damage",
+                        "available": true,
+                        "price": 2.2
+                ],
+                "additionalInsurance": null,
+                "isPromoted": true,
+                "delivery": {
+                    "inDays": 6,
+                    "inWords": "5-6 business days"
+                },
+                "popularity": 2,
+                "logo": "usps-express.png"
+            },
+            {
+                "name": "USPS Priority Mail",
+                "alias": "PRIORITY",
+                "shippingRate": 44.33,
+                "insurance": [
+                    {
+                        "name": "delivery",
+                        "available": true,
+                        "price": 4.6
+                    },
+                    {
+                        "name": "delivery_damage",
+                        "available": true
+                        "price": 4.6
+                    }
+                ],
+                "additionalInsurance": {
+                    "rate": 2,
+                    "requiredFor": "Electronics"
+                },
+                "isPromoted": false,
+                "delivery": {
+                    "inDays": 10,
+                    "inWords": "6-10 business days"
+                },
+                "popularity": 5,
+                "logo": "usps-priority.png"
+            },
+            {
+                "name": "USPS First Class International Parcel",
+                "alias": "FIRST_CLASS",
+                "shippingRate": 24.46,
+                "insurance": null,
+                "additionalInsurance": null,
+                "isPromoted": true,
+                "delivery": {
+                    "inDays": 15,
+                    "inWords": "varies by country"
+                },
+                "popularity": 3,
+                "logo": "usps-first.png"
+            }
+        ]
