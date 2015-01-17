@@ -338,32 +338,32 @@ Change email
 
 + Response 204
 
-## /api/v1/transactions
+## /api/v1/deposit/transactions
 ### GET
 Transaction statement
 
 + Response 200 (application/json)
 
-        [
-            {
-                "amount": 1423.89,
-                "comment": "Initial Deposit",
-                "date": 1279664150000,
-                "subtotal": 1423.89
-            },
-            {
-                "amount": -15,
-                "comment": "Mailout of package <b>21732-CY</b>",
-                "date": 1279908681000,
-                "subtotal": 1423.89
-            },
-            {
-                "amount": 0,
-                "comment": "Undo mailout of package <b>21732-CY</b>",
-                "date": 1279908717000,
-                "subtotal": 1593.72
-            }
-        ]
+        
+        [{
+            "id": 1,
+            "time": "1415935733000",
+            "description": "Undo mailout of package A2768-UN",
+            "amount": 80,
+            "subTotal": 413.5
+        },{
+            "id": 2,
+            "time": "1415935723000",
+            "description": "Mailout of package A2768-UN",
+            "amount": -80,
+            "subTotal": 333.5
+        },{
+            "id": 3,
+            "time": "1415935713000",
+            "description": "Added deposit",
+            "amount": 413.5,
+            "subTotal": 413.5
+        }]
 
 ## Default address [/api/v1/default-address]
 ### GET
