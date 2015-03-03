@@ -2372,7 +2372,20 @@ Accepted mime types: image/jpeg, image/png, application/pdf
                 "isDocument": false
             }
         ]
+        
+# Group Shipping restrictions
+## /api/v1/shipping-restrictions/{countryId}
+### GET
+List of restrictions
 
++ Response 200 (application/json)
+
+        {
+            "global_restrictions": "\n<ul>\n\t<li>Firearms parts, gun parts, scope, red dot sight, reflex sight,\n\tammunition etc.</li>\n</ul>\n",
+            "usps_restrictions": "\n<ul>\n\t<li>Hazardous, combustible or explosive material.</li>\n\n\t<li>Perishable Foodstuffs.</li>\n</ul>\n",
+            "fedex_restrictions": "\n<ul>\n\t<li>Any item prohibited by any applicable legislation or regulation restricting\n\ttransport such as ivory</li>\n</ul>\n",
+        }
+    
 # Group Programs
 ## /api/v1/programs
 ### GET
