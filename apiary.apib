@@ -403,9 +403,18 @@ Transaction statement
 + Response 204
 
 # Group Issues
-## /api/v1/issues
+## /api/v1/issues?filter
 ### GET
 List of posted claims/issues
+
++ Parameters
+    + filter (required, string)
+        Filter issues by state
+
+        + Values
+            + `open`
+            + `resolved`
+
 
 + Response 200 (application/json)
 
@@ -441,55 +450,83 @@ List of posted claims/issues
                 "ourResponse": ""
             }
         ]
-
-### POST
-Save a new issue
-
-+ Request (application/json)
-
-        {
-            "packageId": "RV",
-            "comment": "comment",
-            "trackingNo": null,
-            "shopName": null,
-            "type": "not_delivered_client"
-        }
-
-+ Response 204
-
-## /api/v1/issues/new
+        
+## /api/v1/issues/action-needed
 ### GET
+List of issues where client response is needed
+
++ Response 200 (application/json)
+
+        [
+            {
+                "letterId": "AX",
+                "enteredDate": 1279664150000,
+                "commentSubject": "lorem ipsum",
+                "commentText": "dolor sit amet"
+            }
+        ]
+        
+## /api/v1/issues/available-packages
+### GET
+
 List of packages to which a claim/issue can be posted
 
 + Response 200 (application/json)
 
-        {
-            "packages": ["LP", "MB", "PO", "JK", "DC", "DM", "TK", "XP"]
-        }
+        ["U", "V", "W", "UL", "UN"]
 
-## /api/v1/issues/package-detail/{packageId}
+## /api/v1/issues/validate-claim/{packageId}
 ### GET
-Package details needed for creating an issue
+Tells if it is possible to create a claim on this package.
 
 + Response 200 (application/json)
 
         {
-            "id": "F",
-            "boxNo": "A2768",
-            "sent": 1283820705000,
-            "shippingMethod": "SHIPITO_TRUCK",
-            "trackingNo": "",
-            "claims": {
-                "damaged_missing_items": {
-                    "possible": false,
-                    "errorCode": 0
-                },
-                "not_delivered_client": {
-                    "possible": true,
-                    "errorCode": null
-                }
-            }
+            "not_delivered_client": [],
+            "damaged_missing_items": [
+                "Package is not insured enough. Delivery + damage insurance is needed."
+            ]
         }
+        
+
+## /api/v1/issues/not-delivered-shipito
+### POST
+Save a new issue of type "not delivered to Shipito"
+
++ Request (application/json)
+
+        {
+            "trackingNo": "YZ454009EU34058ERR0",
+            "shopName": "Amazon"
+        }
+
++ Response 204
+
+## /api/v1/issues/not-delivered-client
+### POST
+Save a new issue of type "not delivered to client"
+
++ Request (application/json)
+
+        {
+            "packageId": "BC",
+            "comment": "It just disappeared in the middle of transit."
+        }
+
++ Response 204
+
+## /api/v1/issues/damaged
+### POST
+Save a new issue of type "damaged or missing items"
+
++ Request (application/json)
+
+        {
+            "packageId": "BC",
+            "comment": "I have received an empty box. Somebody must have eaten all my chocolates."
+        }
+
++ Response 204
 
 # Group News
 ## /api/v1/news
