@@ -532,35 +532,41 @@ Save a new issue of type "damaged or missing items"
 + Response 204
 
 # Group News
-## /api/v1/news
+## /api/v1/news?page
 ### GET
 News
 
++ Parameters
+    + page = `1` (optional, integer)
+
 + Response 200 (application/json)
 
-        [
-            {
-                "id": 1,
-                "title": "Happy Thanksgiving!",
-                "date": 1279664150000,
-                "text": "We'll be closed on Thanksgiving (Thursday, November 28th, 2013). Business will resume like normal on Friday, November 29th, 2013. Thank you for your business",
-                "unread": false
-            },
-            {
-                "id": 2,
-                "title": "Airsoft guns, toy guns",
-                "date": 1279664150000,
-                "text": "Starting November 22nd, 2013, TNT will not accept any shipment that contains airsoft guns, paintball guns or any type of replica toy guns. DHL, FedEx may still accept the shipment but please find out from your country's custom first for regulation as well. Thank you",
-                "unread": true
-            },
-            {
-                "id": 3,
-                "title": "Airmail doesn't accept lithium batteries",
-                "date": 1279664150000,
-                "text": "Airmail shipping method doesn't accept lithium batteries effective immediately. For lithium battery shipments please use alternative shipping methods like USPS Priority or Express.",
-                "unread": true
-            }
-        ]
+        {
+            "totalCount": 123,
+            "items": [
+                {
+                    "id": 1,
+                    "title": "Happy Thanksgiving!",
+                    "date": 1279664150000,
+                    "text": "We'll be closed on Thanksgiving (Thursday, November 28th, 2013). Business will resume like normal on Friday, November 29th, 2013. Thank you for your business",
+                    "unread": true
+                },
+                {
+                    "id": 2,
+                    "title": "Airsoft guns, toy guns",
+                    "date": 1279664150000,
+                    "text": "Starting November 22nd, 2013, TNT will not accept any shipment that contains airsoft guns, paintball guns or any type of replica toy guns. DHL, FedEx may still accept the shipment but please find out from your country's custom first for regulation as well. Thank you",
+                    "unread": true
+                },
+                {
+                    "id": 3,
+                    "title": "Airmail doesn't accept lithium batteries",
+                    "date": 1279664150000,
+                    "text": "Airmail shipping method doesn't accept lithium batteries effective immediately. For lithium battery shipments please use alternative shipping methods like USPS Priority or Express.",
+                    "unread": false
+                }
+            ]
+        }
 
 ## /api/v1/news/seen
 ### POST
