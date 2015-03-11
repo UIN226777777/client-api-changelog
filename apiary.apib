@@ -45,7 +45,9 @@ Dashboard data
 + Response 200 (application/json)
 
         {
+            "boxNo": "A2768",
             "accountInfo": {
+                "email": "john.snow@post.cz",
                 "mailboxFull": 17,
                 "averageStorageShipito": 14,
                 "averageStorageYou": 67,
@@ -54,7 +56,11 @@ Dashboard data
                 "spendingLimitRemaining": 3000,
                 "plan": "Virtual Mailbox ANNUAL",
                 "planIsVirtualMailbox": true,
-                "planRemaining": 58
+                "planRemaining": 58,
+                "status": {
+                    "name": "gold",
+                    "percentage": 60
+                }
             },
             "accountBalance": {
                 "deposit": 4040.72,
@@ -155,7 +161,10 @@ Dashboard data
                     "form1583Notarized": true,
                     "form1583": false
                 }
-            }
+            },
+            "inWarehousePackagesCount": 7,
+            "sentPackagesCount": 5,
+            "unreadNewsCount": 1
         }
 
 ## Other names [/api/v1/other-names]
@@ -257,27 +266,6 @@ Add other name
 
 
 + Response 204
-
-## /api/v1/user-info
-### GET
-Basic user info used in navigation bar
-
-+ Response 200 (application/json)
-
-        {
-            "boxNo": "A2768",
-            "balance": {
-                "deposit": 3428.12,
-                "total": 1104.85,
-                "due": 0
-            },
-            "email": "email@example.com",
-            "status": "gold",
-            "statusPercentage": 60,
-            "inWarehousePackagesCount": 34,
-            "sentPackagesCount": 113,
-            "unreadNews": 0
-        }
 
 ## /api/v1/settings/general
 ### GET
