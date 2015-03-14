@@ -3983,3 +3983,496 @@ List of offered programs
                 "logo": "usps-first.png"
             }
         ]
+
+# Group Consolidations
+## /api/v1/consolidations{?filter}
+
++ Parameters
+
+    + filter (string, optional) ... incomplete | done
+
+### List of new / in progress / finished consolidations [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 37017,
+                "status": "done",
+                "requestTime": 1283819259000,
+                "completedTime": 1283819370000,
+                "packages": [
+                    {
+                        "id": "D"
+                    },
+                    {
+                        "id": "G"
+                    }
+                ],
+                "warehouse": {
+                    "id": 7,
+                    "name": "Torrance"
+                }
+            },
+            {
+                "id": 377255,
+                "status": "in progress",
+                "requestTime": 1391470714000,
+                "completedTime": null,
+                "packages": [
+                    {
+                        "id": "RR"
+                    },
+                    {
+                        "id": "RT"
+                    },
+                    {
+                        "id": "RX"
+                    }
+                ],
+                "warehouse": {
+                    "id": 7,
+                    "name": "Torrance"
+                }
+            },
+            {
+                "id": 377256,
+                "status": "new",
+                "requestTime": 1397484072000,
+                "completedTime": null,
+                "packages": [
+                    {
+                        "id": "RJ"
+                    },
+                    {
+                        "id": "RK"
+                    }
+                ],
+                "warehouse": {
+                    "id": 7,
+                    "name": "Torrance"
+                }
+            },
+            {
+                "id": 377257,
+                "status": "new",
+                "requestTime": 1397484576000,
+                "completedTime": null,
+                "packages": [
+                    {
+                        "id": "RF"
+                    },
+                    {
+                        "id": "RI"
+                    }
+                ],
+                "warehouse": {
+                    "id": 7,
+                    "name": "Torrance"
+                }
+            }
+        ]
+
+### Request a consolidation [POST]
+Object shipping is processed only when afterConsolidationAction equals to SEND_IMMEDIATELY.
+
++ Request (application/json)
+
+        {
+            "packages": [
+                {
+                    "id": "RG",
+                    "packaging": "a"
+                },
+                {
+                    "id": "RS",
+                    "packaging": "b"
+                }
+            ],
+            "afterConsolidationAction": "KEEP_IN_MAILBOX|SEND_IMMEDIATELY",
+            "box": {
+                "size": "26_13_13|36_17_17|other",
+                "customSize": "text specifying box size when using other size",
+                "notFittingPackagesAction": "another box|return to mailbox"
+            },
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage"
+                },
+                {
+                    "alias": "remove_invoice"
+                },
+                {
+                    "alias": "custom",
+                    "additionalInfo": "Draw a dinosaur on the box please!"
+                }
+            ],
+            "shipping": {
+                "insure": true,
+                "method": "DHL_EXPRESS",
+                "address": {
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "company": null,
+                    "taxId": null,
+                    "address": "Castle Black 1",
+                    "city": "Castle Black",
+                    "zip": "the Wall",
+                    "state": null,
+                    "country": "UK",
+                    "phone": "+1234567890"
+                }
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 377257,
+            "status": "new",
+            "requestTime": 1397484576000,
+            "completedTime": null,
+            "box": {
+                "size": "26_13_13",
+                "customSize": null,
+                "notFittingPackagesAction": "another box"
+            },
+            "warehouse": {
+                "id": 7,
+                "name": "Torrance"
+            },
+            "packages": [
+                {
+                    "id": "RG",
+                    "packaging": "a",
+                    "mergedInto": null
+                },
+                {
+                    "id": "RS",
+                    "packaging": "b",
+                    "mergedInto": null
+                }
+            ],
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage",
+                    "name": "Visual check that content is not damaged",
+                    "info": "",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 0,
+                    "status": "new"
+                },
+                {
+                    "alias": "remove_invoice",
+                    "name": "Remove Invoice",
+                    "info": "Remove store invoices from the package(s)",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "status": "new"
+                },
+                {
+                    "alias": "custom",
+                    "name": "Other Request",
+                    "info": "Write your own request",
+                    "additionalInfo": "Draw a dinosaur on the box please!",
+                    "additionalInfoRequired": true,
+                    "fee": 1,
+                    "status": "new"
+                }
+            ],
+            "afterConsolidationAction": "KEEP_IN_MAILBOX",
+            "shipping": null
+        }
+
+## /api/v1/consolidations/{id}
+### Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 377257,
+            "status": "new",
+            "requestTime": 1397484576000,
+            "completedTime": null,
+            "box": {
+                "size": "26_13_13",
+                "customSize": null,
+                "notFittingPackagesAction": "another box"
+            },
+            "warehouse": {
+                "id": 7,
+                "name": "Torrance"
+            },
+            "packages": [
+                {
+                    "id": "RG",
+                    "packaging": "a",
+                    "mergedInto": null
+                },
+                {
+                    "id": "RS",
+                    "packaging": "b",
+                    "mergedInto": null
+                }
+            ],
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage",
+                    "name": "Visual check that content is not damaged",
+                    "info": "",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 0,
+                    "status": "new"
+                },
+                {
+                    "alias": "remove_invoice",
+                    "name": "Remove Invoice",
+                    "info": "Remove store invoices from the package(s)",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "status": "new"
+                },
+                {
+                    "alias": "custom",
+                    "name": "Other Request",
+                    "info": "Write your own request",
+                    "additionalInfo": "Draw a dinosaur on the box please!",
+                    "additionalInfoRequired": true,
+                    "fee": 1,
+                    "status": "new"
+                }
+            ],
+            "afterConsolidationAction": "KEEP_IN_MAILBOX",
+            "shipping": null
+        }
+
+### Cancel [DELETE]
+Only new consolidations can be cancelled.
+
++ Response 204 (application/json)
+
+### Update [PUT]
+Only new consolidations can be edited.
+
++ Request (application/json)
+
+        {
+            "packages": [
+                {
+                    "id": "RG",
+                    "packaging": "a"
+                },
+                {
+                    "id": "RS",
+                    "packaging": "b"
+                }
+            ],
+            "afterConsolidationAction": "KEEP_IN_MAILBOX|SEND_IMMEDIATELY",
+            "box": {
+                "size": "26_13_13|36_17_17|other",
+                "customSize": "text specifying box size when using other size",
+                "notFittingPackagesAction": "another box|return to mailbox"
+            },
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage"
+                },
+                {
+                    "alias": "remove_invoice"
+                },
+                {
+                    "alias": "custom",
+                    "additionalInfo": "Draw a dinosaur on the box please!"
+                }
+            ],
+            "shipping": {
+                "insure": true,
+                "method": "DHL_EXPRESS",
+                "address": {
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "company": null,
+                    "taxId": null,
+                    "address": "Castle Black 1",
+                    "city": "Castle Black",
+                    "zip": "the Wall",
+                    "state": null,
+                    "country": "UK",
+                    "phone": "+1234567890"
+                }
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "id": 377257,
+            "status": "new",
+            "requestTime": 1397484576000,
+            "completedTime": null,
+            "box": {
+                "size": "26_13_13",
+                "customSize": null,
+                "notFittingPackagesAction": "another box"
+            },
+            "warehouse": {
+                "id": 7,
+                "name": "Torrance"
+            },
+            "packages": [
+                {
+                    "id": "RG",
+                    "packaging": "a",
+                    "mergedInto": null
+                },
+                {
+                    "id": "RS",
+                    "packaging": "b",
+                    "mergedInto": null
+                }
+            ],
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage",
+                    "name": "Visual check that content is not damaged",
+                    "info": "",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 0,
+                    "status": "new"
+                },
+                {
+                    "alias": "remove_invoice",
+                    "name": "Remove Invoice",
+                    "info": "Remove store invoices from the package(s)",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "status": "new"
+                },
+                {
+                    "alias": "custom",
+                    "name": "Other Request",
+                    "info": "Write your own request",
+                    "additionalInfo": "Draw a dinosaur on the box please!",
+                    "additionalInfoRequired": true,
+                    "fee": 1,
+                    "status": "new"
+                }
+            ],
+            "afterConsolidationAction": "KEEP_IN_MAILBOX",
+            "shipping": null
+        }
+        
+## /api/v1/consolidations/available-options
+### Available shipping methods and special requests [GET]
+
++ Response 200 (application/json)
+
+        {
+            "shipping": {
+                "method": [
+                    {
+                        "alias": "PRIORITY",
+                        "name": "USPS Priority Mail"
+                    },
+                    {
+                        "alias": "EXPRESS",
+                        "name": "USPS Express Mail"
+                    },
+                    {
+                        "alias": "FEDEX_ECONOMY",
+                        "name": "FedEx Economy"
+                    },
+                    {
+                        "alias": "FEDEX_PRIORITY",
+                        "name": "FedEx Priority"
+                    },
+                    {
+                        "alias": "XPO_ECONOMY",
+                        "name": "Airmail Economy"
+                    },
+                    {
+                        "alias": "XPO_PRIORITY",
+                        "name": "Airmail Priority"
+                    }
+                ]
+            },
+            "specialRequests": [
+                {
+                    "alias": "visual_check_for_damage",
+                    "name": "Visual check that content is not damaged",
+                    "info": "",
+                    "additionalInfoRequired": false,
+                    "fee": 0,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "remove_invoice",
+                    "name": "Remove Invoice",
+                    "info": "Remove store invoices from the package(s)",
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "bubble_wrap",
+                    "name": "Extra Bubble Wrap",
+                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "extra_tape",
+                    "name": "Extra Tape",
+                    "info": "Put extra tape on the package seams",
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "security_tape",
+                    "name": "Security Tape",
+                    "info": "Put security tape on the package, so it's evident if the package has been opened after shipping",
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "custom",
+                    "name": "Other Request",
+                    "info": "Write your own request",
+                    "additionalInfoRequired": true,
+                    "fee": 5,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "fragile_sticker",
+                    "name": "Fragile Sticker",
+                    "info": "Put fragile sticker onto the package, so it's clear package contains fragile items.",
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                }
+            ]
+        }
+        
+## /api/v1/consolidations/fee{?packages%5B0%5D,packages%5B1%5D}
+
++ Parameters
+
+    + packages (string[])
+
+### Consolidation fee [GET]
+Url example: /api/v1/consolidations/consolidation-fee?packages[]=A&packages[]=B&packages[]=C&packages[]=D
+
++ Response 200 (application/json)
+
+        {
+            'fee': 8
+        }
