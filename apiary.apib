@@ -1886,25 +1886,6 @@ Set note
         }
 
 ## /api/v1/packages/{packageId}/customs-declaration
-### GET
-Gets customs declaration of given package
-
-+ Response 200 (application/json)
-
-        {
-            "items": [
-                { "quantity": 1, "description": "Kindle", "origin": "US", "value": 100 },
-                { "quantity": 3, "description": "KitKat", "origin": "US", "value": 251 },
-                { "quantity": 2, "description": "iPad", "origin": "CZ", "value": 499 },
-                { "quantity": 1, "description": "iPhone", "origin": "US", "value": 50 }
-            ],
-            "type": "gift",
-            "dangerousMaterials": {
-                "PI966": true,
-                "PI967": true,
-                "PI965": true
-            }
-        }
 
 ### POST
 Updates customs declaration for given package
