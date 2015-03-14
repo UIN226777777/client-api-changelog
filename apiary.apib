@@ -1927,10 +1927,73 @@ Updates customs declaration for given package
 + Response 201 (application/json)
 
         {
-            "id": "{packageId}",
-            "totalValue": "280",
-            "changeShippingMethod": true,
-            "items": [
+            "id": "CO",
+            "status": "in warehouse",
+            "note": "",
+            "receiptDate": 1426183800000,
+            "mailoutDate": null,
+            "incomingTrackingNumber": "4209050392612999952664511000015895",
+            "trackingNumber": "",
+            "invoice": null,
+            "remainingFreeStorage": 88,
+            "warehouse": 7,
+            "photos": [
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                },
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                }
+            ],
+            "dimensions": {
+                "weight": 5.85,
+                "length": 12.5,
+                "width": 12,
+                "height": 11
+            },
+            "price": {
+                "processingFee": 1,
+                "repackingFee": 0,
+                "specialFee": 0,
+                "postage": 104.3,
+                "insurance": 0,
+                "discount": 10,
+                "total": 105.3,
+                "postageDetail": {
+                    "carrier": 100,
+                    "bankFee": 4.3
+                }
+            },
+            "shipping": {
+                "address": {
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "company": "",
+                    "taxId": "",
+                    "address": "Example street 123",
+                    "zip": "15400",
+                    "city": "Praha",
+                    "state": "",
+                    "country": "CZ",
+                    "phone": "+420111000111",
+                },
+                "method": {
+                    "id": "DHL_EXPRESS",
+                    "name": "DHL Express"
+                },
+                "insurance": "delivery_damage",
+                "additionalInsurance": false
+            },
+            "customsDeclaration": {
+                "totalValue": 280,
+                "type": "merchandise",
+                "items": [
                     {
                         "quantity": 2,
                         "description": "Kindle",
@@ -1943,12 +2006,93 @@ Updates customs declaration for given package
                         "origin": "US",
                         "value": 50
                     }
-                ],
-            "type": "gift",
-            "dangerousMaterials": {
-                "PI966": true,
-                "PI967": true,
-                "PI965": true
+                    "dangerousMaterials": {
+                        "PI966": true,
+                        "PI967": true,
+                        "PI965": true
+                    }
+                ]
+            },
+            "specialRequests": [
+                {
+                    "id": 1619055,
+                    "alias": "other_instructions",
+                    "name": "Other instructions",
+                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                    "fee": 0,
+                    "status": "completed",
+                    "additionalInfoRequired": true,
+                    "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
+                    "response": "Hope you like the dinosaur!"
+                },
+                {
+                    "id": 1619940,
+                    "alias": "other_instructions",
+                    "name": "Other instructions",
+                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                    "fee": 0,
+                    "status": "pending",
+                    "additionalInfoRequired": true,
+                    "additionalInfo": "Is winter coming? (A2768-CO)",
+                    "response": null
+                },
+                {
+                    "id": 1619053,
+                    "alias": "take_3_pictures",
+                    "name": "One Photo Request",
+                    "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
+                    "fee": 0,
+                    "status": "canceled",
+                    "additionalInfoRequired": false,
+                    "additionalInfo": "One Photo Request (A2768-CO)",
+                    "response": "We were not able to take pictures of your cloak of invisibility."
+                }
+            ],
+            "mailoutSpecialRequests": [
+                {
+                    "alias": "bubble_wrap",
+                    "name": "Extra Bubble Wrap",
+                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "extra_tape",
+                    "name": "Extra Tape",
+                    "info": "Put extra tape on the package seams",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                }
+            ],
+            "flags": {
+                "consolidation": false,
+                "hasOpenIssue": false,
+                "contentPhotos": false,
+                "sufficientDeposit": true,
+                "fitsMonthlyLimit": true,
+                "shippingMethodSelected": true,
+                "insuranceSelected": true,
+                "customsDeclarationFilled": true,
+                "receivedUnderOtherName": true,
+                "otherNameVerified": true,
+                "specialRequestInProgress": false,
+                "requiresTaxId": false,
+                "hasTaxId": false,
+                "requiresNotarizedForm1583": false,
+                "hasNotarizedForm1583": false,
+                "onSecurityHold": false,
+                "hasDimensions": true,
+                "hasDueStorageFees": false,
+                "queuedForConsolidation": false,
+                "queuedForMps": false,
+                "mailboxUpgradeNeeded": false,
+                "mailoutScheduled": false,
+                "readyToSend": false,
+                "canBeMerged": true
             }
         }
 
