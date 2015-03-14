@@ -2766,12 +2766,173 @@ Creates specific requests for given package. Use ids from GET /api/v1/packages/{
 + Request (application/json)
 
         {
-            "requestIds": [4, 6, 9],
-            "mistakeReport": "Mistake report",
-            "otherInstruction": "Draw a dinosaur on the package please!"
+            "specialRequests": [
+                {
+                    "alias": "express"
+                },
+                {
+                    "alias": "other_instruction",
+                    "additionalInfo": "Find Nemo!"
+                }
+            ]
         }
 
-+ Response 200
++ Response 200 (application/json)
+
+        {
+            "id": "CO",
+            "status": "sent",
+            "note": "",
+            "receiptDate": 1426183800000,
+            "mailoutDate": 1427183800000,
+            "incomingTrackingNumber": "4209050392612999952664511000015895",
+            "trackingNumber": "trolololololololo",
+            "invoice": null,
+            "remainingFreeStorage": 88,
+            "warehouse": 7,
+            "photos": [
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                },
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                },
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                },
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                },
+                {
+                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                }
+            ],
+            "dimensions": {
+                "weight": 5.85,
+                "length": 12.5,
+                "width": 12,
+                "height": 11
+            },
+            "price": {
+                "processingFee": 1,
+                "repackingFee": 0,
+                "specialFee": 0,
+                "postage": 104.3,
+                "insurance": 0,
+                "discount": 10,
+                "total": 105.3,
+                "postageDetail": {
+                    "carrier": 100,
+                    "bankFee": 4.3
+                }
+            },
+            "shipping": {
+                "address": {
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "company": "",
+                    "taxId": "",
+                    "address": "Tower of Lord Commander",
+                    "city": "Castle Black",
+                    "zip": "123456",
+                    "state": "",
+                    "country": "CA",
+                    "phone": "1234567890"
+                },
+                "method": {
+                    "id": "DHL_EXPRESS",
+                    "name": "DHL Express"
+                },
+                "insurance": "delivery_damage",
+                "additionalInsurance": false
+            },
+            "customsDeclaration": {
+                "totalValue": 250,
+                "type": "merchandise",
+                "items": [
+                    {
+                        "quantity": 1,
+                        "description": "Cloack of Invisibility",
+                        "origin": "US",
+                        "value": 150
+                    },
+                    {
+                        "quantity": 2,
+                        "description": "Fireball",
+                        "origin": "US",
+                        "value": 100
+                    }
+                ],
+                "dangerousMaterials": {
+                    "PI966": false,
+                    "PI967": false,
+                    "PI965": false
+                }
+            },
+            "specialRequests": [
+                {
+                    "id": 1619055,
+                    "alias": "other_instructions",
+                    "name": "Other instructions",
+                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                    "fee": 0,
+                    "status": "pending",
+                    "additionalInfoRequired": true,
+                    "additionalInfo": "Find Nemo! (A2768-CO)",
+                    "response": ""
+                },
+                {
+                    "id": null,
+                    "alias": "express",
+                    "name": "Express processing",
+                    "description": "Process this package in preference ASAP.",
+                    "fee": 5,
+                    "status": "available",
+                    "additionalInfoRequired": false,
+                    "additionalInfo": null,
+                    "response": "ne"
+                },
+            ],
+            "mailoutSpecialRequests": [
+                {
+                    "alias": "bubble_wrap",
+                    "name": "Extra Bubble Wrap",
+                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "extra_tape",
+                    "name": "Extra Tape",
+                    "info": "Put extra tape on the package seams",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                }
+            ],
+            "flags": {
+                "hasOpenIssue": false,
+                "delivered": true
+            }
+        }
 
 ## /api/v1/packages/{id}/shipping-methods
 ### GET
