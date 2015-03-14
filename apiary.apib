@@ -679,6 +679,7 @@ Secondary status is expressed using boolean flags.
 
 | Flag | Description |
 |:-----|:------------|
+| consolidation | True if package is a consolidation. |
 | customsDeclarationFilled | True if customs declaration has been filled in. |
 | sufficientDeposit | True when the total price for sending a package is lower or equal to current deposit. |
 | specialRequestInProgress | True for packages which have some unfinished special request(s). |
@@ -687,8 +688,7 @@ Secondary status is expressed using boolean flags.
 | otherNameVerified | True when receivedUnderOtherName is true and the other name is verified. |
 | shippingMethodSelected | True for packages with a shipping method selected. |
 | insuranceSelected | True for packages with an insurance option selected. |
-| measured | True if a package has been measured. There is usually a small time gap between a package receipt and measuring its dimensions. |
-| weighted | True if a package has been weighted. There may be a time gap between measuring the size and getting its weight. |
+| hasDimensions | True if a package has been weighted and measured. There is usually a small time gap between a package receipt and measuring its dimensions. |
 | requiresTaxId | True if current combination of carrier and delivery country requires tax id filled in the shipping address. |
 | hasTaxId | True if tax id is filled in. |
 | fitsMontlyLimit | True if the total price for sending a package is lower or equal to remaining monthly limit. |
@@ -698,7 +698,7 @@ Secondary status is expressed using boolean flags.
 | queuedForMps | True when a package is to be send in an MPS shipment. |
 | hasOpenIssue | True if there is an open claim for a package. |
 | contentPhotos | True if customer has asked us to take a content photo(s) using special requests. |
-| mailoutScheduled | True when user instructed us to mailout a package when we have all the needed information. |
+| mailoutScheduled | True when user instructed us to mailout a package. |
 | delivered | True for packages marked as delivered. |
 | mailboxUpgradeNeeded | True for accounts with "Individual Packages" plan and more than one parcel in our warehouse. |
 | readyToSend | True when customer fills in required information, schedules a mailout and we finish all special requests. |
