@@ -1659,6 +1659,92 @@ Statuses: available / new / processing / completed / canceled (usually you'll ru
 
 ## /api/v1/packages/{packageId}/mailout
 
+### GET
+Retrieve information about used benefits and mailout special requests
+
++ Response 200 (application/json)
+
+        {
+            "benefits": [
+                {
+                    "name": "Free mailout benefit",
+                    "value": 8
+                }
+            ],
+            "mailoutSpecialRequests": [
+                {
+                    "alias": "remove_invoice",
+                    "name": "Remove Invoice",
+                    "info": "Remove store invoices from the package(s)",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "bubble_wrap",
+                    "name": "Extra Bubble Wrap",
+                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "extra_tape",
+                    "name": "Extra Tape",
+                    "info": "Put extra tape on the package seams",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "security_tape",
+                    "name": "Security Tape",
+                    "info": "Put security tape on the package, so it's evident if the package has been opened after shipping",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "fragile_sticker",
+                    "name": "Fragile Sticker",
+                    "info": "Put fragile sticker onto the package, so it's clear package contains fragile items.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "express_mailout",
+                    "name": "Express Mailout",
+                    "info": "Your Mailout Request will be moved to the top of the queue.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false,
+                    "status": "available"
+                },
+                {
+                    "alias": "mailout_photo",
+                    "name": "Mailout Photo",
+                    "info": "Take a photo of the package before giving it to the shipping company",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false,
+                    "status": "available"
+                }
+            ]
+        }
+
 ### POST
 Request mailout.
 
