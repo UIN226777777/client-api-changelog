@@ -2660,32 +2660,103 @@ List specific requests which are available for given package
 
         [
             {
-                "id": 1,
-                "name": "Send this package separately",
-                "desc": "We will not merge this package with any other package, and we will send it to you separately as soon as possible.<br /><br />Note: This process is standard for Individual packages.",
-                "fee": 8.50,
-                "status": "pending"
+                "id": 1619055,
+                "alias": "other_instructions",
+                "name": "Other instructions",
+                "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                "fee": 0,
+                "status": "completed",
+                "additionalInfoRequired": true,
+                "additionalInfo": "Do this and that, thank you! (A2768-WI)",
+                "response": "Done that and this!"
             },
             {
-                "id": 2,
+                "id": 1619940,
+                "alias": "other_instructions",
+                "name": "Other instructions",
+                "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                "fee": 0,
+                "status": "pending",
+                "additionalInfoRequired": true,
+                "additionalInfo": "Do also that, thank you. (A2768-WI)",
+                "response": null
+            },
+            {
+                "id": 1618450,
+                "alias": "fillout_customs",
+                "name": "Open the package and fill customs declaration",
+                "description": "Open the package, and according to invoice, fill customs declaration. If there is no invoice in the package, fill only content description.",
+                "fee": 5,
+                "status": "canceled",
+                "additionalInfoRequired": false,
+                "additionalInfo": null,
+                "response": "We were not able to fill out the customs declaration :("
+            },
+            {
+                "id": null,
+                "alias": "trash",
+                "name": "Trash this package",
+                "description": "",
+                "fee": 0,
+                "status": "available",
+                "additionalInfoRequired": false,
+                "additionalInfo": null,
+                "response": "cacnel"
+            },
+            {
+                "id": null,
+                "alias": "express",
                 "name": "Express processing",
-                "desc": "We will process mailout, special instruction or consolidation in preference.",
-                "fee": 8.50,
-                "status": "available"
+                "description": "Process this package in preference ASAP.",
+                "fee": 5,
+                "status": "available",
+                "additionalInfoRequired": false,
+                "additionalInfo": null,
+                "response": "ne"
             },
             {
-                "id": 3,
-                "name": "Fill Customs declaration",
-                "desc": "We will open the package, and according to invoice, we will fill customs declaration. If there is no invoice in the package, we will fill only content description.",
-                "fee": 8.50,
-                "status": "available"
+                "id": null,
+                "alias": "take_3_pictures",
+                "name": "One Photo Request",
+                "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
+                "fee": 2,
+                "status": "available",
+                "additionalInfoRequired": false,
+                "additionalInfo": null,
+                "response": "fsdfd"
             },
             {
-                "id": 4,
-                "name": "Fill Customs declaration",
-                "desc": "We will open the package, and according to invoice, we will fill customs declaration. If there is no invoice in the package, we will fill only content description.",
-                "fee": 8.50,
-                "status": "canceled"
+                "id": 1587771,
+                "alias": "take_10_pictures",
+                "name": "Multiple Photo Request",
+                "description": "You will get more close up and detailed photos of items in the\npackage. We will also take photo of the invoice or packing list (if\nenclosed). We will also take photo of labels on the clothes so you can\ncheck if you are getting correct sizes. This can also show model\nnumber on iPad or computer. We will also take IMEI number on your\niPhone for better security (based on suggestion from one of our\ncustomers).",
+                "fee": 5,
+                "status": "available",
+                "additionalInfoRequired": false,
+                "additionalInfo": null,
+                "response": "a"
+            },
+            {
+                "id": null,
+                "alias": "mistake_report",
+                "name": "Report mistake",
+                "description": "If you believe Shipito did a mistake please report it here (wrong photos, incorrect weight, etc.).\nMistakes will be fixed for free.\nFalse reports will be charged $2 for double checking. ",
+                "fee": 0,
+                "status": "available",
+                "additionalInfoRequired": true,
+                "additionalInfo": null,
+                "response": null
+            },
+            {
+                "id": null,
+                "alias": "other_instructions",
+                "name": "Other instructions",
+                "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                "fee": 5,
+                "status": "available",
+                "additionalInfoRequired": true,
+                "additionalInfo": null,
+                "response": null
             }
         ]
 
