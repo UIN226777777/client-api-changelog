@@ -711,8 +711,7 @@ How the "ready to send" condition works (every line needs to be equal to true, s
 * (!receivedUnderOtherName || otherNameVerified)
 * shippingMethodSelected
 * insuranceSelected
-* measured
-* weighted
+* hadDimensions
 * (!requiresNotarizedForm1583 || hasNotarizedForm1583)
 * !queuedForConsolidation
 * !queuedForMps
@@ -728,328 +727,356 @@ List packages which are in a warehouse
 
         [
             {
-                "packageId": "A",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
+                "id": "CO",
                 "status": "in warehouse",
-                "dimensions": {
-                    "width": 0,
-                    "height": 0,
-                    "length": 0
-                },
-                "weight": 0,
-                "deliveryDate": 1378788198,
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "",
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "totalPrice": 666,
-                "isConsolidation": true,
+                "note": "",
+                "receiptDate": 1426183800000,
+                "mailoutDate": null,
+                "incomingTrackingNumber": "4209050392612999952664511000015895",
+                "trackingNumber": "",
+                "invoice": null,
+                "remainingFreeStorage": 88,
+                "warehouse": 7,
                 "photos": [
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     },
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
                         "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     }
                 ],
+                "dimensions": {
+                    "weight": 5.85,
+                    "length": 12.5,
+                    "width": 12,
+                    "height": 11
+                },
+                "price": {
+                    "processingFee": 1,
+                    "repackingFee": 0,
+                    "specialFee": 0,
+                    "postage": 104.3,
+                    "insurance": 0,
+                    "discount": 10,
+                    "total": 105.3,
+                    "postageDetail": {
+                        "carrier": 100,
+                        "bankFee": 4.3
+                    }
+                },
                 "shipping": {
                     "address": {
                         "firstName": "Jon",
-                        "lastName": "Snow"
+                        "lastName": "Snow",
+                        "company": "",
+                        "taxId": "",
+                        "address": "Tower of Lord Commander",
+                        "city": "Castle Black",
+                        "zip": "123456",
+                        "state": "",
+                        "country": "CA",
+                        "phone": "1234567890"
                     },
                     "method": {
-                        "alias": "DHL_EXPRESS",
+                        "id": "DHL_EXPRESS",
                         "name": "DHL Express"
+                    },
+                    "insurance": "delivery_damage",
+                    "additionalInsurance": false
+                },
+                "customsDeclaration": {
+                    "totalValue": 250
+                },
+                "specialRequests": [
+                    {
+                        "id": 1619055,
+                        "alias": "other_instructions",
+                        "name": "Other instructions",
+                        "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                        "fee": 0,
+                        "status": "completed",
+                        "additionalInfoRequired": true,
+                        "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
+                        "response": "Hope you like the dinosaur!"
+                    },
+                    {
+                        "id": 1619940,
+                        "alias": "other_instructions",
+                        "name": "Other instructions",
+                        "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                        "fee": 0,
+                        "status": "pending",
+                        "additionalInfoRequired": true,
+                        "additionalInfo": "Is winter coming? (A2768-CO)",
+                        "response": null
+                    },
+                    {
+                        "id": 1619053,
+                        "alias": "take_3_pictures",
+                        "name": "One Photo Request",
+                        "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
+                        "fee": 0,
+                        "status": "canceled",
+                        "additionalInfoRequired": false,
+                        "additionalInfo": "One Photo Request (A2768-CO)",
+                        "response": "We were not able to take pictures of your cloak of invisibility."
+                    }
+                ],
+                "mailoutSpecialRequests": [
+                    {
+                        "alias": "bubble_wrap",
+                        "name": "Extra Bubble Wrap",
+                        "info": "Put extra bubble wrap or packaging material to protect the items.",
+                        "additionalInfo": null,
+                        "additionalInfoRequired": false,
+                        "fee": 2,
+                        "benefitApplied": false
+                    },
+                    {
+                        "alias": "extra_tape",
+                        "name": "Extra Tape",
+                        "info": "Put extra tape on the package seams",
+                        "additionalInfo": null,
+                        "additionalInfoRequired": false,
+                        "fee": 1,
+                        "benefitApplied": false
+                    }
+                ],
+                "flags": {
+                    "consolidation": false,
+                    "hasOpenIssue": false,
+                    "contentPhotos": false,
+                    "sufficientDeposit": true,
+                    "fitsMonthlyLimit": true,
+                    "shippingMethodSelected": true,
+                    "insuranceSelected": true,
+                    "customsDeclarationFilled": true,
+                    "receivedUnderOtherName": true,
+                    "otherNameVerified": true,
+                    "specialRequestInProgress": false,
+                    "requiresTaxId": false,
+                    "hasTaxId": false,
+                    "requiresNotarizedForm1583": false,
+                    "hasNotarizedForm1583": false,
+                    "onSecurityHold": false,
+                    "hasDimensions": true,
+                    "hasDueStorageFees": false,
+                    "queuedForConsolidation": false,
+                    "queuedForMps": false,
+                    "mailboxUpgradeNeeded": false,
+                    "mailoutScheduled": false,
+                    "readyToSend": false,
+                    "canBeMerged": true
+                }
+            },
+            {
+                "id": "CN",
+                "status": "in warehouse",
+                "note": "",
+                "receiptDate": 1425756982000,
+                "mailoutDate": null,
+                "incomingTrackingNumber": "420905039274899994597717058821",
+                "trackingNumber": "",
+                "invoice": null,
+                "remainingFreeStorage": 83,
+                "warehouse": 7,
+                "photos": [
+                    {
+                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                    },
+                    {
+                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                    }
+                ],
+                "dimensions": {
+                    "weight": 0.6,
+                    "length": 15.5,
+                    "width": 13.5,
+                    "height": 2
+                },
+                "price": {
+                    "processingFee": 1,
+                    "repackingFee": 0,
+                    "specialFee": 0,
+                    "postage": 0,
+                    "insurance": 0,
+                    "discount": 0,
+                    "total": null,
+                    "postageDetail": {
+                        "carrier": 0,
+                        "bankFee": 0
                     }
                 },
-                "invoice": null,
+                "shipping": {
+                    "address": {
+                        "firstName": "Jon",
+                        "lastName": "Snow",
+                        "company": "",
+                        "taxId": "",
+                        "address": "Tower of Lord Commander",
+                        "city": "Castle Black",
+                        "zip": "123456",
+                        "state": "",
+                        "country": "CA",
+                        "phone": "1234567890"
+                    },
+                    "method": null,
+                    "insurance": null,
+                    "additionalInsurance": null
+                },
+                "customsDeclaration": {
+                    "totalValue": 0
+                },
+                "specialRequests": [],
+                "mailoutSpecialRequests": [],
                 "flags": {
+                    "consolidation": false,
                     "hasOpenIssue": false,
                     "contentPhotos": false,
                     "sufficientDeposit": true,
                     "fitsMonthlyLimit": true,
                     "shippingMethodSelected": false,
                     "insuranceSelected": false,
-                    "customsDeclarationFilled": true,
-                    "receivedUnderOtherName": true,
+                    "customsDeclarationFilled": false,
+                    "receivedUnderOtherName": false,
                     "otherNameVerified": false,
                     "specialRequestInProgress": false,
                     "requiresTaxId": false,
                     "hasTaxId": false,
                     "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": true,
+                    "hasNotarizedForm1583": false,
                     "onSecurityHold": false,
-                    "measured": false,
-                    "weighted": false,
+                    "hasDimensions": true,
+                    "hasDueStorageFees": false,
                     "queuedForConsolidation": false,
                     "queuedForMps": false,
                     "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": true,
-                    "readyToSend": false
+                    "mailoutScheduled": false,
+                    "readyToSend": false,
+                    "canBeMerged": false
                 }
             },
             {
-                "packageId": "ABC",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
+                "id": "CM",
                 "status": "in warehouse",
-                "dimensions": {
-                    "width": 10,
-                    "height": 15,
-                    "length": 15
-                },
-                "weight": 12,
-                "deliveryDate": 1378788198,
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "",
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "totalPrice": 132,
-                "isConsolidation": false,
+                "note": "",
+                "receiptDate": 1425580274000,
+                "mailoutDate": null,
+                "incomingTrackingNumber": "4209050392748999953557581035138573",
+                "trackingNumber": "",
+                "invoice": null,
+                "remainingFreeStorage": 81,
+                "warehouse": 7,
                 "photos": [
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     },
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
                         "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     },
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
                         "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     },
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
                         "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     },
                     {
                         "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
                         "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
                         "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                     }
                 ],
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow"
-                    },
-                    "method": {
-                        "alias": "DHL_EXPRESS",
-                        "name": "DHL Express"
-                    }
-                },
-                "invoice": null,
-                 "flags": {
-                     "hasOpenIssue": false,
-                     "contentPhotos": false,
-                     "sufficientDeposit": true,
-                     "fitsMonthlyLimit": true,
-                     "shippingMethodSelected": false,
-                     "insuranceSelected": false,
-                     "customsDeclarationFilled": true,
-                     "receivedUnderOtherName": true,
-                     "otherNameVerified": false,
-                     "specialRequestInProgress": false,
-                     "requiresTaxId": false,
-                     "hasTaxId": false,
-                     "requiresNotarizedForm1583": false,
-                     "hasNotarizedForm1583": true,
-                     "onSecurityHold": false,
-                     "measured": true,
-                     "weighted": true,
-                     "queuedForConsolidation": false,
-                     "queuedForMps": false,
-                     "mailboxUpgradeNeeded": false,
-                     "mailoutScheduled": true,
-                     "readyToSend": false
-                 }
-            },
-            {
-                "packageId": "BC",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
-                "status": "in warehouse",
                 "dimensions": {
-                    "width": 10,
-                    "height": 15,
-                    "length": 15
+                    "weight": 0.95,
+                    "length": 14.5,
+                    "width": 14,
+                    "height": 2
                 },
-                "weight": 5,
-                "deliveryDate": 1378788198,
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "",
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "totalPrice": 132,
-                "isConsolidation": false,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                "price": {
+                    "processingFee": 1,
+                    "repackingFee": 0,
+                    "specialFee": 0,
+                    "postage": 0,
+                    "insurance": 0,
+                    "discount": 0,
+                    "total": null,
+                    "postageDetail": {
+                        "carrier": 0,
+                        "bankFee": 0
                     }
-                ],
+                },
                 "shipping": {
                     "address": {
                         "firstName": "Jon",
-                        "lastName": "Snow"
+                        "lastName": "Snow",
+                        "company": "",
+                        "taxId": "",
+                        "address": "Tower of Lord Commander",
+                        "city": "Castle Black",
+                        "zip": "123456",
+                        "state": "",
+                        "country": "CA",
+                        "phone": "1234567890"
                     },
-                    "method": {
-                        "alias": "DHL_EXPRESS",
-                        "name": "DHL Express"
-                    }
+                    "method": null,
+                    "insurance": null,
+                    "additionalInsurance": null
                 },
-                "invoice": null,
+                "customsDeclaration": {
+                    "totalValue": 0
+                },
+                "specialRequests": [],
+                "mailoutSpecialRequests": [],
                 "flags": {
+                    "consolidation": false,
                     "hasOpenIssue": false,
                     "contentPhotos": false,
                     "sufficientDeposit": true,
                     "fitsMonthlyLimit": true,
                     "shippingMethodSelected": false,
                     "insuranceSelected": false,
-                    "customsDeclarationFilled": true,
-                    "receivedUnderOtherName": true,
-                    "otherNameVerified": true,
+                    "customsDeclarationFilled": false,
+                    "receivedUnderOtherName": false,
+                    "otherNameVerified": false,
                     "specialRequestInProgress": false,
                     "requiresTaxId": false,
                     "hasTaxId": false,
                     "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": true,
+                    "hasNotarizedForm1583": false,
                     "onSecurityHold": false,
-                    "measured": true,
-                    "weighted": true,
+                    "hasDimensions": true,
+                    "hasDueStorageFees": false,
                     "queuedForConsolidation": false,
                     "queuedForMps": false,
                     "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": true,
-                    "readyToSend": true
-                }
-            },
-            {
-                "packageId": "DB",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
-                "status": "in warehouse",
-                "dimensions": {
-                    "width": 0,
-                    "height": 0,
-                    "length": 0
-                },
-                "weight": 4,
-                "deliveryDate": 1378788198,
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "",
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "totalPrice": 132,
-                "isConsolidation": false,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    }
-                ],
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow"
-                    },
-                    "method": null
-                },
-                "invoice": null,
-                "flags": {
-                    "hasOpenIssue": false,
-                    "contentPhotos": false,
-                    "sufficientDeposit": true,
-                    "fitsMonthlyLimit": true,
-                    "shippingMethodSelected": false,
-                    "insuranceSelected": false,
-                    "customsDeclarationFilled": true,
-                    "receivedUnderOtherName": true,
-                    "otherNameVerified": true,
-                    "specialRequestInProgress": false,
-                    "requiresTaxId": false,
-                    "hasTaxId": false,
-                    "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": true,
-                    "onSecurityHold": false,
-                    "measured": true,
-                    "weighted": true,
-                    "queuedForConsolidation": false,
-                    "queuedForMps": false,
-                    "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": true,
-                    "readyToSend": true
+                    "mailoutScheduled": false,
+                    "readyToSend": false,
+                    "canBeMerged": false
                 }
             }
         ]
@@ -1062,186 +1089,122 @@ List packages which have been already sent
 
         [
             {
-                "packageId": "TK",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
+                "id": "B",
                 "status": "sent",
+                "note": "",
+                "receiptDate": 1297102003000,
+                "mailoutDate": 1297115473000,
+                "incomingTrackingNumber": "SDNggbMrxR_001_v",
+                "trackingNumber": "796736106934",
+                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=621519",
+                "remainingFreeStorage": 0,
+                "warehouse": 7,
+                "photos": [],
                 "dimensions": {
-                    "width": 100,
-                    "height": 200,
-                    "length": 300
+                    "weight": 1.2,
+                    "length": 9.6,
+                    "width": 8,
+                    "height": 2
                 },
-                "weight": 42,
-                "deliveryDate": 1381363200000,
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "SAE00000000000000",
-                "totalPrice": 132,
-                "isConsolidation": true,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                "price": {
+                    "processingFee": 8.5,
+                    "repackingFee": 0,
+                    "specialFee": 0,
+                    "postage": 49.74,
+                    "insurance": 0,
+                    "discount": 0,
+                    "total": 58.24,
+                    "postageDetail": {
+                        "carrier": 47.6,
+                        "bankFee": 2.14
                     }
-                ],
+                },
                 "shipping": {
                     "address": {
                         "firstName": "Jon",
-                        "lastName": "Snow"
+                        "lastName": "Snow",
+                        "company": "",
+                        "taxId": "",
+                        "address": "Tower of Lord Commander",
+                        "city": "Castle Black",
+                        "zip": "123456",
+                        "state": "",
+                        "country": "CA",
+                        "phone": "1234567890"
                     },
                     "method": {
-                        "alias": "DHL_EXPRESS",
-                        "name": "DHL Express"
-                    }
+                        "alias": "FEDEX_PRIORITY",
+                        "name": "FedEx Priority"
+                    },
+                    "insurance": "no_insurance",
+                    "additionalInsurance": null
                 },
-                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=1234",
+                "customsDeclaration": {
+                    "totalValue": 139
+                },
+                "specialRequests": [],
+                "mailoutSpecialRequests": [],
                 "flags": {
                     "hasOpenIssue": false,
                     "delivered": false
                 }
             },
             {
-                "packageId": "PO",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
-                },
+                "id": "A",
                 "status": "sent",
+                "note": "",
+                "receiptDate": 1292017517000,
+                "mailoutDate": 1292286167000,
+                "incomingTrackingNumber": "",
+                "trackingNumber": "796549177563",
+                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=534883",
+                "remainingFreeStorage": 0,
+                "warehouse": 7,
+                "photos": [],
                 "dimensions": {
-                    "width": 100,
-                    "height": 200,
-                    "length": 300
+                    "weight": 1.2,
+                    "length": 10,
+                    "width": 8,
+                    "height": 2
                 },
-                "weight": 13,
-                "deliveryDate": 1381363200000,
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "SAE123232334324",
-                "totalPrice": 132,
-                "isConsolidation": false,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                "price": {
+                    "processingFee": 8.5,
+                    "repackingFee": 0,
+                    "specialFee": 0,
+                    "postage": 38.82,
+                    "insurance": 0,
+                    "discount": 0,
+                    "total": 47.32,
+                    "postageDetail": {
+                        "carrier": 37.15,
+                        "bankFee": 1.67
                     }
-                ],
+                },
                 "shipping": {
                     "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow"
+                        "firstName": "Petyr",
+                        "lastName": "Baelish",
+                        "company": "",
+                        "taxId": "",
+                        "address": "Brothel",
+                        "city": "King's Landing",
+                        "zip": "111",
+                        "state": "",
+                        "country": "CA",
+                        "phone": "1234567890"
                     },
                     "method": {
-                        "alias": "DHL_EXPRESS",
-                        "name": "DHL Express"
-                    }
+                        "alias": "FEDEX_ECONOMY",
+                        "name": "FedEx Economy"
+                    },
+                    "insurance": "delivery",
+                    "additionalInsurance": null
                 },
-                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=1234",
-                "flags": {
-                    "hasOpenIssue": false,
-                    "delivered": false
-                }
-            },
-            {
-                "packageId": "PQ",
-                "warehouse": {
-                    "id": 7,
-                    "name": "Torrance, CA"
+                "customsDeclaration": {
+                    "totalValue": 139
                 },
-                "status": "sent",
-                "dimensions": {
-                    "width": 100,
-                    "height": 200,
-                    "length": 300
-                },
-                "weight": 23,
-                "deliveryDate": 1378788198000,
-                "note": "Sweet roll ice cream gummies bonbon topping dessert sweet roll. Powder dragee pudding marzipan sweet roll candy powder fruitcake.",
-                "trackingNumber": "1Z7F382V0215698550",
-                "outgoingTrackingNumber": "SAE98765432",
-                "totalPrice": 132,
-                "isConsolidation": false,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                    }
-                ],
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow"
-                    },
-                    "method": {
-                        "alias": "DHL_EXPRESS",
-                        "name": "DHL Express"
-                    }
-                },
-                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=1234",
+                "specialRequests": [],
+                "mailoutSpecialRequests": [],
                 "flags": {
                     "hasOpenIssue": false,
                     "delivered": true
@@ -1262,151 +1225,191 @@ status: delivered | mailed | in-transit | ready-to-send | check-status
 + Response 200 (application/json)
 
         {
-            "packageId": "BC",
-            "mailbox": "A2768",
-            "location":  {
-                "id": 7,
-                "name": "Columbia",
-                "address": "2972 Columbia St.",
-                "city": "Torrance",
-                "state": "CA",
-                "zip": "90503",
-                "country": "US"
-            },
-            "totalPrice": 1250,
-            "totalPriceWithoutDiscount": 1250,
-            "priceDetail": {
-                "processingFee": 1,
-                "repackingFee": 1,
-                "postage": 1,
-                "postageDetail": {
-                    "carrier": 1,
-                    "bankFee": 1
-                },
-                "insurance": 1
-            },
-            "information": {
-                "dimensions": {
-                    "width": 100,
-                    "height": 200,
-                    "length": 300
-                },
-                "weight": 7.12,
-                "deliveryDate": 1380647532000,
-                "availableStorage": 70,
-                "incommingTrackingNumber": "201113554689AC65434",
-                "recipientFirstName": "Alexander",
-                "recipientLastName": "Sergeyeich",
-                "transportCost": 42,
-                "outgoingTrackingNumber": "1020388026147340100767",
-                "mailedOut": 1380647532000,
-                "mailedOutBy": "David Cap"
-            },
+            "id": "CO",
+            "status": "in warehouse",
+            "note": "",
+            "receiptDate": 1426183800000,
+            "mailoutDate": null,
+            "incomingTrackingNumber": "4209050392612999952664511000015895",
+            "trackingNumber": "",
+            "invoice": null,
+            "remainingFreeStorage": 88,
+            "warehouse": 7,
             "photos": [
                 {
                     "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
                     "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                 },
                 {
                     "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
                     "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
                     "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                 },
                 {
                     "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
                     "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
                     "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                 },
                 {
                     "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
                     "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
                     "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                 },
                 {
                     "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
                     "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
                     "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
                 }
             ],
-            "customsDeclaration": {
-                "numberOfItems": 12,
-                "totalValue": 122,
-                "type": "gift",
-                "items": [
-                    {
-                        "quantity": 1,
-                        "description": "Audi RS5",
-                        "origin": "DE",
-                        "value": 10
-                    },
-                    {
-                        "quantity": 2,
-                        "description": "Audi A4",
-                        "origin": "DE",
-                        "value": 10
-                    }
-                ],
-                "dangerousMaterials": {
-                    "PI966": true,
-                    "PI967": true,
-                    "PI965": true
+            "dimensions": {
+                "weight": 5.85,
+                "length": 12.5,
+                "width": 12,
+                "height": 11
+            },
+            "price": {
+                "processingFee": 1,
+                "repackingFee": 0,
+                "specialFee": 0,
+                "postage": 104.3,
+                "insurance": 0,
+                "discount": 10,
+                "total": 105.3,
+                "postageDetail": {
+                    "carrier": 100,
+                    "bankFee": 4.3
                 }
             },
             "shipping": {
                 "address": {
-                    "firstName": "Tom",
-                    "lastName": "Doo",
-                    "company": null,
-                    "taxId": null,
-                    "address": "Example street",
-                    "city": "Prague",
-                    "zip": "15400",
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "company": "",
+                    "taxId": "",
+                    "address": "Tower of Lord Commander",
+                    "city": "Castle Black",
+                    "zip": "123456",
                     "state": "",
-                    "country": "CZ",
-                    "phone": "+420344555788"
+                    "country": "CA",
+                    "phone": "1234567890"
                 },
                 "method": {
-                    "alias": "FEDEX_2_DAY",
-                    "name": "Fedex 2Day"
+                    "id": "DHL_EXPRESS",
+                    "name": "DHL Express"
                 },
-                "insurance": "delivery_damage"
+                "insurance": "delivery_damage",
+                "additionalInsurance": false
+            },
+            "customsDeclaration": {
+                "totalValue": 250,
+                "type": "merchandise",
+                "items": [
+                    {
+                        "quantity": 1,
+                        "description": "Cloack of Invisibility",
+                        "origin": "US",
+                        "value": 150
+                    },
+                    {
+                        "quantity": 2,
+                        "description": "Fireball",
+                        "origin": "US",
+                        "value": 100
+                    }
+                ],
+                "dangerousMaterials": {
+                    "PI966": false,
+                    "PI967": false,
+                    "PI965": false
+                }
             },
             "specialRequests": [
                 {
-                    "message": "10 Photos",
-                    "fee": 20.5,
-                    "status": "pending"
+                    "id": 1619055,
+                    "alias": "other_instructions",
+                    "name": "Other instructions",
+                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                    "fee": 0,
+                    "status": "completed",
+                    "additionalInfoRequired": true,
+                    "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
+                    "response": "Hope you like the dinosaur!"
                 },
                 {
-                    "message": "Asdf dlouhej text aby se nereklo",
-                    "fee": 8.5,
-                    "status": "canceled"
+                    "id": 1619940,
+                    "alias": "other_instructions",
+                    "name": "Other instructions",
+                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                    "fee": 0,
+                    "status": "pending",
+                    "additionalInfoRequired": true,
+                    "additionalInfo": "Is winter coming? (A2768-CO)",
+                    "response": null
                 },
                 {
-                    "message": "Destroy packages",
-                    "fee": 0.0,
-                    "status": "completed"
+                    "id": 1619053,
+                    "alias": "take_3_pictures",
+                    "name": "One Photo Request",
+                    "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
+                    "fee": 0,
+                    "status": "canceled",
+                    "additionalInfoRequired": false,
+                    "additionalInfo": "One Photo Request (A2768-CO)",
+                    "response": "We were not able to take pictures of your cloak of invisibility."
                 }
             ],
-            "status": "sent",
-            "note": "My note",
+            "mailoutSpecialRequests": [
+                {
+                    "alias": "bubble_wrap",
+                    "name": "Extra Bubble Wrap",
+                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 2,
+                    "benefitApplied": false
+                },
+                {
+                    "alias": "extra_tape",
+                    "name": "Extra Tape",
+                    "info": "Put extra tape on the package seams",
+                    "additionalInfo": null,
+                    "additionalInfoRequired": false,
+                    "fee": 1,
+                    "benefitApplied": false
+                }
+            ],
             "flags": {
-                "contentPhotos": true,
-                "customsDeclarationFilled": true,
-                "mailoutScheduled": false,
-                "shippingMethodSelected": false,
-                "transportPending": false,
-                "transportScheduled": false
-            },
-            "flags": {
+                "consolidation": false,
                 "hasOpenIssue": false,
-                "delivered": true
-            },
-            "exceptions": [
-                "exception1",
-                "exception2"
-            ]
+                "contentPhotos": false,
+                "sufficientDeposit": true,
+                "fitsMonthlyLimit": true,
+                "shippingMethodSelected": true,
+                "insuranceSelected": true,
+                "customsDeclarationFilled": true,
+                "receivedUnderOtherName": true,
+                "otherNameVerified": true,
+                "specialRequestInProgress": false,
+                "requiresTaxId": false,
+                "hasTaxId": false,
+                "requiresNotarizedForm1583": false,
+                "hasNotarizedForm1583": false,
+                "onSecurityHold": false,
+                "hasDimensions": true,
+                "hasDueStorageFees": false,
+                "queuedForConsolidation": false,
+                "queuedForMps": false,
+                "mailboxUpgradeNeeded": false,
+                "mailoutScheduled": false,
+                "readyToSend": false,
+                "canBeMerged": true
+            }
         }
 
 ## /api/v1/packages/{packageId}/confirm-delivery
