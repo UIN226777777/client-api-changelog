@@ -3708,6 +3708,8 @@ Update a consolidation package
 # Group Verification documents
 ## /api/v1/documents
 
+* `otherNameId` - `integer`/`null` Null means it's for account's owner
+
 ### Retrieve a list of uploaded documents and their status [GET]
 
 + Response 200 (application/json)
@@ -3718,21 +3720,24 @@ Update a consolidation package
                     "category": "form1583",
                     "description": "",
                     "time": 1387220812000,
-                    "status": "verified"
+                    "status": "verified",
+                    "otherNameId": NULL
                 },
                 {
                     "id": 228194,
                     "category": "utility",
                     "description": "",
                     "time": 1387220812000,
-                    "status": "rejected"
+                    "status": "rejected",
+                    "otherNameId": 45
                 },
                 {
                     "id": 228203,
                     "category": "id1",
                     "description": "my id",
                     "time": 1418325026000,
-                    "status": "pending"
+                    "status": "pending",
+                    "otherNameId": 52
                 }
         ]
 
