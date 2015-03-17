@@ -723,498 +723,504 @@ How the "ready to send" condition works (every line needs to be equal to true, s
 * mailoutScheduled
 * !mailboxUpgradeNeeded                                                                                                               |
 
-## /api/v1/packages?filter=in-warehouse
+## /api/v1/packages?filter=in-warehouse&page=1&itemsPerPage=50
 ### GET
 List packages which are in a warehouse
 
 + Response 200 (application/json)
 
-        [
-            {
-                "id": "CO",
-                "status": "in warehouse",
-                "note": "",
-                "receiptDate": 1426183800000,
-                "mailoutDate": null,
-                "incomingTrackingNumber": "4209050392612999952664511000015895",
-                "trackingNumber": "",
-                "invoice": null,
-                "remainingFreeStorage": 88,
-                "warehouse": 7,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+        {
+            "totalCount": 13,
+            "packages": [
+                {
+                    "id": "CO",
+                    "status": "in warehouse",
+                    "note": "",
+                    "receiptDate": 1426183800000,
+                    "mailoutDate": null,
+                    "incomingTrackingNumber": "4209050392612999952664511000015895",
+                    "trackingNumber": "",
+                    "invoice": null,
+                    "remainingFreeStorage": 88,
+                    "warehouse": 7,
+                    "photos": [
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        }
+                    ],
+                    "dimensions": {
+                        "weight": 5.85,
+                        "length": 12.5,
+                        "width": 12,
+                        "height": 11
                     },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                    "price": {
+                        "processingFee": 1,
+                        "repackingFee": 0,
+                        "specialFee": 0,
+                        "postage": 104.3,
+                        "insurance": 0,
+                        "discount": 10,
+                        "total": 105.3,
+                        "postageDetail": {
+                            "carrier": 100,
+                            "bankFee": 4.3
+                        }
+                    },
+                    "shipping": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": "",
+                            "taxId": "",
+                            "address": "Tower of Lord Commander",
+                            "city": "Castle Black",
+                            "zip": "123456",
+                            "state": "",
+                            "country": "CA",
+                            "phone": "1234567890"
+                        },
+                        "method": {
+                            "id": "DHL_EXPRESS",
+                            "name": "DHL Express"
+                        },
+                        "insurance": "delivery_damage",
+                        "additionalInsurance": false
+                    },
+                    "customsDeclaration": {
+                        "totalValue": 250
+                    },
+                    "specialRequests": [
+                        {
+                            "id": 1619055,
+                            "alias": "other_instructions",
+                            "name": "Other instructions",
+                            "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                            "fee": 0,
+                            "status": "completed",
+                            "additionalInfoRequired": true,
+                            "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
+                            "response": "Hope you like the dinosaur!"
+                        },
+                        {
+                            "id": 1619940,
+                            "alias": "other_instructions",
+                            "name": "Other instructions",
+                            "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
+                            "fee": 0,
+                            "status": "pending",
+                            "additionalInfoRequired": true,
+                            "additionalInfo": "Is winter coming? (A2768-CO)",
+                            "response": null
+                        },
+                        {
+                            "id": 1619053,
+                            "alias": "take_3_pictures",
+                            "name": "One Photo Request",
+                            "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
+                            "fee": 0,
+                            "status": "canceled",
+                            "additionalInfoRequired": false,
+                            "additionalInfo": "One Photo Request (A2768-CO)",
+                            "response": "We were not able to take pictures of your cloak of invisibility."
+                        }
+                    ],
+                    "mailoutSpecialRequests": [
+                        {
+                            "alias": "bubble_wrap",
+                            "name": "Extra Bubble Wrap",
+                            "info": "Put extra bubble wrap or packaging material to protect the items.",
+                            "additionalInfo": null,
+                            "additionalInfoRequired": false,
+                            "fee": 2,
+                            "benefitApplied": false
+                        },
+                        {
+                            "alias": "extra_tape",
+                            "name": "Extra Tape",
+                            "info": "Put extra tape on the package seams",
+                            "additionalInfo": null,
+                            "additionalInfoRequired": false,
+                            "fee": 1,
+                            "benefitApplied": false
+                        }
+                    ],
+                    "flags": {
+                        "consolidation": false,
+                        "hasOpenIssue": false,
+                        "contentPhotos": false,
+                        "sufficientDeposit": true,
+                        "fitsMonthlyLimit": true,
+                        "shippingMethodSelected": true,
+                        "insuranceSelected": true,
+                        "customsDeclarationFilled": true,
+                        "receivedUnderOtherName": true,
+                        "otherNameVerified": true,
+                        "specialRequestInProgress": false,
+                        "requiresTaxId": false,
+                        "hasTaxId": false,
+                        "requiresNotarizedForm1583": false,
+                        "hasNotarizedForm1583": false,
+                        "onSecurityHold": false,
+                        "hasDimensions": true,
+                        "hasDueStorageFees": false,
+                        "queuedForConsolidation": false,
+                        "queuedForMps": false,
+                        "mailboxUpgradeNeeded": false,
+                        "mailoutScheduled": false,
+                        "readyToSend": false,
+                        "canBeMerged": true
                     }
-                ],
-                "dimensions": {
-                    "weight": 5.85,
-                    "length": 12.5,
-                    "width": 12,
-                    "height": 11
                 },
-                "price": {
-                    "processingFee": 1,
-                    "repackingFee": 0,
-                    "specialFee": 0,
-                    "postage": 104.3,
-                    "insurance": 0,
-                    "discount": 10,
-                    "total": 105.3,
-                    "postageDetail": {
-                        "carrier": 100,
-                        "bankFee": 4.3
+                {
+                    "id": "CN",
+                    "status": "in warehouse",
+                    "note": "",
+                    "receiptDate": 1425756982000,
+                    "mailoutDate": null,
+                    "incomingTrackingNumber": "420905039274899994597717058821",
+                    "trackingNumber": "",
+                    "invoice": null,
+                    "remainingFreeStorage": 83,
+                    "warehouse": 7,
+                    "photos": [
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        }
+                    ],
+                    "dimensions": {
+                        "weight": 0.6,
+                        "length": 15.5,
+                        "width": 13.5,
+                        "height": 2
+                    },
+                    "price": {
+                        "processingFee": 1,
+                        "repackingFee": 0,
+                        "specialFee": 0,
+                        "postage": 0,
+                        "insurance": 0,
+                        "discount": 0,
+                        "total": null,
+                        "postageDetail": {
+                            "carrier": 0,
+                            "bankFee": 0
+                        }
+                    },
+                    "shipping": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": "",
+                            "taxId": "",
+                            "address": "Tower of Lord Commander",
+                            "city": "Castle Black",
+                            "zip": "123456",
+                            "state": "",
+                            "country": "CA",
+                            "phone": "1234567890"
+                        },
+                        "method": null,
+                        "insurance": null,
+                        "additionalInsurance": null
+                    },
+                    "customsDeclaration": {
+                        "totalValue": 0
+                    },
+                    "specialRequests": [],
+                    "mailoutSpecialRequests": [],
+                    "flags": {
+                        "consolidation": false,
+                        "hasOpenIssue": false,
+                        "contentPhotos": false,
+                        "sufficientDeposit": true,
+                        "fitsMonthlyLimit": true,
+                        "shippingMethodSelected": false,
+                        "insuranceSelected": false,
+                        "customsDeclarationFilled": false,
+                        "receivedUnderOtherName": false,
+                        "otherNameVerified": false,
+                        "specialRequestInProgress": false,
+                        "requiresTaxId": false,
+                        "hasTaxId": false,
+                        "requiresNotarizedForm1583": false,
+                        "hasNotarizedForm1583": false,
+                        "onSecurityHold": false,
+                        "hasDimensions": true,
+                        "hasDueStorageFees": false,
+                        "queuedForConsolidation": false,
+                        "queuedForMps": false,
+                        "mailboxUpgradeNeeded": false,
+                        "mailoutScheduled": false,
+                        "readyToSend": false,
+                        "canBeMerged": false
                     }
                 },
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow",
-                        "company": "",
-                        "taxId": "",
-                        "address": "Tower of Lord Commander",
-                        "city": "Castle Black",
-                        "zip": "123456",
-                        "state": "",
-                        "country": "CA",
-                        "phone": "1234567890"
+                {
+                    "id": "CM",
+                    "status": "in warehouse",
+                    "note": "",
+                    "receiptDate": 1425580274000,
+                    "mailoutDate": null,
+                    "incomingTrackingNumber": "4209050392748999953557581035138573",
+                    "trackingNumber": "",
+                    "invoice": null,
+                    "remainingFreeStorage": 81,
+                    "warehouse": 7,
+                    "photos": [
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        },
+                        {
+                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
+                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
+                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
+                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                        }
+                    ],
+                    "dimensions": {
+                        "weight": 0.95,
+                        "length": 14.5,
+                        "width": 14,
+                        "height": 2
                     },
-                    "method": {
-                        "id": "DHL_EXPRESS",
-                        "name": "DHL Express"
+                    "price": {
+                        "processingFee": 1,
+                        "repackingFee": 0,
+                        "specialFee": 0,
+                        "postage": 0,
+                        "insurance": 0,
+                        "discount": 0,
+                        "total": null,
+                        "postageDetail": {
+                            "carrier": 0,
+                            "bankFee": 0
+                        }
                     },
-                    "insurance": "delivery_damage",
-                    "additionalInsurance": false
-                },
-                "customsDeclaration": {
-                    "totalValue": 250
-                },
-                "specialRequests": [
-                    {
-                        "id": 1619055,
-                        "alias": "other_instructions",
-                        "name": "Other instructions",
-                        "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
-                        "fee": 0,
-                        "status": "completed",
-                        "additionalInfoRequired": true,
-                        "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
-                        "response": "Hope you like the dinosaur!"
+                    "shipping": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": "",
+                            "taxId": "",
+                            "address": "Tower of Lord Commander",
+                            "city": "Castle Black",
+                            "zip": "123456",
+                            "state": "",
+                            "country": "CA",
+                            "phone": "1234567890"
+                        },
+                        "method": null,
+                        "insurance": null,
+                        "additionalInsurance": null
                     },
-                    {
-                        "id": 1619940,
-                        "alias": "other_instructions",
-                        "name": "Other instructions",
-                        "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
-                        "fee": 0,
-                        "status": "pending",
-                        "additionalInfoRequired": true,
-                        "additionalInfo": "Is winter coming? (A2768-CO)",
-                        "response": null
+                    "customsDeclaration": {
+                        "totalValue": 0
                     },
-                    {
-                        "id": 1619053,
-                        "alias": "take_3_pictures",
-                        "name": "One Photo Request",
-                        "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
-                        "fee": 0,
-                        "status": "canceled",
-                        "additionalInfoRequired": false,
-                        "additionalInfo": "One Photo Request (A2768-CO)",
-                        "response": "We were not able to take pictures of your cloak of invisibility."
+                    "specialRequests": [],
+                    "mailoutSpecialRequests": [],
+                    "flags": {
+                        "consolidation": false,
+                        "hasOpenIssue": false,
+                        "contentPhotos": false,
+                        "sufficientDeposit": true,
+                        "fitsMonthlyLimit": true,
+                        "shippingMethodSelected": false,
+                        "insuranceSelected": false,
+                        "customsDeclarationFilled": false,
+                        "receivedUnderOtherName": false,
+                        "otherNameVerified": false,
+                        "specialRequestInProgress": false,
+                        "requiresTaxId": false,
+                        "hasTaxId": false,
+                        "requiresNotarizedForm1583": false,
+                        "hasNotarizedForm1583": false,
+                        "onSecurityHold": false,
+                        "hasDimensions": true,
+                        "hasDueStorageFees": false,
+                        "queuedForConsolidation": false,
+                        "queuedForMps": false,
+                        "mailboxUpgradeNeeded": false,
+                        "mailoutScheduled": false,
+                        "readyToSend": false,
+                        "canBeMerged": false
                     }
-                ],
-                "mailoutSpecialRequests": [
-                    {
-                        "alias": "bubble_wrap",
-                        "name": "Extra Bubble Wrap",
-                        "info": "Put extra bubble wrap or packaging material to protect the items.",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 2,
-                        "benefitApplied": false
-                    },
-                    {
-                        "alias": "extra_tape",
-                        "name": "Extra Tape",
-                        "info": "Put extra tape on the package seams",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 1,
-                        "benefitApplied": false
-                    }
-                ],
-                "flags": {
-                    "consolidation": false,
-                    "hasOpenIssue": false,
-                    "contentPhotos": false,
-                    "sufficientDeposit": true,
-                    "fitsMonthlyLimit": true,
-                    "shippingMethodSelected": true,
-                    "insuranceSelected": true,
-                    "customsDeclarationFilled": true,
-                    "receivedUnderOtherName": true,
-                    "otherNameVerified": true,
-                    "specialRequestInProgress": false,
-                    "requiresTaxId": false,
-                    "hasTaxId": false,
-                    "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": false,
-                    "onSecurityHold": false,
-                    "hasDimensions": true,
-                    "hasDueStorageFees": false,
-                    "queuedForConsolidation": false,
-                    "queuedForMps": false,
-                    "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": false,
-                    "readyToSend": false,
-                    "canBeMerged": true
                 }
-            },
-            {
-                "id": "CN",
-                "status": "in warehouse",
-                "note": "",
-                "receiptDate": 1425756982000,
-                "mailoutDate": null,
-                "incomingTrackingNumber": "420905039274899994597717058821",
-                "trackingNumber": "",
-                "invoice": null,
-                "remainingFreeStorage": 83,
-                "warehouse": 7,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    }
-                ],
-                "dimensions": {
-                    "weight": 0.6,
-                    "length": 15.5,
-                    "width": 13.5,
-                    "height": 2
-                },
-                "price": {
-                    "processingFee": 1,
-                    "repackingFee": 0,
-                    "specialFee": 0,
-                    "postage": 0,
-                    "insurance": 0,
-                    "discount": 0,
-                    "total": null,
-                    "postageDetail": {
-                        "carrier": 0,
-                        "bankFee": 0
-                    }
-                },
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow",
-                        "company": "",
-                        "taxId": "",
-                        "address": "Tower of Lord Commander",
-                        "city": "Castle Black",
-                        "zip": "123456",
-                        "state": "",
-                        "country": "CA",
-                        "phone": "1234567890"
-                    },
-                    "method": null,
-                    "insurance": null,
-                    "additionalInsurance": null
-                },
-                "customsDeclaration": {
-                    "totalValue": 0
-                },
-                "specialRequests": [],
-                "mailoutSpecialRequests": [],
-                "flags": {
-                    "consolidation": false,
-                    "hasOpenIssue": false,
-                    "contentPhotos": false,
-                    "sufficientDeposit": true,
-                    "fitsMonthlyLimit": true,
-                    "shippingMethodSelected": false,
-                    "insuranceSelected": false,
-                    "customsDeclarationFilled": false,
-                    "receivedUnderOtherName": false,
-                    "otherNameVerified": false,
-                    "specialRequestInProgress": false,
-                    "requiresTaxId": false,
-                    "hasTaxId": false,
-                    "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": false,
-                    "onSecurityHold": false,
-                    "hasDimensions": true,
-                    "hasDueStorageFees": false,
-                    "queuedForConsolidation": false,
-                    "queuedForMps": false,
-                    "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": false,
-                    "readyToSend": false,
-                    "canBeMerged": false
-                }
-            },
-            {
-                "id": "CM",
-                "status": "in warehouse",
-                "note": "",
-                "receiptDate": 1425580274000,
-                "mailoutDate": null,
-                "incomingTrackingNumber": "4209050392748999953557581035138573",
-                "trackingNumber": "",
-                "invoice": null,
-                "remainingFreeStorage": 81,
-                "warehouse": 7,
-                "photos": [
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    },
-                    {
-                        "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                        "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                        "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png"
-                        "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                    }
-                ],
-                "dimensions": {
-                    "weight": 0.95,
-                    "length": 14.5,
-                    "width": 14,
-                    "height": 2
-                },
-                "price": {
-                    "processingFee": 1,
-                    "repackingFee": 0,
-                    "specialFee": 0,
-                    "postage": 0,
-                    "insurance": 0,
-                    "discount": 0,
-                    "total": null,
-                    "postageDetail": {
-                        "carrier": 0,
-                        "bankFee": 0
-                    }
-                },
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow",
-                        "company": "",
-                        "taxId": "",
-                        "address": "Tower of Lord Commander",
-                        "city": "Castle Black",
-                        "zip": "123456",
-                        "state": "",
-                        "country": "CA",
-                        "phone": "1234567890"
-                    },
-                    "method": null,
-                    "insurance": null,
-                    "additionalInsurance": null
-                },
-                "customsDeclaration": {
-                    "totalValue": 0
-                },
-                "specialRequests": [],
-                "mailoutSpecialRequests": [],
-                "flags": {
-                    "consolidation": false,
-                    "hasOpenIssue": false,
-                    "contentPhotos": false,
-                    "sufficientDeposit": true,
-                    "fitsMonthlyLimit": true,
-                    "shippingMethodSelected": false,
-                    "insuranceSelected": false,
-                    "customsDeclarationFilled": false,
-                    "receivedUnderOtherName": false,
-                    "otherNameVerified": false,
-                    "specialRequestInProgress": false,
-                    "requiresTaxId": false,
-                    "hasTaxId": false,
-                    "requiresNotarizedForm1583": false,
-                    "hasNotarizedForm1583": false,
-                    "onSecurityHold": false,
-                    "hasDimensions": true,
-                    "hasDueStorageFees": false,
-                    "queuedForConsolidation": false,
-                    "queuedForMps": false,
-                    "mailboxUpgradeNeeded": false,
-                    "mailoutScheduled": false,
-                    "readyToSend": false,
-                    "canBeMerged": false
-                }
-            }
-        ]
+            ]
+        }
 
-## /api/v1/packages?filter=sent-packages
+## /api/v1/packages?filter=sent-packages&page=1&itemsPerPage=50
 ### GET
 List packages which have been already sent
 
 + Response 200 (application/json)
 
-        [
-            {
-                "id": "B",
-                "status": "sent",
-                "note": "",
-                "receiptDate": 1297102003000,
-                "mailoutDate": 1297115473000,
-                "incomingTrackingNumber": "SDNggbMrxR_001_v",
-                "trackingNumber": "796736106934",
-                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=621519",
-                "remainingFreeStorage": 0,
-                "warehouse": 7,
-                "photos": [],
-                "dimensions": {
-                    "weight": 1.2,
-                    "length": 9.6,
-                    "width": 8,
-                    "height": 2
-                },
-                "price": {
-                    "processingFee": 8.5,
-                    "repackingFee": 0,
-                    "specialFee": 0,
-                    "postage": 49.74,
-                    "insurance": 0,
-                    "discount": 0,
-                    "total": 58.24,
-                    "postageDetail": {
-                        "carrier": 47.6,
-                        "bankFee": 2.14
+        {
+            "totalCount": 123,
+            "packages": [
+                {
+                    "id": "B",
+                    "status": "sent",
+                    "note": "",
+                    "receiptDate": 1297102003000,
+                    "mailoutDate": 1297115473000,
+                    "incomingTrackingNumber": "SDNggbMrxR_001_v",
+                    "trackingNumber": "796736106934",
+                    "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=621519",
+                    "remainingFreeStorage": 0,
+                    "warehouse": 7,
+                    "photos": [],
+                    "dimensions": {
+                        "weight": 1.2,
+                        "length": 9.6,
+                        "width": 8,
+                        "height": 2
+                    },
+                    "price": {
+                        "processingFee": 8.5,
+                        "repackingFee": 0,
+                        "specialFee": 0,
+                        "postage": 49.74,
+                        "insurance": 0,
+                        "discount": 0,
+                        "total": 58.24,
+                        "postageDetail": {
+                            "carrier": 47.6,
+                            "bankFee": 2.14
+                        }
+                    },
+                    "shipping": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": "",
+                            "taxId": "",
+                            "address": "Tower of Lord Commander",
+                            "city": "Castle Black",
+                            "zip": "123456",
+                            "state": "",
+                            "country": "CA",
+                            "phone": "1234567890"
+                        },
+                        "method": {
+                            "alias": "FEDEX_PRIORITY",
+                            "name": "FedEx Priority"
+                        },
+                        "insurance": "no_insurance",
+                        "additionalInsurance": null
+                    },
+                    "customsDeclaration": {
+                        "totalValue": 139
+                    },
+                    "specialRequests": [],
+                    "mailoutSpecialRequests": [],
+                    "flags": {
+                        "hasOpenIssue": false,
+                        "delivered": false
                     }
                 },
-                "shipping": {
-                    "address": {
-                        "firstName": "Jon",
-                        "lastName": "Snow",
-                        "company": "",
-                        "taxId": "",
-                        "address": "Tower of Lord Commander",
-                        "city": "Castle Black",
-                        "zip": "123456",
-                        "state": "",
-                        "country": "CA",
-                        "phone": "1234567890"
+                {
+                    "id": "A",
+                    "status": "sent",
+                    "note": "",
+                    "receiptDate": 1292017517000,
+                    "mailoutDate": 1292286167000,
+                    "incomingTrackingNumber": "",
+                    "trackingNumber": "796549177563",
+                    "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=534883",
+                    "remainingFreeStorage": 0,
+                    "warehouse": 7,
+                    "photos": [],
+                    "dimensions": {
+                        "weight": 1.2,
+                        "length": 10,
+                        "width": 8,
+                        "height": 2
                     },
-                    "method": {
-                        "alias": "FEDEX_PRIORITY",
-                        "name": "FedEx Priority"
+                    "price": {
+                        "processingFee": 8.5,
+                        "repackingFee": 0,
+                        "specialFee": 0,
+                        "postage": 38.82,
+                        "insurance": 0,
+                        "discount": 0,
+                        "total": 47.32,
+                        "postageDetail": {
+                            "carrier": 37.15,
+                            "bankFee": 1.67
+                        }
                     },
-                    "insurance": "no_insurance",
-                    "additionalInsurance": null
-                },
-                "customsDeclaration": {
-                    "totalValue": 139
-                },
-                "specialRequests": [],
-                "mailoutSpecialRequests": [],
-                "flags": {
-                    "hasOpenIssue": false,
-                    "delivered": false
-                }
-            },
-            {
-                "id": "A",
-                "status": "sent",
-                "note": "",
-                "receiptDate": 1292017517000,
-                "mailoutDate": 1292286167000,
-                "incomingTrackingNumber": "",
-                "trackingNumber": "796549177563",
-                "invoice": "https://www.inccontact.com/client/shipito/shipito.php?akce=510&id_mf_mail=534883",
-                "remainingFreeStorage": 0,
-                "warehouse": 7,
-                "photos": [],
-                "dimensions": {
-                    "weight": 1.2,
-                    "length": 10,
-                    "width": 8,
-                    "height": 2
-                },
-                "price": {
-                    "processingFee": 8.5,
-                    "repackingFee": 0,
-                    "specialFee": 0,
-                    "postage": 38.82,
-                    "insurance": 0,
-                    "discount": 0,
-                    "total": 47.32,
-                    "postageDetail": {
-                        "carrier": 37.15,
-                        "bankFee": 1.67
+                    "shipping": {
+                        "address": {
+                            "firstName": "Petyr",
+                            "lastName": "Baelish",
+                            "company": "",
+                            "taxId": "",
+                            "address": "Brothel",
+                            "city": "King's Landing",
+                            "zip": "111",
+                            "state": "",
+                            "country": "CA",
+                            "phone": "1234567890"
+                        },
+                        "method": {
+                            "alias": "FEDEX_ECONOMY",
+                            "name": "FedEx Economy"
+                        },
+                        "insurance": "delivery",
+                        "additionalInsurance": null
+                    },
+                    "customsDeclaration": {
+                        "totalValue": 139
+                    },
+                    "specialRequests": [],
+                    "mailoutSpecialRequests": [],
+                    "flags": {
+                        "hasOpenIssue": false,
+                        "delivered": true
                     }
-                },
-                "shipping": {
-                    "address": {
-                        "firstName": "Petyr",
-                        "lastName": "Baelish",
-                        "company": "",
-                        "taxId": "",
-                        "address": "Brothel",
-                        "city": "King's Landing",
-                        "zip": "111",
-                        "state": "",
-                        "country": "CA",
-                        "phone": "1234567890"
-                    },
-                    "method": {
-                        "alias": "FEDEX_ECONOMY",
-                        "name": "FedEx Economy"
-                    },
-                    "insurance": "delivery",
-                    "additionalInsurance": null
-                },
-                "customsDeclaration": {
-                    "totalValue": 139
-                },
-                "specialRequests": [],
-                "mailoutSpecialRequests": [],
-                "flags": {
-                    "hasOpenIssue": false,
-                    "delivered": true
                 }
-            }
-        ]
+            ]
+        }
 
 ## /api/v1/packages/{packageId}
 ### GET
