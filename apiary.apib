@@ -3824,6 +3824,38 @@ Accepted mime types: image/jpeg, image/png, application/pdf
             }
         ]
         
+## /api/v1/documents/categories/{otherNameId}
+### Retrieve a list of verification document categories for an other name [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "alias": "id1",
+                "status": "pending",
+                "percentage": 15,
+                "isDocument": true
+            },
+            {
+                "alias": "id2",
+                "status": "pending",
+                "percentage": 15,
+                "isDocument": true
+            },
+            {
+                "alias": "form1583",
+                "status": "pending",
+                "percentage": 10,
+                "isDocument": true
+            },
+            {
+                "alias": "form1583_notarized",
+                "status": "verified",
+                "percentage": 40,
+                "isDocument": true
+            }
+        ]        
+        
 # Group Shipping restrictions
 ## /api/v1/shipping-restrictions/{countryId}
 ### GET
