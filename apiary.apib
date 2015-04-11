@@ -1375,6 +1375,8 @@ status: delivered | mailed | in-transit | ready-to-send | check-status
                     "PI965": false
                 },
                 "batteriesCount": 0,
+                "eeiAction": null,
+                "eeiActionFinished": null,
                 "locked": false
             },
             "specialRequests": [
@@ -2359,7 +2361,8 @@ Updates customs declaration for given package
                 "PI967": true,
                 "PI965": true
             },
-            "batteriesCount": 3
+            "batteriesCount": 3,
+            "eeiAction": null
         }
 
 + Response 201 (application/json)
@@ -2450,6 +2453,8 @@ Updates customs declaration for given package
                         "PI965": true
                     },
                     "batteriesCount": 3,
+                    "eeiAction": null,
+                    "eeiActionFinished": null,
                     "locked": false
                 ]
             },
