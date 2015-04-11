@@ -600,13 +600,14 @@ List of user benefits. Field maxBenefits can be null (means unlimited), nextStat
             "missingPoints": 5,
             "statusPercentage": 50,
             "upgradePrice": 10,
-            "maxBenefits": 3,
+            "maxBenefits": 2,
             "points": 35,
             "benefits": [
                 {
                     "id": 123,
                     "description": "FedEx Priority: 5% Discount from Tualatin, OR warehouse",
                     "availableUntil": 1279664150000,
+                    "status": "selectable",
                     "warehouse": {
                         "id": 123,
                         "name": "Tualatin",
@@ -618,9 +619,18 @@ List of user benefits. Field maxBenefits can be null (means unlimited), nextStat
                     "id": 124,
                     "description": "FedEx Priority: 10% Discount from Tualatin, OR warehouse",
                     "availableUntil": 1279664150000,
+                    "status": "selected",
                     "warehouse": null,
                     "shippingCountry": null
-                }
+                },
+                {
+                    "id": 158,
+                    "description": "Free Consolidations",
+                    "availableUntil": 1435820399000,
+                    "status": "not-available",
+                    "shippingCountry": null,
+                    "warehouse": null
+                },
             ]
         }
         
@@ -645,6 +655,7 @@ Upgrade status.
                         "id": 123,
                         "description": "FedEx Priority: 5% Discount from Tualatin, OR warehouse",
                         "availableUntil": 1279664150000,
+                        "status": "selectable",
                         "warehouse": {
                             "id": 123,
                             "name": "Tualatin",
@@ -656,9 +667,18 @@ Upgrade status.
                         "id": 124,
                         "description": "FedEx Priority: 10% Discount from Tualatin, OR warehouse",
                         "availableUntil": 1279664150000,
+                        "status": "selected",
                         "warehouse": null,
                         "shippingCountry": null
-                    }
+                    },
+                    {
+                        "id": 158,
+                        "description": "Free Consolidations",
+                        "availableUntil": 1435820399000,
+                        "status": "not-available",
+                        "shippingCountry": null,
+                        "warehouse": null
+                    },
                 ]
             }
         }
