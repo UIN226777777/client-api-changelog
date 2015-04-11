@@ -736,6 +736,7 @@ Secondary status is expressed using boolean flags.
 | delivered | True for packages marked as delivered. |
 | mailboxUpgradeNeeded | True for accounts with "Individual Packages" plan and more than one parcel in our warehouse. |
 | readyToSend | True when customer fills in required information, schedules a mailout and we finish all special requests. |
+| canBeMerged | True when package can be merged with others. |
 
 How the "ready to send" condition works (every line needs to be equal to true, symbol || stands for or)
 * customsDeclarationFilled
