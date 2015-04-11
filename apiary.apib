@@ -749,7 +749,7 @@ How the "ready to send" condition works (every line needs to be equal to true, s
 * mailoutScheduled
 * !mailboxUpgradeNeeded                                                                                                               |
 
-## /api/v1/packages?filter=in-warehouse{&page,itemsPerPage}
+## /api/v1/packages?filter=in-warehouse{&page,itemsPerPage,warehouse}
 ### GET
 List packages which are in a warehouse
 
@@ -757,6 +757,7 @@ List packages which are in a warehouse
 
     + page (optional, int) ... default value is 1
     + itemsPerPage (optional, int) ... default value is 50
+    + warehouse (optional, int) ... default value is null
 
 + Response 200 (application/json)
 
