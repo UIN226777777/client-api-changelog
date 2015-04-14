@@ -4368,3 +4368,35 @@ Url example: /api/v1/consolidations/consolidation-fee?packages[]=A&packages[]=B&
         {
             'fee': 8
         }
+
+# Group File Upload
+## /api/v1/upload
+### POST
+
+Common endpoint for uploading files. Accepted files: gif/png/jpeg/pdf up to 5M.
+
++ Request
+
+    + Headers
+    
+            Content-Type: multipart/form-data; boundary=-------------42
+            
+    + Body
+            
+            -------------42
+            Content-Disposition: form-data; name="file"; filename="id.png"
+            Content-Type: image/png
+            
+            File content
+            -------------42
+            
+
++ Response 201 (application/json)
+
+        {
+            "id": 1,
+            "originalName": "id.png",
+            "extension": "png",
+            "mimeType": "image/png",
+            "size": 12345
+        }
