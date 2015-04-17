@@ -3611,15 +3611,15 @@ List of shipito warehouses
         ]
 
 ### Upload a document photo [POST]
-Accepted mime types: image/jpeg, image/png, application/pdf
+First upload a file using POST /upload and then send its id in `file`.
 
-+ Request (multipart/form-data; boundary=---boundary---)
++ Request (application/json)
 
         {
             "category": "id1",
             "description": "Mountain of bacon.",
             "otherNameId": "",
-            "file": "multipart file..."
+            "file": 1
         }
 
 + Response 201 (application/json)
