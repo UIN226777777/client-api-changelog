@@ -4402,3 +4402,24 @@ Common endpoint for uploading files. Accepted files: gif/png/jpeg/pdf up to 5M.
             "mimeType": "image/png",
             "size": 12345
         }
+
+# Group Shipping Methods
+## /api/v1/shipping-methods
+### List of all shipping methods [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "alias": "SHIPITO_AIRMAIL",
+                "name": "Old AirMail"
+            },
+            {
+                "alias": "PRIORITY",
+                "name": "USPS Priority Mail"
+            },
+            {
+                "alias": "EXPRESS",
+                "name": "USPS Express Mail"
+            }
+        ]
