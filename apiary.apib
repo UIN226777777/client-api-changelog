@@ -3126,7 +3126,7 @@ files to a other instruction / mistake report, upload files using POST /upload a
 
 ## /api/v1/packages/{id}/shipping-methods
 ### GET
-Gets a list of available shipping methods for given package
+Get a list of shipping methods for this package, returns both available and not available carriers.
 
 Array insurance contains insurance options provided by the carrier, however delivery_damage may not be
 applicable if package doesn't have content photos. In such case you need to apply at least one special
@@ -3137,6 +3137,7 @@ request from field "requirements".
         [
             {
                 "alias": "EXPRESS",
+                "available": true,
                 "shippingRate": 48.9,
                 "insuranceRate": 2.2,
                 "insurance": [
@@ -3199,6 +3200,7 @@ request from field "requirements".
             },
             {
                 "alias": "PRIORITY",
+                "available": true,
                 "shippingRate": 44.33,
                 "insuranceRate": 4.6,
                 "insurance": [
@@ -3264,6 +3266,7 @@ request from field "requirements".
             },
             {
                 "alias": "FIRST_CLASS",
+                "available": true,
                 "shippingRate": 24.46,
                 "insuranceRate": null,
                 "insurance": null,
@@ -3275,6 +3278,28 @@ request from field "requirements".
                 },
                 "popularity": 3,
                 "logo": "usps-first.png"
+            },
+            {
+                "alias": "FLAT_RATE_ENVELOPE",
+                "available": false,
+                "shippingRate": null,
+                "insuranceRate": null,
+                "insurance": [],
+                "additionalInsurance": null,
+                "isPromoted": false,
+                "delivery": {
+                    "inDays": 11,
+                    "inWords": "6-10 business days"
+                },
+                "popularity": 11,
+                "logo": "usps-priority.png",
+                "tracking": false,
+                "errors": [
+                    "Weight must not exceed 4 lbs",
+                    "Length must not exceed 12\"",
+                    "Width must not exceed 9\"",
+                    "Height must not exceed 2\""
+                ]
             }
         ]
 
