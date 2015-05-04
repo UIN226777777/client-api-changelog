@@ -3600,6 +3600,7 @@ List of shipito warehouses
 
 ### Upload a document photo [POST]
 First upload a file using POST /upload and then send its id in `file`.
+`coordinates` may be `null.`
 
 + Request (application/json)
 
@@ -3607,7 +3608,11 @@ First upload a file using POST /upload and then send its id in `file`.
             "category": "id1",
             "description": "Mountain of bacon.",
             "otherNameId": "",
-            "file": 1
+            "file": 1,
+            "coordinates": {
+                "latitude": 40.689167,
+                "longitude": -74.044444
+            }
         }
 
 + Response 201 (application/json)
