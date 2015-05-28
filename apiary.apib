@@ -294,7 +294,9 @@ Returns user general settings
                 "letters": true
             },
             "newsletter": true,
-            "hideShippingCostOnInvoice": null
+            "commercialInvoice": {
+                "hideShippingCost": null
+            }
         }
 
 ### POST
@@ -313,7 +315,9 @@ Set user general settings
                 "letters": true
             },
             "newsletter": true,
-            "hideShippingCostOnInvoice": true
+            "commercialInvoice": {
+                "hideShippingCost": true
+            }
         }
 
 + Response 204
