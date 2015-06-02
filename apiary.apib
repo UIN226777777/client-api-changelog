@@ -727,6 +727,8 @@ Secondary status is expressed using boolean flags.
 | shippingMethodSelected | True for packages with a shipping method selected. |
 | insuranceSelected | True for packages with an insurance option selected. |
 | hasDimensions | True if a package has been weighted and measured. There is usually a small time gap between a package receipt and measuring its dimensions. |
+| poBox | True when a package is to be delivered to a PO Box. |
+| poBoxSupported | True when a package can be delivered to a PO Box. |
 | requiresTaxId | True if current combination of carrier and delivery country requires tax id filled in the shipping address. |
 | hasTaxId | True if tax id is filled in. |
 | fitsMontlyLimit | True if the total price for sending a package is lower or equal to remaining monthly limit. |
@@ -750,6 +752,7 @@ How the "ready to send" condition works (every line needs to be equal to true, s
 * (!receivedUnderOtherName || otherNameVerified)
 * shippingMethodSelected
 * insuranceSelected
+* (!poBox || poBoxSupported)
 * hadDimensions
 * (!requiresNotarizedForm1583 || hasNotarizedForm1583)
 * !queuedForConsolidation
@@ -939,6 +942,8 @@ List packages which are in a warehouse
                         "hasNotarizedForm1583": false,
                         "onSecurityHold": false,
                         "hasDimensions": true,
+                        "poBox": false,
+                        "poBoxSupported": false,
                         "hasDueStorageFees": false,
                         "queuedForConsolidation": false,
                         "queuedForMps": false,
@@ -1043,6 +1048,8 @@ List packages which are in a warehouse
                         "hasNotarizedForm1583": false,
                         "onSecurityHold": false,
                         "hasDimensions": true,
+                        "poBox": false,
+                        "poBoxSupported": false,
                         "hasDueStorageFees": false,
                         "queuedForConsolidation": false,
                         "queuedForMps": false,
@@ -1165,6 +1172,8 @@ List packages which are in a warehouse
                         "hasNotarizedForm1583": false,
                         "onSecurityHold": false,
                         "hasDimensions": true,
+                        "poBox": false,
+                        "poBoxSupported": false,
                         "hasDueStorageFees": false,
                         "queuedForConsolidation": false,
                         "queuedForMps": false,
@@ -1542,6 +1551,8 @@ status: delivered | mailed | in-transit | ready-to-send | check-status
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -2025,6 +2036,8 @@ Field lastMinuteSpecialRequests is optional. On every mailout request previous s
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -2220,6 +2233,8 @@ Cancel mailout
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -2404,6 +2419,8 @@ Set note
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -2604,6 +2621,8 @@ Updates customs declaration for given package
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -2798,6 +2817,8 @@ Updates shipping address for given package
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
@@ -3455,6 +3476,8 @@ Selects shipping method for given package
                 "hasNotarizedForm1583": false,
                 "onSecurityHold": false,
                 "hasDimensions": true,
+                "poBox": false,
+                "poBoxSupported": false,
                 "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
                 "queuedForMps": false,
