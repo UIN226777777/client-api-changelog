@@ -4078,6 +4078,7 @@ Object shipping is processed only when afterConsolidationAction equals to SEND_I
                     "mergedInto": null
                 }
             ],
+            "removedPackages": [],
             "specialRequests": [
                 {
                     "alias": "visual_check_for_damage",
@@ -4139,6 +4140,7 @@ Object shipping is processed only when afterConsolidationAction equals to SEND_I
                     "mergedInto": null
                 }
             ],
+            "removedPackages": [],
             "specialRequests": [
                 {
                     "alias": "visual_check_for_damage",
@@ -4175,7 +4177,18 @@ Object shipping is processed only when afterConsolidationAction equals to SEND_I
 ### Cancel [DELETE]
 Only new consolidations can be cancelled.
 
-+ Response 204 (application/json)
++ Response 200 (application/json)
+
+        {
+            "removedPackages": [
+                {
+                    "id": "RG"
+                },
+                {
+                    "id": "RS"
+                }
+            ]
+        }
 
 ### Update [PUT]
 Only new consolidations can be edited.
@@ -4252,6 +4265,11 @@ Only new consolidations can be edited.
                     "id": "RS",
                     "packaging": "b",
                     "mergedInto": null
+                }
+            ],
+            "removedPackages": [
+                {
+                    "id": "AB"
                 }
             ],
             "specialRequests": [
