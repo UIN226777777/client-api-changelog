@@ -3797,7 +3797,7 @@ First upload a file using POST /upload and then send its id in `file`.
                 "percentage": 0,
                 "acceptsDocuments": true
             }
-        ]        
+        ]
 
 # Group Programs
 ## /api/v1/programs
@@ -4466,18 +4466,18 @@ Common endpoint for uploading files. Accepted files: gif/png/jpeg/pdf up to 5M.
 + Request
 
     + Headers
-    
+
             Content-Type: multipart/form-data; boundary=-------------42
-            
+
     + Body
-            
+
             -------------42
             Content-Disposition: form-data; name="file"; filename="id.png"
             Content-Type: image/png
-            
+
             File content
             -------------42
-            
+
 
 + Response 201 (application/json)
 
