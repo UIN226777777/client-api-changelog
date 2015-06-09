@@ -277,9 +277,21 @@ Add other name
 
 + Response 200
 
++ Response 422 (application/json)
+
+        {
+            "message": "This other name cannot be changed, because it was already verified."
+        }
+
 ### Delete other name [DELETE]
 
 + Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "There are packages in warehouse for this other name."
+        }
 
 ## /api/v1/settings/general
 ### GET
@@ -339,6 +351,12 @@ Change password
 
 + Response 204
 
++ Response 422 (application/json)
+
+        {
+            "message": "Old password is not valid."
+        }
+
 ## /api/v1/email/change
 ### POST
 Change email
@@ -351,6 +369,24 @@ Change email
         }
 
 + Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "Invalid password."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Email is already used by a different account."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You already are using this email address."
+        }
 
 ## /api/v1/deposit/transactions
 ### GET
@@ -417,6 +453,12 @@ Transaction statement
         }
 
 + Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "You must specify a country change reason."
+        }
 
 # Group Issues
 ## /api/v1/issues?filter
@@ -687,6 +729,12 @@ Upgrade status.
             }
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Add deposit to buy next status."
+        }
+
 ## /api/v1/benefits/select
 ### POST
 Select
@@ -695,6 +743,24 @@ Select
 
         {
             "id": 123
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "This benefit is no longer available."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Your current status does not allow you to select more benefits."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You have already selected this benefit."
         }
 
 + Response 200 (application/json)
@@ -1756,6 +1822,12 @@ Confirms delivery of a package to a customer
             }
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Package can not be confirmed, because it has not yet been sent"
+        }
+
 ### DELETE
 Undoes delivery confirmation.
 
@@ -2060,6 +2132,24 @@ Field lastMinuteSpecialRequests is optional. On every mailout request previous s
             }
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Only packages in warehouse can be mailed out."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package is queued for a consolidation."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package is queued for an MPS."
+        }
+
 ### DELETE
 Cancel mailout
 
@@ -2258,6 +2348,19 @@ Cancel mailout
                 "readyToSend": false,
                 "canBeMerged": true
             }
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Mailout for package {packageId} has not been requested yet."
+        }
+
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package {packageId} has been already sent."
         }
 
 ## /api/v1/packages/{packageId}/note
@@ -2654,6 +2757,24 @@ Updates customs declaration for given package
             }
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "You can not change customs declaration of this package now."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Customs declaration is locked."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You must specify EEI action for this package."
+        }
+
 ## /api/v1/packages/{packageId}/shipping-address
 ### POST
 Updates shipping address for given package
@@ -2851,6 +2972,12 @@ Updates shipping address for given package
                 "readyToSend": false,
                 "canBeMerged": true
             }
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You can edit only packages in warehouse."
         }
 
 ## /api/v1/packages/{packageId}/special-requests
@@ -3156,6 +3283,24 @@ files to an other instruction / mistake report, upload files using POST /upload 
             }
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Special requests can be only created for packages in warehouse."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Duplicitous special request."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Special requests may have only up to 5 attachments."
+        }
+
 ## /api/v1/packages/{id}/shipping-methods
 ### GET
 Get a list of shipping methods for this package, returns both available and not available carriers.
@@ -3334,6 +3479,18 @@ request from field "requirements".
                 ]
             }
         ]
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package has not been measured and weighted yet."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Shipping methods are available only for packages in warehouse."
+        }
 
 ## /api/v1/packages/{packageId}/shipping-methods
 ### POST
@@ -3526,6 +3683,42 @@ Selects shipping method for given package
             }
         },
 
++ Response 422 (application/json)
+
+        {
+            "message": "Shipping method can be selected only for packages in warehouse."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package is queued for a consolidation."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package is queued for an MPS."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Shipping method not found."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Shipping method not available."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package has to have content photos to select 'delivery & damage' insurance."
+        }
+
 ## /api/v1/packages/{packageId}/transport
 ### POST
 Request package transfer to another warehouse
@@ -3705,6 +3898,36 @@ First upload a file using POST /upload and then send its id in `file`.
             "status": "pending"
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Category not found."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Other name not found."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Uploaded file was not found, try again."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Uploaded file has already been used once."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You can not upload a document for this category, it is verified in a different way."
+        }
+
 ## /api/v1/documents/categories
 ### Retrieve a list of verification document categories list [GET]
 
@@ -3843,6 +4066,24 @@ List of offered programs
             "name": "NEW Virtual Mailbox MONTHLY",
             "virtualBox": true,
             "remainingDays": 30
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You do not have enough deposit to change your plan."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You do not have enough deposit to extend your plan."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You can not change your program to {name}."
         }
 
 # Group Orders
@@ -4155,6 +4396,30 @@ Object shipping is processed only when afterConsolidationAction equals to SEND_I
             "shipping": null
         }
 
++ Response 422 (application/json)
+
+        {
+            "message": "Not all of the packages are in the same warehouse."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You need a virtual mailbox plan to create a consolidation."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package RG can not be merged."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Some special requests are not applicable on this consolidation."
+        }
+
 ## /api/v1/consolidations/{id}
 ### Detail [GET]
 
@@ -4217,6 +4482,12 @@ Object shipping is processed only when afterConsolidationAction equals to SEND_I
             "shipping": null
         }
 
++ Response 404 (application/json)
+
+        {
+            "message": "Consolidation not found."
+        }
+
 ### Cancel [DELETE]
 Only new consolidations can be cancelled.
 
@@ -4231,6 +4502,18 @@ Only new consolidations can be cancelled.
                     "id": "RS"
                 }
             ]
+        }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Consolidation not found."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You can not cancel this consolidation, it looks like we have already started working on it."
         }
 
 ### Update [PUT]
@@ -4347,6 +4630,37 @@ Only new consolidations can be edited.
             "afterConsolidationAction": "KEEP_IN_MAILBOX",
             "shipping": null
         }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Consolidation not found."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "You can not edit this consolidation, it looks like we have already started working on it."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Not all of the packages are in the same warehouse."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Some of the consolidated packages are not in the same warehouse as the consolidation."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Package RG can not be merged."
+        }
+
 
 ## /api/v1/consolidations/available-options
 ### Available shipping methods and special requests [GET]
@@ -4487,6 +4801,12 @@ Common endpoint for uploading files. Accepted files: gif/png/jpeg/pdf up to 5M.
             "extension": "png",
             "mimeType": "image/png",
             "size": 12345
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Upload failed, try again."
         }
 
 # Group Shipping Methods
