@@ -585,12 +585,15 @@ Save a new issue of type "damaged or missing items"
 + Response 204
 
 # Group News
-## /api/v1/news?page
+## /api/v1/news{?page}
 ### GET
 News
 
 + Parameters
-    + page = `1` (optional, integer)
+
+    + page (integer, optional)
+
+        + Default: `1`
 
 + Response 200 (application/json)
 
@@ -3681,7 +3684,7 @@ Selects shipping method for given package
                 "readyToSend": false,
                 "canBeMerged": true
             }
-        },
+        }
 
 + Response 422 (application/json)
 
@@ -4213,7 +4216,12 @@ List of offered programs
 
 + Parameters
 
-    + filter (string, optional) ... incomplete | done
+    + filter: `incomplete` (enum[string], optional)
+
+        + Members
+            + `incomplete`
+            + `done`
+            + `refused
 
 ### List of new / in progress / finished consolidations [GET]
 
