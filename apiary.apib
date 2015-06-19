@@ -3722,52 +3722,6 @@ Selects shipping method for given package
             "message": "Package has to have content photos to select 'delivery & damage' insurance."
         }
 
-## /api/v1/packages/{packageId}/transport
-### POST
-Request package transfer to another warehouse
-
-+ Request (application/json)
-
-        {
-            "locationId": 5,
-            "shippingMethod": 1337,
-            "insurance": "delivery",
-            "additionalInsurance": false
-        }
-
-+ Response 200
-
-### DELETE
-Cancel transfer of a package into another warehouse
-
-+ Response 200
-
-## /api/v1/packages/{packageId}/transport-shipping-rates/{locationId}
-### GET
-Get rates for moving a package into a different warehouse
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "name": "Shipito Truck",
-                "alias": "SHIPITO_TRUCK",
-                "shippingRate": 9.75,
-                "insuranceRate": 2.44,
-                "additionalInsurance": {
-                    "rate": 0,
-                    "requiredFor": ""
-                },
-                "isPromoted": true,
-                "delivery": {
-                    "inDays": 10,
-                    "inWords": "7-10 business days"
-                },
-                "popularity": 1,
-                "logo": "shipito-truck"
-            }
-        ]
-
 # Group Countries
 ## /api/v1/countries
 ### GET
