@@ -336,7 +336,23 @@ Set user general settings
             }
         }
 
-+ Response 204
++ Response 200 (application/json)
+
+        {
+            "receiveMagazines": true,
+            "receiveLetters": true,
+            "onePhoto": false,
+            "multiplePhotos": false,
+            "scanEveryLetter": false,
+            "fastMailout": {
+                "magazines": true,
+                "letters": true
+            },
+            "newsletter": true,
+            "commercialInvoice": {
+                "hideShippingCost": true
+            }
+        }
 
 ## /api/v1/settings/change-password
 ### POST
