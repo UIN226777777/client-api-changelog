@@ -461,7 +461,7 @@ Transaction statement
         }
 
 # Group Issues
-## /api/v1/issues?filter
+## /api/v1/issues{?filter}
 ### GET
 List of posted claims/issues
 
@@ -679,7 +679,7 @@ List of user benefits. Field maxBenefits can be null (means unlimited), nextStat
                     "status": "not-available",
                     "shippingCountry": null,
                     "warehouse": null
-                },
+                }
             ]
         }
 
@@ -727,7 +727,7 @@ Upgrade status.
                         "status": "not-available",
                         "shippingCountry": null,
                         "warehouse": null
-                    },
+                    }
                 ]
             }
         }
@@ -3258,7 +3258,7 @@ files to an other instruction / mistake report, upload files using POST /upload 
                     "response": "ne",
                     "files": [],
                     "cancelable": false
-                },
+                }
             ],
             "mailoutSpecialRequests": [
                 {
@@ -4050,32 +4050,38 @@ List of offered programs
 
 + Response 200 (application/json)
 
-        [{
-            "time": "2014-11-13T19:27:00-0700",
-            "description": "Shipito.com - Postage & Deposit Payment",
-            "status": "completed",
-            "invoice": "https://inccontact.com/some_invoice.pdf"
-        },{
-            "time": "2014-11-13T19:27:00-0700",
-            "description": "Shipito.com - Postage & Deposit Payment",
-            "status": "not paid",
-            "invoice": "https://inccontact.com/some_invoice.pdf"
-        },{
-            "time": "2014-11-13T19:27:00-0700",
-            "description": "Shipito.com - Postage & Deposit Payment",
-            "status": "paid",
-            "invoice": "https://inccontact.com/some_invoice.pdf"
-        },{
-            "time": "2014-11-13T19:27:00-0700",
-            "description": "Shipito.com - Postage & Deposit Payment",
-            "status": "processing",
-            "invoice": null
-        },{
-            "time": "2014-11-13T19:27:00-0700",
-            "description": "Shipito.com - Postage & Deposit Payment",
-            "status": "completed",
-            "invoice": null
-        }]
+        [
+            {
+                "time": "2014-11-13T19:27:00-0700",
+                "description": "Shipito.com - Postage & Deposit Payment",
+                "status": "completed",
+                "invoice": "https://inccontact.com/some_invoice.pdf"
+            },
+            {
+                "time": "2014-11-13T19:27:00-0700",
+                "description": "Shipito.com - Postage & Deposit Payment",
+                "status": "not paid",
+                "invoice": "https://inccontact.com/some_invoice.pdf"
+            },
+            {
+                "time": "2014-11-13T19:27:00-0700",
+                "description": "Shipito.com - Postage & Deposit Payment",
+                "status": "paid",
+                "invoice": "https://inccontact.com/some_invoice.pdf"
+            },
+            {
+                "time": "2014-11-13T19:27:00-0700",
+                "description": "Shipito.com - Postage & Deposit Payment",
+                "status": "processing",
+                "invoice": null
+            },
+            {
+                "time": "2014-11-13T19:27:00-0700",
+                "description": "Shipito.com - Postage & Deposit Payment",
+                "status": "completed",
+                "invoice": null
+            }
+        ]
 
 # Group Shipping calculator
 ## /api/v1/shipping-calculator/rates{?warehouseId,package%5Blength%5D,package%5Bwidth%5D,package%5Bheight%5D,package%5Bweight%5D,package%5Bvalue%5D,address%5Bcity%5D,address%5Bzip%5D,address%5Bcountry%5D}
