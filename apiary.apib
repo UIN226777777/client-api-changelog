@@ -403,6 +403,36 @@ Change email
         {
             "message": "You already are using this email address."
         }
+        
+## /api/v1/email/verification/request
+### Request email verification [POST]
+
++ Request (application/json)
+
++ Response 204
+
++ Response 422
+
+        {
+            "message": "Your email is already verified."
+        }
+
+## /api/v1/email/verification/confirm
+### Confirmation email verification [POST]
+
++ Request (application/json)
+
+        {
+            "token": "sdf6d7saf9"
+        }
+
++ Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "EmailYour link expired. Send new verification link."
+        }
 
 ## /api/v1/deposit/transactions
 ### GET
