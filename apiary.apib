@@ -12,6 +12,42 @@ Base url for all requests is https://client-api.shipito.com/
 Example in PHP https://github.com/Shipito/client-api-example
 
 # Group User
+## Signup [/api/v1/signup]
+### POST
+Signs up a new user and returns his/her virtual address.
+
++ Request (application/json)
+
+        {
+            "firstName": "John",
+            "lastName": "Doe",
+            "country": "CZ",
+            "email": "john.doe@example.net",
+            "password": "hacker",
+            "program": "individual_packages"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "virtualAddress": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "address": "2972 Columbia St.",
+                "suite": "Suite #A2768",
+                "city": "Torrance",
+                "state": "CA",
+                "zip": "90503",
+                "country": "US"
+            }
+        }
+        
++ Response 422 (application/json)
+
+        {
+            "message": "Mailbox for client with email \"john.doe@example.net\" already exists."
+        }
+
 ## Login [/api/v1/authenticate]
 ### POST
 Authentication request
@@ -3856,6 +3892,7 @@ List of shipito warehouses
         [
             {
                 "id": "7",
+                "alias": "torrance",
                 "name": "Torrance, CA",
                 "desc": "Desc",
                 "active": true,
@@ -3863,6 +3900,7 @@ List of shipito warehouses
             },
             {
                 "id": "20",
+                "alias": "hawthorne",
                 "name": "Hawthorne, CA",
                 "desc": "Desc",
                 "active": true,
@@ -3870,6 +3908,7 @@ List of shipito warehouses
             },
             {
                 "id": "24",
+                "alias": "hawthorne-2",
                 "name": "Hawthorne 2, CA",
                 "desc": "Desc",
                 "active": true,
@@ -3877,6 +3916,7 @@ List of shipito warehouses
             },
             {
                 "id": "10",
+                "alias": "tualatin",
                 "name": "Tualatin, OR",
                 "desc": "Desc",
                 "active": true,
@@ -3884,6 +3924,7 @@ List of shipito warehouses
             },
             {
                 "id": "23",
+                "alias": "minden",
                 "name": "Minden, NV",
                 "desc": "Desc",
                 "active": true,
