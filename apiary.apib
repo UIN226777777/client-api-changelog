@@ -12,67 +12,6 @@ Base url for all requests is https://client-api.shipito.com/
 Example in PHP https://github.com/Shipito/client-api-example
 
 # Group User
-
-## Signup [/api/v1/signup]
-
-Validation rules are:
- * all fields are mandatory and shouldn't be blank
- * `country` must be a valid ISO code
- * `email` must be a valid email address
- * `password` must be at least six characters long
- * `program` must be one of `individual_packages` or `virtual_mailbox`
-
-### POST
-Signs up a new user and returns his/her virtual address.
-
-+ Request (application/json)
-
-        {
-            "firstName": "John",
-            "lastName": "Doe",
-            "country": "CZ",
-            "email": "john.doe@example.net",
-            "password": "hacker",
-            "program": "individual_packages"
-        }
-        
-+ Response 200 (application/json)
-
-        {
-            "virtualAddress": {
-                "firstName": "John",
-                "lastName": "Doe",
-                "address": "2972 Columbia St.",
-                "suite": "Suite #A2768",
-                "city": "Torrance",
-                "state": "CA",
-                "zip": "90503",
-                "country": "US"
-            }
-        }
-        
-+ Response 422 (application/json)
-
-        {
-            "message": "Mailbox for client with email \"john.doe@example.net\" already exists."
-        }
-        
-+ Response 429 (application/json)
-
-        {
-            "message": "Signup quota exceeded, try again later."
-        }
-        
-+ Response 400 (application/json)
-
-        {
-            "code": 41,
-            "message": "Submitted request is not valid.",
-            "errors": {
-                "email": "This value is not a valid email address."
-            }
-        }
-
 ## Login [/api/v1/authenticate]
 ### POST
 Authentication request
