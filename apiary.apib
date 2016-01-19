@@ -57,6 +57,12 @@ Signs up a new user and returns his/her virtual address.
             "message": "Mailbox for client with email \"john.doe@example.net\" already exists."
         }
         
++ Response 429 (application/json)
+
+        {
+            "message": "Signup quota exceeded, try again later."
+        }
+        
 + Response 400 (application/json)
 
         {
