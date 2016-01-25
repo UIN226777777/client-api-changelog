@@ -2345,6 +2345,84 @@ This action may change postage price / remove selected shipping method.
 
 + Response 204
 
+# Group MPS
+
+Multi-piece Shipments.
+
+## List [/api/v1/mps{?filter}]
+
++ Parameters
+
+    + filter (enum[string], required)
+
+        + Members
+
+            + confirmed
+            + sent
+
+### Retrieve [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "id": 42,
+                "status": "confirmed",
+                "requestTime": "2016-01-02T08:51:03-0800",
+                "mailoutTime": null,
+                "packages": [
+                    {
+                        "id": "A"
+                    },
+                    {
+                        "id": "B"
+                    },
+                    {
+                        "id": "C"
+                    }
+                ],
+                "warehouse": 7
+            },
+            {
+                "id": 89,
+                "status": "confirmed",
+                "requestTime": "2016-01-02T08:51:03-0800",
+                "mailoutTime": null,
+                "packages": [
+                    {
+                        "id": "A"
+                    },
+                    {
+                        "id": "B"
+                    },
+                    {
+                        "id": "C"
+                    }
+                ],
+                "warehouse": 7
+            }
+        ]
+
+## MPS Detail [/api/v1/mps/{id}]
+
+### Cancel [DELETE]
+
+This action can be only performed before the MPS is processed in the warehouse.
+
++ Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "MPS #{id} can not be canceled at this time."
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "MPS not found."
+        }
+
 # Group News
 ## News [/api/v1/news{?page}]
 ### List [GET]
