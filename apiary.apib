@@ -3635,3 +3635,159 @@ Save a new issue of type "damaged or missing items"
                 "logo": "usps-first.png"
             }
         ]
+
+# Group Address Book
+
+## Address List [/api/v1/address-book{?offset,limit}]
+
+### Retrieve [GET]
+
++ Response 200 (application/json)
+
+        {
+            "totalCount": 2,
+            "addressBook": [
+                {
+                    "id": 1,
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "company": null,
+                    "address": "Lord Commander's Tower",
+                    "city": "Castle Black",
+                    "zip": null,
+                    "state": null,
+                    "country": "SK",
+                    "phone": null,
+                    "taxId": null
+                },
+                {
+                    "id": 2,
+                    "firstName": "Eddard",
+                    "lastName": "Stark",
+                    "company": null,
+                    "address": "Tower of the Hand",
+                    "city": "King's Landing",
+                    "zip": "TRG789",
+                    "state": "the Reach",
+                    "country": "SK",
+                    "phone": "7564598762",
+                    "taxId": null
+                }
+            ]
+        }
+
+### Create a New Address [POST]
+
++ Request (application/json)
+
+        {
+            "firstName": "Eddard",
+            "lastName": "Stark",
+            "address": "Tower of the Hand",
+            "city": "King's Landing",
+            "country": "SK"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": null,
+                "state": null,
+                "country": "SK",
+                "phone": null,
+                "taxId": null
+            }
+        }
+
++ Request (application/json)
+
+        {
+            "firstName": "Eddard",
+            "lastName": "Stark",
+            "company": null,
+            "address": "Tower of the Hand",
+            "city": "King's Landing",
+            "zip": "TRG789",
+            "state": "the Reach",
+            "country": "SK",
+            "phone": "7564598762",
+            "taxId": "treqd456"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": "TRG789",
+                "state": "the Reach",
+                "country": "SK",
+                "phone": "7564598762",
+                "taxId": "treqd456"
+            }
+        }
+
+## Address [/api/v1/address-book/{id}]
+
+### Update [PUT]
+
++ Request (application/json)
+
+        {
+            "firstName": "Eddard",
+            "lastName": "Stark",
+            "company": null,
+            "address": "Tower of the Hand",
+            "city": "King's Landing",
+            "zip": "TRG789",
+            "state": "the Reach",
+            "country": "SK",
+            "phone": "7564598762",
+            "taxId": "treqd456"
+        }
+
++ Response 201 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": "TRG789",
+                "state": "the Reach",
+                "country": "SK",
+                "phone": "7564598762",
+                "taxId": "treqd456"
+            }
+        }
+
++ Response 404 (application/json)
+
+        {
+            "message": "Address #{id} not found."
+        }
+
+### Delete [DELETE]
+
++ Response 204
+
++ Response 404 (application/json)
+
+        {
+            "message": "Address #{id} not found."
+        }
