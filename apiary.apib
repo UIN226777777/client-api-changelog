@@ -3658,7 +3658,8 @@ Save a new issue of type "damaged or missing items"
                     "state": null,
                     "country": "SK",
                     "phone": null,
-                    "taxId": null
+                    "taxId": null,
+                    "default": true
                 },
                 {
                     "id": 2,
@@ -3671,7 +3672,8 @@ Save a new issue of type "damaged or missing items"
                     "state": "the Reach",
                     "country": "SK",
                     "phone": "7564598762",
-                    "taxId": null
+                    "taxId": null,
+                    "default": false
                 }
             ]
         }
@@ -3702,7 +3704,8 @@ Save a new issue of type "damaged or missing items"
                 "state": null,
                 "country": "SK",
                 "phone": null,
-                "taxId": null
+                "taxId": null,
+                "default": false
             }
         }
 
@@ -3735,7 +3738,43 @@ Save a new issue of type "damaged or missing items"
                 "state": "the Reach",
                 "country": "SK",
                 "phone": "7564598762",
-                "taxId": "treqd456"
+                "taxId": "treqd456",
+                "default": false
+            }
+        }
+
++ Request (application/json)
+
+        {
+            "firstName": "Eddard",
+            "lastName": "Stark",
+            "company": null,
+            "address": "Tower of the Hand",
+            "city": "King's Landing",
+            "zip": "TRG789",
+            "state": "the Reach",
+            "country": "SK",
+            "phone": "7564598762",
+            "taxId": "treqd456",
+            "default": true
+        }
+
++ Response 201 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": "TRG789",
+                "state": "the Reach",
+                "country": "SK",
+                "phone": "7564598762",
+                "taxId": "treqd456",
+                "default": true
             }
         }
 
@@ -3772,7 +3811,43 @@ Save a new issue of type "damaged or missing items"
                 "state": "the Reach",
                 "country": "SK",
                 "phone": "7564598762",
-                "taxId": "treqd456"
+                "taxId": "treqd456",
+                "default": false
+            }
+        }
+
++ Request (application/json)
+
+        {
+            "firstName": "Eddard",
+            "lastName": "Stark",
+            "company": null,
+            "address": "Tower of the Hand",
+            "city": "King's Landing",
+            "zip": "TRG789",
+            "state": "the Reach",
+            "country": "SK",
+            "phone": "7564598762",
+            "taxId": "treqd456",
+            "default": true
+        }
+
++ Response 201 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": "TRG789",
+                "state": "the Reach",
+                "country": "SK",
+                "phone": "7564598762",
+                "taxId": "treqd456",
+                "default": true
             }
         }
 
@@ -3790,4 +3865,10 @@ Save a new issue of type "damaged or missing items"
 
         {
             "message": "Address #{id} not found."
+        }
+
+Response 422 (application/json)
+
+        {
+            "message": "Can not delete default address."
         }
