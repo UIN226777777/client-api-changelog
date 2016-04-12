@@ -61,7 +61,7 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
 
         {
             "code": 11,
-            "message": "Invalid credentials.",
+            "message": "Invalid credentials."
         }
 
 ## Destroy authentication [/api/v1/logout]
@@ -104,7 +104,8 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
                     "name": "gold",
                     "percentage": 60
                 },
-                "notApprovedThirdPartyPayment": true
+                "notApprovedThirdPartyPayment": true,
+                "consolidationFee": 3
             },
             "accountBalance": {
                 "deposit": 4040.72,
@@ -205,6 +206,13 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
                     "hideShippingCost": false
                 }
             },
+            "accountOwner": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "country": {
+                    "iso": "CZ"
+                }
+            },
             "verification": {
                 "current": 42,
                 "documents": {
@@ -216,7 +224,8 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
                 },
                 "securityHold": {
                     "isOnHold": true,
-                    "requiredPercentage": 65
+                    "requiredPercentage": 65,
+                    "fullReviewRequired": false
                 },
                 "requireCountryChangeReason": true,
                 "emailVerified": false,
@@ -391,6 +400,31 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
             "message": "Old password is not valid."
         }
 
+## Default Warehouse [/api/v1/settings/default-warehouse]
+### Change [POST]
+
++ Request (application/json)
+
+        {
+            "warehouse": {
+                "alias": "hawthorne"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "warehouse": {
+                "alias": "hawthorne"
+            }
+        }
+
++ Response 422 (application/json)
+
+        {
+            "message": "Warehouse is not available."
+        }
+
 ## Email [/api/v1/email/change]
 ### Request a Change [POST]
 
@@ -449,8 +483,6 @@ do not change the address until it is confirmed by visiting the link.
 ## Email Verification [/api/v1/email/verification/request]
 ### Request an email verification [POST]
 
-+ Request (application/json)
-
 + Response 204
 
 + Response 422 (application/json)
@@ -472,7 +504,7 @@ do not change the address until it is confirmed by visiting the link.
 + Response 422 (application/json)
 
         {
-            "message": "Your link expired. Send new verification link.
+            "message": "Your link expired. Send new verification link."
         }
 
 ## Delivery Address [/api/v1/default-address]
@@ -588,44 +620,6 @@ do not change the address until it is confirmed by visiting the link.
                 }
             ]
 
-## Other Name Document Categories [/api/v1/documents/categories/{otherNameId}]
-### Retrieve [GET]
-
-+ Response 200 (application/json)
-
-        [
-            {
-                "alias": "id1",
-                "status": "pending",
-                "percentage": 15,
-                "acceptsDocuments": true
-            },
-            {
-                "alias": "id2",
-                "status": "pending",
-                "percentage": 15,
-                "acceptsDocuments": true
-            },
-            {
-                "alias": "form1583",
-                "status": "pending",
-                "percentage": 10,
-                "acceptsDocuments": false
-            },
-            {
-                "alias": "form1583_notarized",
-                "status": "verified",
-                "percentage": 40,
-                "acceptsDocuments": false
-            },
-            {
-                "alias": "other",
-                "status": "not-verified",
-                "percentage": 0,
-                "acceptsDocuments": true
-            }
-        ]
-
 ## Documents [/api/v1/documents]
 ### Retrieve a list of uploaded documents and their status [GET]
 
@@ -643,24 +637,21 @@ do not change the address until it is confirmed by visiting the link.
                         "category": "form1583",
                         "description": null,
                         "time": "2013-12-16T11:06:52-0800",
-                        "status": "verified",
-                        "otherNameId": null
+                        "status": "verified"
                     },
                     {
                         "id": 228194,
                         "category": "utility",
                         "description": null,
                         "time": "2013-12-16T11:06:52-0800",
-                        "status": "rejected",
-                        "otherNameId": 45
+                        "status": "rejected"
                     },
                     {
                         "id": 228203,
                         "category": "id1",
                         "description": "my id",
                         "time": "2014-12-11T11:10:26-0800",
-                        "status": "pending",
-                        "otherNameId": 52
+                        "status": "pending"
                     }
             ]
 
@@ -673,7 +664,6 @@ See section `File Upload` learn how to retrive a file id.
         {
             "category": "id1",
             "description": "Mountain of bacon.",
-            "otherNameId": null,
             "file": 1,
             "coordinates": null
         }
@@ -683,7 +673,6 @@ See section `File Upload` learn how to retrive a file id.
         {
             "category": "id1",
             "description": "Mountain of bacon.",
-            "otherNameId": null,
             "file": 1,
             "coordinates": {
                 "latitude": 40.689167,
@@ -705,12 +694,6 @@ See section `File Upload` learn how to retrive a file id.
 
         {
             "message": "Category not found."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Other name not found."
         }
 
 + Response 422 (application/json)
@@ -741,35 +724,11 @@ See section `File Upload` learn how to retrive a file id.
         [
             {
                 "id": 1,
-                "firstName": "Jim",
-                "lastName": "Example",
-                "address": "Example street 2",
-                "city": "Example City 1",
-                "zip": "15400",
-                "country": "RU",
-                "phone": "+420720800000",
-                "verified": true,
-                "missingDocuments": []
+                "name": "Jim Example"
             },
             {
                 "id": 42,
-                "firstName": "Jane",
-                "lastName": "Foo",
-                "address": "Somewhere 132",
-                "city": "Prague",
-                "zip": "15400",
-                "country": "CZ",
-                "phone": "+420720820000",
-                "verified": false,
-                "missingDocuments": [
-                    "form1583",
-                    "form1583_notarized",
-                    "id1",
-                    "id2",
-                    "utility",
-                    "other",
-                    "card"
-                ]
+                "name": "Jane Foo"
             }
         ]
 
@@ -778,27 +737,14 @@ See section `File Upload` learn how to retrive a file id.
 + Request (application/json)
 
         {
-            "firstName": "Chrochtos",
-            "lastName": "Prdoch",
-            "address": "Main square 3",
-            "city": "Coruscant",
-            "zip": "777GC",
-            "phone": "+232444555111"
+            "name": "Chrochtos Prdoch"
         }
 
 + Response 200 (application/json)
 
         {
             "id": 42,
-            "firstName": "Chrochtos",
-            "lastName": "Prdoch",
-            "address": "Main square 3",
-            "city": "Coruscant",
-            "zip": "777GC",
-            "country": "CZ",
-            "phone": "+232444555111",
-            "verified": false,
-            "missingDocuments": []
+            "name": "Chrochtos Prdoch"
         }
 
 ## Detail [/api/v1/other-names/{otherNameId}]
@@ -807,20 +753,13 @@ See section `File Upload` learn how to retrive a file id.
 + Request (application/json)
 
         {
-            "firstName": "Chrochtos",
-            "lastName": "Prdoch",
-            "address": "Main square 3",
-            "city": "Coruscant",
-            "zip": "777GC",
-            "phone": "+232444555111"
+            "name": "Chrochtos Prdoch"
         }
 
-+ Response 200
-
-+ Response 422 (application/json)
++ Response 200 (application/json)
 
         {
-            "message": "This other name cannot be changed, because it was already verified."
+            "name": "Chrochtos Prdoch"
         }
 
 ### Remove [DELETE]
@@ -835,7 +774,7 @@ See section `File Upload` learn how to retrive a file id.
 
 # Group Packages
 
-## Package List [/api/v1/packages{?filter,warehouse,itemsPerPage,page}]
+## Package List [/api/v1/packages{?filter,inWarehouseStatus,warehouse,itemsPerPage,page,deliveryStatus}]
 
 + Parameters
 
@@ -845,17 +784,40 @@ See section `File Upload` learn how to retrive a file id.
 
             + in-warehouse
             + sent
+            
+    + inWarehouseStatus
+
+        + Members
+
+            + customer-action-required
+            + ready-to-ship
+            + warehouse-action-in-progress
 
     + warehouse: 7 (integer, optional)
     + itemsPerPage: 50 (integer, optional)
     + page: 1 (integer, optional)
+
+    + deliveryStatus (enum[string], optional)
+    
+        + Members
+        
+            + sent
+            + received
+            + claim-opened
+        
 
 ### Retrieve [GET]
 
 + Response 200 (application/json)
 
         {
-            "totalCount": 13,
+            "totalCount": 10,
+            "filterCount": {
+                "warehouseActionInProgress": 3,
+                "customerActionRequired": 4,
+                "readyToShip": 6,
+                "all": 13
+            },
             "packages": [
                 {
                     "id": "CO",
@@ -920,19 +882,19 @@ See section `File Upload` learn how to retrive a file id.
                     },
                     "customsDeclaration": {
                         "totalValue": 250,
-                        "type": "merchandise",
+                        "contentType": "merchandise",
                         "items": [
                             {
                                 "quantity": 1,
                                 "description": "Cloack of Invisibility",
-                                "origin": "US",
-                                "value": 150
+                                "countryOfOrigin": "US",
+                                "totalValue": 150
                             },
                             {
                                 "quantity": 2,
                                 "description": "Fireball",
-                                "origin": "US",
-                                "value": 100
+                                "countryOfOrigin": "US",
+                                "totalValue": 100
                             }
                         ],
                         "dangerousMaterials": {
@@ -940,7 +902,7 @@ See section `File Upload` learn how to retrive a file id.
                             "PI967": false,
                             "PI965": false
                         },
-                        "batteriesCount": 0,
+                        "batteryCount": 0,
                         "eeiAction": null,
                         "eeiActionFinished": null,
                         "locked": false
@@ -1018,7 +980,6 @@ See section `File Upload` learn how to retrive a file id.
                         "insuranceSelected": true,
                         "customsDeclarationFilled": true,
                         "receivedUnderOtherName": true,
-                        "otherNameVerified": true,
                         "specialRequestInProgress": false,
                         "requiresTaxId": false,
                         "hasTaxId": false,
@@ -1102,14 +1063,14 @@ See section `File Upload` learn how to retrive a file id.
                     },
                     "customsDeclaration": {
                         "totalValue": 0,
-                        "type": null,
+                        "contentType": null,
                         "items": [],
                         "dangerousMaterials": {
                             "PI966": false,
                             "PI967": false,
                             "PI965": false
                         },
-                        "batteriesCount": 0,
+                        "batteryCount": 0,
                         "eeiAction": null,
                         "eeiActionFinished": null,
                         "locked": false
@@ -1126,7 +1087,6 @@ See section `File Upload` learn how to retrive a file id.
                         "insuranceSelected": false,
                         "customsDeclarationFilled": false,
                         "receivedUnderOtherName": false,
-                        "otherNameVerified": false,
                         "specialRequestInProgress": false,
                         "requiresTaxId": false,
                         "hasTaxId": false,
@@ -1228,14 +1188,14 @@ See section `File Upload` learn how to retrive a file id.
                     },
                     "customsDeclaration": {
                         "totalValue": 0,
-                        "type": null,
+                        "contentType": null,
                         "items": [],
                         "dangerousMaterials": {
                             "PI966": false,
                             "PI967": false,
                             "PI965": false
                         },
-                        "batteriesCount": 0,
+                        "batteryCount": 0,
                         "eeiAction": null,
                         "eeiActionFinished": null,
                         "locked": false
@@ -1252,7 +1212,6 @@ See section `File Upload` learn how to retrive a file id.
                         "insuranceSelected": false,
                         "customsDeclarationFilled": false,
                         "receivedUnderOtherName": false,
-                        "otherNameVerified": false,
                         "specialRequestInProgress": false,
                         "requiresTaxId": false,
                         "hasTaxId": false,
@@ -1280,6 +1239,12 @@ See section `File Upload` learn how to retrive a file id.
 
         {
             "totalCount": 2,
+            "filterCount": {
+                "sent": 55,
+                "received": 7,
+                "claimOpened": 3,
+                "all": 65
+            },
             "packages": [
                 {
                     "id": "B",
@@ -1331,13 +1296,13 @@ See section `File Upload` learn how to retrive a file id.
                     },
                     "customsDeclaration": {
                         "totalValue": 139,
-                        "type": "merchandise",
+                        "contentType": "merchandise",
                         "items": [
                             {
                                 "quantity": 1,
                                 "description": "goods",
-                                "origin": "US",
-                                "value": 139
+                                "countryOfOrigin": "US",
+                                "totalValue": 139
                             }
                         ],
                         "dangerousMaterials": {
@@ -1345,7 +1310,7 @@ See section `File Upload` learn how to retrive a file id.
                             "PI967": false,
                             "PI965": false
                         },
-                        "batteriesCount": 0,
+                        "batteryCount": 0,
                         "eeiAction": null,
                         "eeiActionFinished": null,
                         "locked": false
@@ -1407,13 +1372,13 @@ See section `File Upload` learn how to retrive a file id.
                     },
                     "customsDeclaration": {
                         "totalValue": 139,
-                        "type": "merchandise",
+                        "contentType": "merchandise",
                         "items": [
                             {
                                 "quantity": 1,
                                 "description": "goods",
-                                "origin": "US",
-                                "value": 139
+                                "countryOfOrigin": "US",
+                                "totalValue": 139
                             }
                         ],
                         "dangerousMaterials": {
@@ -1421,7 +1386,7 @@ See section `File Upload` learn how to retrive a file id.
                             "PI967": false,
                             "PI965": false
                         },
-                        "batteriesCount": 0,
+                        "batteryCount": 0,
                         "eeiAction": null,
                         "eeiActionFinished": null,
                         "locked": false
@@ -1525,19 +1490,19 @@ See section `File Upload` learn how to retrive a file id.
             },
             "customsDeclaration": {
                 "totalValue": 250,
-                "type": "merchandise",
+                "contentType": "merchandise",
                 "items": [
                     {
                         "quantity": 1,
                         "description": "Cloack of Invisibility",
-                        "origin": "US",
-                        "value": 150
+                        "countryOfOrigin": "US",
+                        "totalValue": 150
                     },
                     {
                         "quantity": 2,
                         "description": "Fireball",
-                        "origin": "US",
-                        "value": 100
+                        "countryOfOrigin": "US",
+                        "totalValue": 100
                     }
                 ],
                 "dangerousMaterials": {
@@ -1545,7 +1510,7 @@ See section `File Upload` learn how to retrive a file id.
                     "PI967": false,
                     "PI965": false
                 },
-                "batteriesCount": 0,
+                "batteryCount": 0,
                 "eeiAction": null,
                 "eeiActionFinished": null,
                 "locked": false
@@ -1623,7 +1588,6 @@ See section `File Upload` learn how to retrive a file id.
                 "insuranceSelected": true,
                 "customsDeclarationFilled": true,
                 "receivedUnderOtherName": true,
-                "otherNameVerified": true,
                 "specialRequestInProgress": false,
                 "requiresTaxId": false,
                 "hasTaxId": false,
@@ -1671,8 +1635,8 @@ This action may change postage price / remove selected shipping method.
 
 + Attributes
 
-    + type: `gift | merchandise` (string)
-    + eeiAction: `eei_split | eei_prepare` (string) - Parameter becomes required if total declared value exceeds $2500
+    + contentType: `gift | merchandise` (string)
+    + eeiAction: `split | prepare` (string) - Parameter becomes required if total declared value exceeds $2500
 
 + Request (application/json)
 
@@ -1681,23 +1645,23 @@ This action may change postage price / remove selected shipping method.
                 {
                     "quantity": 2,
                     "description": "Kindle",
-                    "origin": "US",
-                    "value": 230
+                    "countryOfOrigin": "US",
+                    "totalValue": 230
                 },
                 {
                     "quantity": 1,
                     "description": "iPhone",
-                    "origin": "US",
-                    "value": 50
+                    "countryOfOrigin": "US",
+                    "totalValue": 50
                 }
             ],
-            "type": "gift",
+            "contentType": "gift",
             "dangerousMaterials": {
                 "PI966": true,
                 "PI967": true,
                 "PI965": true
             },
-            "batteriesCount": 3,
+            "batteryCount": 3,
             "eeiAction": null
         }
 
@@ -1753,6 +1717,255 @@ This action may change postage price / remove selected shipping method.
         {
             "message": "You can edit only packages in warehouse."
         }
+
+# Group Expected Packages
+
+Status
+
+* new
+* used
+
+## /api/v1/expected-packages{?filter,limit,offset}
+### List Saved Expected Packages [GET]
+
++ Response 200 (application/json)
+
+        {
+            "totalCount": 3,
+            "expectedPackages": [
+                {
+                    "id": 1,
+                    "type": "keep_in_warehouse",
+                    "status": "new",
+                    "createdTime": "2015-01-01T23:59:59-0700",
+                    "usedTime": null,
+                    "package": null,
+                    "incomingTrackingNumber": "326424624513424626",
+                    "note": "We need more bacon!",
+                    "dimensions": null,
+                    "price": null,
+                    "customsDeclaration": {
+                        "contentType": "merchandise",
+                        "eeiAction": null,
+                        "items": [
+                            {
+                                "description": "Apple iPad",
+                                "quantity": 1,
+                                "totalValue": 500,
+                                "countryOfOrigin": "US"
+                            }
+                        ],
+                        "dangerousMaterials": {
+                            "PI965": false,
+                            "PI966": false,
+                            "PI967": true
+                        },
+                        "batteryCount": 1
+                    }
+                },
+                {
+                    "id": 2,
+                    "type": "keep_in_warehouse",
+                    "status": "new",
+                    "createdTime": "2015-01-01T23:59:59-0700",
+                    "usedTime": null,
+                    "package": null,
+                    "incomingTrackingNumber": "326424624513424626",
+                    "note": "We need more bacon!",
+                    "dimensions": null,
+                    "price": null,
+                    "customsDeclaration": {
+                        "contentType": "merchandise",
+                        "eeiAction": null,
+                        "items": [
+                            {
+                                "description": "Apple iPad",
+                                "quantity": 1,
+                                "totalValue": 500,
+                                "countryOfOrigin": "US"
+                            }
+                        ],
+                        "dangerousMaterials": {
+                            "PI965": false,
+                            "PI966": false,
+                            "PI967": true
+                        },
+                        "batteryCount": 1
+                    }
+                }
+            ]
+        }
+
+### Save Information [POST]
+
++ Request (application/json)
+
+        {
+            "incomingTrackingNumber": "326424624513424626",
+            "note": "We need more bacon!",
+            "customsDeclaration": {
+                "contentType": "merchandise",
+                "eeiAction": null,
+                "items": [
+                    {
+                        "description": "Apple iPad",
+                        "quantity": 1,
+                        "totalValue": 500,
+                        "countryOfOrigin": "US"
+                    }
+                ],
+                "dangerousMaterials": {
+                    "PI965": false,
+                    "PI966": false,
+                    "PI967": true
+                },
+                "batteryCount": 1
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "expectedPackage": {
+                "id": 2,
+                "type": "keep_in_warehouse",
+                "status": "used",
+                "createdTime": "2015-01-01T23:59:59-0700",
+                "usedTime": "2015-06-06T08:00:00-0700",
+                "package": {
+                    "id": "T"
+                },
+                "incomingTrackingNumber": "326424624513424626",
+                "note": "We need more bacon!",
+                "dimensions": null,
+                "price": null,
+                "customsDeclaration": {
+                    "contentType": "merchandise",
+                    "eeiAction": null,
+                    "items": [
+                        {
+                            "description": "Apple iPad",
+                            "quantity": 1,
+                            "totalValue": 500,
+                            "countryOfOrigin": "US"
+                        }
+                    ],
+                    "dangerousMaterials": {
+                        "PI965": false,
+                        "PI966": false,
+                        "PI967": true
+                    },
+                    "batteryCount": 1
+                }
+            }
+        }
+
+## /api/v2/expected-packages/{id}
+### Expected Package Detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "expectedPackage": {
+                "id": 1,
+                "status": "new",
+                "createdTime": "2015-01-01T23:59:59-0700",
+                "usedTime": null,
+                "package": null,
+                "incomingTrackingNumber": "326424624513424626",
+                "note": "We need more bacon!",
+                "dimensions": null,
+                "price": null,
+                "customsDeclaration": {
+                    "contentType": "merchandise",
+                    "eeiAction": null,
+                    "items": [
+                        {
+                            "description": "Apple iPad",
+                            "quantity": 1,
+                            "totalValue": 500,
+                            "countryOfOrigin": "US"
+                        }
+                    ],
+                    "dangerousMaterials": {
+                        "PI965": false,
+                        "PI966": false,
+                        "PI967": true
+                    },
+                    "batteryCount": 1
+                }
+            }
+        }
+
+
+### Edit Expected Package [PUT]
+
++ Request (application/json)
+
+        {
+            "type": "keep_in_warehouse",
+            "incomingTrackingNumber": "326424624513424626",
+            "note": "We need more bacon!",
+            "customsDeclaration": {
+                "contentType": "merchandise",
+                "eeiAction": null,
+                "items": [
+                    {
+                        "description": "Apple iPad",
+                        "quantity": 1,
+                        "totalValue": 500,
+                        "countryOfOrigin": "US"
+                    }
+                ],
+                "dangerousMaterials": {
+                    "PI965": false,
+                    "PI966": false,
+                    "PI967": true
+                },
+                "batteryCount": 1
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "expectedPackage": {
+                "id": 2,
+                "type": "keep_in_warehouse",
+                "status": "used",
+                "createdTime": "2015-01-01T23:59:59-0700",
+                "usedTime": "2015-06-06T08:00:00-0700",
+                "package": {
+                    "id": "T"
+                },
+                "incomingTrackingNumber": "326424624513424626",
+                "note": "We need more bacon!",
+                "dimensions": null,
+                "price": null,
+                "customsDeclaration": {
+                    "contentType": "merchandise",
+                    "eeiAction": null,
+                    "items": [
+                        {
+                            "description": "Apple iPad",
+                            "quantity": 1,
+                            "totalValue": 500,
+                            "countryOfOrigin": "US"
+                        }
+                    ],
+                    "dangerousMaterials": {
+                        "PI965": false,
+                        "PI966": false,
+                        "PI967": true
+                    },
+                    "batteryCount": 1
+                }
+            }
+        }
+
+### Remove Expected Package [DELETE]
+
++ Response 204
 
 ## Special requests [/api/v1/packages/{packageId}/special-requests]
 ### Retrieve [GET]
@@ -1885,7 +2098,7 @@ This action may change postage price / remove selected shipping method.
                 }
             ]
 
-### Place a Special Sequest [POST]
+### Place a Special Request [POST]
 
 + Attributes
 
@@ -1903,12 +2116,13 @@ This action may change postage price / remove selected shipping method.
                 {
                     "alias": "other_instructions",
                     "additionalInfo": "Draw a dinosaur on the box please."
-                }
+                },
                 {
                     "alias": "other_instructions",
                     "additionalInfo": "Do what I described in the attachment.",
                     "files": [1, 2]
                 }
+            ]
         }
 
 + Response 200
@@ -2696,7 +2910,7 @@ This action can be only performed before the MPS is processed in the warehouse.
             "shippingRestrictions": {
                 "global_restrictions": "\n<ul>\n\t<li>Firearms parts, gun parts, scope, red dot sight, reflex sight,\n\tammunition etc.</li>\n</ul>\n",
                 "usps_restrictions": "\n<ul>\n\t<li>Hazardous, combustible or explosive material.</li>\n\n\t<li>Perishable Foodstuffs.</li>\n</ul>\n",
-                "fedex_restrictions": "\n<ul>\n\t<li>Any item prohibited by any applicable legislation or regulation restricting\n\ttransport such as ivory</li>\n</ul>\n",
+                "fedex_restrictions": "\n<ul>\n\t<li>Any item prohibited by any applicable legislation or regulation restricting\n\ttransport such as ivory</li>\n</ul>\n"
             }
         }
 
@@ -2902,7 +3116,7 @@ Accepted files: gif/png/jpeg/pdf up to 5M. Files are stored for a limited time.
 
     + packages[i].packaging: `a | b | c` (string, required) - keep package | keep retail packaging | keep product only
     + afterConsolidationAction: `KEEP_IN_MAILBOX | SEND_IMMEDIATELY` (string, required)
-    + box.size: `26_13_13 | 36_17_17 | other` (string)
+    + box.size: `26_13_13 | 36_17_17 | smallest_possible | other` (string)
     + box.customSize (string, optional) - required if box.size is other
     + box.notFittingPackagesAction: `another box | return to mailbox` (string)
     + shipping (object, optional) - required for afterConsolidationAction SEND_IMMEDIATELY
@@ -3622,6 +3836,7 @@ Save a new issue of type "damaged or missing items"
                         "name": "delivery_damage",
                         "available": true,
                         "price": 2.2
+                    }
                 ],
                 "additionalInsurance": null,
                 "isPromoted": true,
@@ -3644,7 +3859,7 @@ Save a new issue of type "damaged or missing items"
                     },
                     {
                         "name": "delivery_damage",
-                        "available": true
+                        "available": true,
                         "price": 4.6
                     }
                 ],
@@ -3907,8 +4122,31 @@ Save a new issue of type "damaged or missing items"
             "message": "Address #{id} not found."
         }
 
-Response 422 (application/json)
++ Response 422 (application/json)
 
         {
             "message": "Can not delete default address."
+        }
+
+## Change Default Address [/api/v1/address-book/{id}/mark-as-default]
+
+### Change Default Address [POST]
+
++ Response 200 (application/json)
+
+        {
+            "address": {
+                "id": 3,
+                "firstName": "Eddard",
+                "lastName": "Stark",
+                "company": null,
+                "address": "Tower of the Hand",
+                "city": "King's Landing",
+                "zip": "TRG789",
+                "state": "the Reach",
+                "country": "SK",
+                "phone": "7564598762",
+                "taxId": "treqd456",
+                "default": true
+            }
         }
