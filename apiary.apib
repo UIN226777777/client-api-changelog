@@ -92,9 +92,6 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
                 "mailboxFull": 17,
                 "averageStorageShipito": 14,
                 "averageStorageYou": 67,
-                "spendingLimit": 4000,
-                "spendingLimitUsed": 1000,
-                "spendingLimitRemaining": 3000,
                 "program": {
                     "name": "Virtual Mailbox ANNUAL",
                     "virtualBox": true,
@@ -774,7 +771,9 @@ See section `File Upload` learn how to retrive a file id.
 
 # Group Packages
 
-## Package List [/api/v1/packages{?filter,inWarehouseStatus,warehouse,itemsPerPage,page,deliveryStatus}]
+## Package List [/api/v1/packages{?filter,itemsPerPage,page,deliveryStatus}]
+
+This endpoint will be removed in the future. Use endpoint /warehouse-items to access packages in warehouse.
 
 + Parameters
 
@@ -782,18 +781,8 @@ See section `File Upload` learn how to retrive a file id.
 
         + Members
 
-            + in-warehouse
             + sent
-            
-    + inWarehouseStatus
 
-        + Members
-
-            + customer-action-required
-            + ready-to-ship
-            + warehouse-action-in-progress
-
-    + warehouse: 7 (integer, optional)
     + itemsPerPage: 50 (integer, optional)
     + page: 1 (integer, optional)
 
@@ -807,439 +796,6 @@ See section `File Upload` learn how to retrive a file id.
         
 
 ### Retrieve [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "totalCount": 10,
-            "filterCount": {
-                "warehouseActionInProgress": 3,
-                "customerActionRequired": 4,
-                "readyToShip": 6,
-                "all": 13
-            },
-            "packages": [
-                {
-                    "id": "CO",
-                    "status": "in warehouse",
-                    "note": null,
-                    "receiptDate": "2015-03-12T11:10:00-0700",
-                    "mailoutDate": null,
-                    "incomingTrackingNumber": "4209050392612999952664511000015895",
-                    "trackingNumber": null,
-                    "invoice": null,
-                    "remainingFreeStorage": 88,
-                    "warehouse": 7,
-                    "attachments": [
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        },
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/02-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/02-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/02-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        }
-                    ],
-                    "dimensions": {
-                        "weight": 5.85,
-                        "length": 12.5,
-                        "width": 12,
-                        "height": 11
-                    },
-                    "price": {
-                        "processingFee": 1,
-                        "repackingFee": 0,
-                        "specialFee": 0,
-                        "postage": 104.3,
-                        "insurance": 0,
-                        "discount": 10,
-                        "total": 105.3,
-                        "postageDetail": {
-                            "carrier": 100,
-                            "bankFee": 4.3
-                        }
-                    },
-                    "shipping": {
-                        "address": {
-                            "firstName": "Jon",
-                            "lastName": "Snow",
-                            "company": null,
-                            "taxId": null,
-                            "address": "Tower of Lord Commander",
-                            "city": "Castle Black",
-                            "zip": "123456",
-                            "state": null,
-                            "country": "CA",
-                            "phone": "1234567890"
-                        },
-                        "method": "DHL_EXPRESS",
-                        "insurance": "delivery_damage",
-                        "additionalInsurance": false
-                    },
-                    "customsDeclaration": {
-                        "totalValue": 250,
-                        "contentType": "merchandise",
-                        "items": [
-                            {
-                                "quantity": 1,
-                                "description": "Cloack of Invisibility",
-                                "countryOfOrigin": "US",
-                                "totalValue": 150
-                            },
-                            {
-                                "quantity": 2,
-                                "description": "Fireball",
-                                "countryOfOrigin": "US",
-                                "totalValue": 100
-                            }
-                        ],
-                        "dangerousMaterials": {
-                            "PI966": false,
-                            "PI967": false,
-                            "PI965": false
-                        },
-                        "batteryCount": 0,
-                        "eeiAction": null,
-                        "eeiActionFinished": null,
-                        "locked": false
-                    },
-                    "specialRequests": [
-                        {
-                            "id": 1619055,
-                            "alias": "other_instructions",
-                            "name": "Other instructions",
-                            "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
-                            "fee": 0,
-                            "status": "completed",
-                            "additionalInfoRequired": true,
-                            "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
-                            "response": "Hope you like the dinosaur!",
-                            "files": [
-                                "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png"
-                            ],
-                            "cancelable": false
-                        },
-                        {
-                            "id": 1619940,
-                            "alias": "other_instructions",
-                            "name": "Other instructions",
-                            "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
-                            "fee": 0,
-                            "status": "pending",
-                            "additionalInfoRequired": true,
-                            "additionalInfo": "Is winter coming? (A2768-CO)",
-                            "response": null,
-                            "files": [],
-                            "cancelable": true
-                        },
-                        {
-                            "id": 1619053,
-                            "alias": "take_3_pictures",
-                            "name": "One Photo Request",
-                            "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
-                            "fee": 0,
-                            "status": "canceled",
-                            "additionalInfoRequired": false,
-                            "additionalInfo": "One Photo Request (A2768-CO)",
-                            "response": "We were not able to take pictures of your cloak of invisibility.",
-                            "files": [],
-                            "cancelable": false
-                        }
-                    ],
-                    "mailoutSpecialRequests": [
-                        {
-                            "alias": "bubble_wrap",
-                            "name": "Extra Bubble Wrap",
-                            "info": "Put extra bubble wrap or packaging material to protect the items.",
-                            "additionalInfo": null,
-                            "additionalInfoRequired": false,
-                            "fee": 2,
-                            "benefitApplied": false
-                        },
-                        {
-                            "alias": "extra_tape",
-                            "name": "Extra Tape",
-                            "info": "Put extra tape on the package seams",
-                            "additionalInfo": null,
-                            "additionalInfoRequired": false,
-                            "fee": 1,
-                            "benefitApplied": false
-                        }
-                    ],
-                    "flags": {
-                        "consolidation": false,
-                        "hasOpenIssue": false,
-                        "contentPhotos": false,
-                        "sufficientDeposit": true,
-                        "fitsMonthlyLimit": true,
-                        "shippingMethodSelected": true,
-                        "insuranceSelected": true,
-                        "customsDeclarationFilled": true,
-                        "receivedUnderOtherName": true,
-                        "specialRequestInProgress": false,
-                        "requiresTaxId": false,
-                        "hasTaxId": false,
-                        "requiresNotarizedForm1583": false,
-                        "hasNotarizedForm1583": false,
-                        "onSecurityHold": false,
-                        "hasDimensions": true,
-                        "poBox": false,
-                        "poBoxSupported": false,
-                        "hasDueStorageFees": false,
-                        "queuedForConsolidation": false,
-                        "queuedForMps": false,
-                        "mailboxUpgradeNeeded": false,
-                        "mailoutScheduled": false,
-                        "readyToSend": false,
-                        "canBeMerged": true,
-                        "requiresPhoneNumber": false,
-                        "hasPhoneNumber": true
-                    }
-                },
-                {
-                    "id": "CN",
-                    "status": "in warehouse",
-                    "note": null,
-                    "receiptDate": "2015-03-07T11:36:22-0800",
-                    "mailoutDate": null,
-                    "incomingTrackingNumber": "420905039274899994597717058821",
-                    "trackingNumber": null,
-                    "invoice": null,
-                    "remainingFreeStorage": 83,
-                    "warehouse": 7,
-                    "attachments": [
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        },
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        }
-                    ],
-                    "dimensions": {
-                        "weight": 0.6,
-                        "length": 15.5,
-                        "width": 13.5,
-                        "height": 2
-                    },
-                    "price": {
-                        "processingFee": 1,
-                        "repackingFee": 0,
-                        "specialFee": 0,
-                        "postage": 0,
-                        "insurance": 0,
-                        "discount": 0,
-                        "total": null,
-                        "postageDetail": {
-                            "carrier": 0,
-                            "bankFee": 0
-                        }
-                    },
-                    "shipping": {
-                        "address": {
-                            "firstName": "Jon",
-                            "lastName": "Snow",
-                            "company": null,
-                            "taxId": null,
-                            "address": "Tower of Lord Commander",
-                            "city": "Castle Black",
-                            "zip": "123456",
-                            "state": null,
-                            "country": "CA",
-                            "phone": "1234567890"
-                        },
-                        "method": null,
-                        "insurance": null,
-                        "additionalInsurance": null
-                    },
-                    "customsDeclaration": {
-                        "totalValue": 0,
-                        "contentType": null,
-                        "items": [],
-                        "dangerousMaterials": {
-                            "PI966": false,
-                            "PI967": false,
-                            "PI965": false
-                        },
-                        "batteryCount": 0,
-                        "eeiAction": null,
-                        "eeiActionFinished": null,
-                        "locked": false
-                    },
-                    "specialRequests": [],
-                    "mailoutSpecialRequests": [],
-                    "flags": {
-                        "consolidation": false,
-                        "hasOpenIssue": false,
-                        "contentPhotos": false,
-                        "sufficientDeposit": true,
-                        "fitsMonthlyLimit": true,
-                        "shippingMethodSelected": false,
-                        "insuranceSelected": false,
-                        "customsDeclarationFilled": false,
-                        "receivedUnderOtherName": false,
-                        "specialRequestInProgress": false,
-                        "requiresTaxId": false,
-                        "hasTaxId": false,
-                        "requiresNotarizedForm1583": false,
-                        "hasNotarizedForm1583": false,
-                        "onSecurityHold": false,
-                        "hasDimensions": true,
-                        "poBox": false,
-                        "poBoxSupported": false,
-                        "hasDueStorageFees": false,
-                        "queuedForConsolidation": false,
-                        "queuedForMps": false,
-                        "mailboxUpgradeNeeded": false,
-                        "mailoutScheduled": false,
-                        "readyToSend": false,
-                        "canBeMerged": false,
-                        "requiresPhoneNumber": false,
-                        "hasPhoneNumber": true
-                    }
-                },
-                {
-                    "id": "CM",
-                    "status": "in warehouse",
-                    "note": null,
-                    "receiptDate": "2015-03-05T10:31:14-0800",
-                    "mailoutDate": null,
-                    "incomingTrackingNumber": "4209050392748999953557581035138573",
-                    "trackingNumber": null,
-                    "invoice": null,
-                    "remainingFreeStorage": 81,
-                    "warehouse": 7,
-                    "attachments": [
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        },
-                        {
-                            "type": "document",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/invoice.pdf"
-                        },
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        },
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        },
-                        {
-                            "type": "image",
-                            "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                            "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                            "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                            "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                        }
-                    ],
-                    "dimensions": {
-                        "weight": 0.95,
-                        "length": 14.5,
-                        "width": 14,
-                        "height": 2
-                    },
-                    "price": {
-                        "processingFee": 1,
-                        "repackingFee": 0,
-                        "specialFee": 0,
-                        "postage": 0,
-                        "insurance": 0,
-                        "discount": 0,
-                        "total": null,
-                        "postageDetail": {
-                            "carrier": 0,
-                            "bankFee": 0
-                        }
-                    },
-                    "shipping": {
-                        "address": {
-                            "firstName": "Jon",
-                            "lastName": "Snow",
-                            "company": null,
-                            "taxId": null,
-                            "address": "Tower of Lord Commander",
-                            "city": "Castle Black",
-                            "zip": "123456",
-                            "state": null,
-                            "country": "CA",
-                            "phone": "1234567890"
-                        },
-                        "method": null,
-                        "insurance": null,
-                        "additionalInsurance": null
-                    },
-                    "customsDeclaration": {
-                        "totalValue": 0,
-                        "contentType": null,
-                        "items": [],
-                        "dangerousMaterials": {
-                            "PI966": false,
-                            "PI967": false,
-                            "PI965": false
-                        },
-                        "batteryCount": 0,
-                        "eeiAction": null,
-                        "eeiActionFinished": null,
-                        "locked": false
-                    },
-                    "specialRequests": [],
-                    "mailoutSpecialRequests": [],
-                    "flags": {
-                        "consolidation": false,
-                        "hasOpenIssue": false,
-                        "contentPhotos": false,
-                        "sufficientDeposit": true,
-                        "fitsMonthlyLimit": true,
-                        "shippingMethodSelected": false,
-                        "insuranceSelected": false,
-                        "customsDeclarationFilled": false,
-                        "receivedUnderOtherName": false,
-                        "specialRequestInProgress": false,
-                        "requiresTaxId": false,
-                        "hasTaxId": false,
-                        "requiresNotarizedForm1583": false,
-                        "hasNotarizedForm1583": false,
-                        "onSecurityHold": false,
-                        "hasDimensions": true,
-                        "poBox": false,
-                        "poBoxSupported": false,
-                        "hasDueStorageFees": false,
-                        "queuedForConsolidation": false,
-                        "queuedForMps": false,
-                        "mailboxUpgradeNeeded": false,
-                        "mailoutScheduled": false,
-                        "readyToSend": false,
-                        "canBeMerged": false,
-                        "requiresPhoneNumber": false,
-                        "hasPhoneNumber": true
-                    }
-                }
-            ]
-        }
 
 + Response 200 (application/json)
 
@@ -1417,128 +973,61 @@ See section `File Upload` learn how to retrive a file id.
 
         {
             "id": "CO",
-            "status": "in warehouse",
+            "otherName": null,
+            "numericId": 3402894,
+            "type": "box",
+            "status": "in-warehouse",
             "note": null,
-            "receiptDate": "2015-03-12T11:10:00-0700",
-            "mailoutDate": null,
-            "incomingTrackingNumber": "4209050392612999952664511000015895",
-            "trackingNumber": null,
-            "invoice": null,
-            "remainingFreeStorage": 88,
+            "receiptDate": "2013-09-04T17:02:00-0700",
+            "incomingTrackingNumber": null,
+            "remainingFreeStorage": 0,
             "warehouse": 7,
             "attachments": [
                 {
                     "type": "image",
-                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png",
-                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/01-small.png",
-                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png",
-                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                },
-                {
-                    "type": "document",
-                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/invoice.pdf"
-                },
-                {
-                    "type": "image",
-                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/03-thumb.png",
-                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/03-small.png",
-                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/03-big.png",
-                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                },
-                {
-                    "type": "image",
-                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
-                },
-                {
-                    "type": "image",
-                    "thumbnail": "https://dl.dropboxusercontent.com/u/7235369/photos/04-thumb.png",
-                    "small": "https://dl.dropboxusercontent.com/u/7235369/photos/04-small.png",
-                    "large": "https://dl.dropboxusercontent.com/u/7235369/photos/04-big.png",
-                    "original": "https://dl.dropboxusercontent.com/u/7235369/photos/01-big.png"
+                    "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                    "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                    "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                    "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
                 }
             ],
             "dimensions": {
-                "weight": 5.85,
-                "length": 12.5,
-                "width": 12,
-                "height": 11
+                "weight": 3.7,
+                "length": 8.5,
+                "width": 7,
+                "height": 6
             },
             "price": {
-                "processingFee": 1,
-                "repackingFee": 0,
-                "specialFee": 0,
-                "postage": 104.3,
-                "insurance": 0,
-                "discount": 10,
-                "total": 105.3,
-                "postageDetail": {
-                    "carrier": 100,
-                    "bankFee": 4.3
-                }
-            },
-            "shipping": {
-                "address": {
-                    "firstName": "Jon",
-                    "lastName": "Snow",
-                    "company": null,
-                    "taxId": null,
-                    "address": "Tower of Lord Commander",
-                    "city": "Castle Black",
-                    "zip": "123456",
-                    "state": null,
-                    "country": "CA",
-                    "phone": "1234567890"
-                },
-                "method": "DHL_EXPRESS",
-                "insurance": "delivery_damage",
-                "additionalInsurance": false
+                "processingFee": 2.5,
+                "consolidationFee": 0,
+                "specialRequestFee": 0,
+                "mailoutSpecialRequestFee": null,
+                "total": 5.5
             },
             "customsDeclaration": {
-                "totalValue": 250,
-                "contentType": "merchandise",
+                "totalValue": 12,
+                "contentType": "gift",
                 "items": [
                     {
                         "quantity": 1,
-                        "description": "Cloack of Invisibility",
+                        "description": "item",
                         "countryOfOrigin": "US",
-                        "totalValue": 150
-                    },
-                    {
-                        "quantity": 2,
-                        "description": "Fireball",
-                        "countryOfOrigin": "US",
-                        "totalValue": 100
+                        "totalValue": 12,
+                        "origin": "US",
+                        "value": 12
                     }
                 ],
                 "dangerousMaterials": {
+                    "PI965": false,
                     "PI966": false,
-                    "PI967": false,
-                    "PI965": false
+                    "PI967": false
                 },
-                "batteryCount": 0,
+                "batteryCount": null,
                 "eeiAction": null,
                 "eeiActionFinished": null,
                 "locked": false
             },
             "specialRequests": [
-                {
-                    "id": 1619055,
-                    "alias": "other_instructions",
-                    "name": "Other instructions",
-                    "description": "You can specify your own instruction. If possible, please use English language. DO NOT USE THIS INSTRUCTION FOR CONSOLIDATE PACKAGES, you would be charged twice for repacking. Use the CONSOLIDATE button at the top of the Ready to Send page.",
-                    "fee": 0,
-                    "status": "completed",
-                    "additionalInfoRequired": true,
-                    "additionalInfo": "Draw a dionsaur on the box please, thank you. (A2768-CO)",
-                    "response": "Hope you like the dinosaur!",
-                    "files": [
-                         "https://dl.dropboxusercontent.com/u/7235369/photos/01-thumb.png"
-                    ],
-                    "cancelable": false
-                },
                 {
                     "id": 1619940,
                     "alias": "other_instructions",
@@ -1551,69 +1040,28 @@ See section `File Upload` learn how to retrive a file id.
                     "response": null,
                     "files": [],
                     "cancelable": true
-                },
-                {
-                    "id": 1619053,
-                    "alias": "take_3_pictures",
-                    "name": "One Photo Request",
-                    "description": "Shipito will open your package and take one photo of the content. This\nis the least expensive photo request which will give you an idea what\nitems are included in your package. Do not expect detailed shoots.\nTypically it is one photo showing all items contained in the package\nspread on the desk.\n\nIf the content of package does not fit in the area of 36×36 inches we\nwill automatically charge for multiple photo request.",
-                    "fee": 0,
-                    "status": "canceled",
-                    "additionalInfoRequired": false,
-                    "additionalInfo": "One Photo Request (A2768-CO)",
-                    "response": "We were not able to take pictures of your cloak of invisibility.",
-                    "files": [],
-                    "cancelable": false
                 }
             ],
-            "mailoutSpecialRequests": [
-                {
-                    "alias": "bubble_wrap",
-                    "name": "Extra Bubble Wrap",
-                    "info": "Put extra bubble wrap or packaging material to protect the items.",
-                    "additionalInfo": null,
-                    "additionalInfoRequired": false,
-                    "fee": 2,
-                    "benefitApplied": false
-                },
-                {
-                    "alias": "extra_tape",
-                    "name": "Extra Tape",
-                    "info": "Put extra tape on the package seams",
-                    "additionalInfo": null,
-                    "additionalInfoRequired": false,
-                    "fee": 1,
-                    "benefitApplied": false
-                }
-            ],
+            "specialInfo": null,
+            "shippingInformation": null,
             "flags": {
                 "consolidation": false,
+                "internalTransportScheduled": false,
                 "hasOpenIssue": false,
-                "contentPhotos": false,
-                "sufficientDeposit": true,
-                "fitsMonthlyLimit": true,
-                "shippingMethodSelected": true,
-                "insuranceSelected": true,
+                "hasContentPhotos": false,
                 "customsDeclarationFilled": true,
-                "receivedUnderOtherName": true,
+                "receivedUnderOtherName": false,
                 "specialRequestInProgress": false,
-                "requiresTaxId": false,
-                "hasTaxId": false,
                 "requiresNotarizedForm1583": false,
-                "hasNotarizedForm1583": false,
-                "onSecurityHold": false,
+                "hasNotarizedForm1583": true,
                 "hasDimensions": true,
-                "poBox": false,
-                "poBoxSupported": false,
-                "hasDueStorageFees": false,
                 "queuedForConsolidation": false,
-                "queuedForMps": false,
-                "mailboxUpgradeNeeded": false,
-                "mailoutScheduled": false,
-                "readyToSend": false,
                 "canBeMerged": true,
-                "requiresPhoneNumber": false,
-                "hasPhoneNumber": true
+                "lessThan30CustomsItems": true,
+                "isInShipment": false,
+                "warehouseActionInProgress": false,
+                "readyToRequestMailout": true,
+                "customerActionRequired": false
             }
         }
 
@@ -1638,8 +1086,6 @@ See section `File Upload` learn how to retrive a file id.
 
 ## Customs Declaration [/api/v1/packages/{packageId}/customs-declaration]
 ### Update Customs Declaration [POST]
-
-This action may change postage price / remove selected shipping method.
 
 + Attributes
 
@@ -1693,37 +1139,6 @@ This action may change postage price / remove selected shipping method.
 
         {
             "message": "You must specify EEI action for this package."
-        }
-
-## Shipping address [/api/v1/packages/{packageId}/shipping-address]
-
-### Set Shipping Address [POST]
-This action may change postage price / remove selected shipping method.
-
-+ Request (application/json)
-
-        {
-            "firstName": "John",
-            "lastName": "Doe",
-            "company": null,
-            "taxId": null,
-            "address": "Example street 123",
-            "zip": "15400",
-            "city": "Praha",
-            "state": null,
-            "country": "CZ",
-            "phone": "+420111000111",
-            "reason": null
-        }
-
-+ Response 200
-
-    [Package detail][]
-
-+ Response 422 (application/json)
-
-        {
-            "message": "You can edit only packages in warehouse."
         }
 
 # Group Expected Packages
@@ -2155,400 +1570,6 @@ Status
             "message": "Special requests may have only up to 5 attachments."
         }
 
-## Shipping Methods [/api/v1/packages/{packageId}/shipping-methods]
-### Retrieve [GET]
-
-+ Response 200 (application/json)
-
-    + Attributes
-
-        + available (boolean)
-        + errors (array) - contains a list of reasons due to which a carrier can not be used
-
-    + Body
-
-            [
-                {
-                    "alias": "EXPRESS",
-                    "available": true,
-                    "shippingRate": 48.9,
-                    "insuranceRate": 2.2,
-                    "insurance": [
-                        {
-                            "name": "delivery",
-                            "available": true,
-                            "price": {
-                                "total": 2.2,
-                                "reasons": [
-                                    {
-                                        "value": 0.85,
-                                        "name": "Base charge"
-                                    },
-                                    {
-                                        "value": 1.35,
-                                        "name": "1.35% of package value"
-                                    }
-                                ]
-                            },
-                            "requirements": []
-                        },
-                        {
-                            "name": "delivery_damage",
-                            "available": false,
-                            "price": {
-                                "total": 2.2,
-                                "reasons": [
-                                    {
-                                        "value": 0.85,
-                                        "name": "Base charge"
-                                    },
-                                    {
-                                        "value": 1.35,
-                                        "name": "1.35% of package value"
-                                    }
-                                ]
-                            },
-                            "requirements": [
-                                {
-                                    "id": 15,
-                                    "name": "One Photo Request",
-                                    "fee": 2
-                                },
-                                {
-                                    "id": 17,
-                                    "name": "Multiple photo request",
-                                    "fee": 5
-                                }
-                            ]
-                        }
-                    ],
-                    "additionalInsurance": null,
-                    "isPromoted": true,
-                    "delivery": {
-                        "inDays": 6,
-                        "inWords": "5-6 business days"
-                    },
-                    "popularity": 2,
-                    "logo": "usps-express.png"
-                },
-                {
-                    "alias": "PRIORITY",
-                    "available": true,
-                    "shippingRate": 44.33,
-                    "insuranceRate": 4.6,
-                    "insurance": [
-                        {
-                            "name": "delivery",
-                            "available": true,
-                            "price": {
-                                "total": 4.6,
-                                "reasons": [
-                                    {
-                                        "value": 2.45,
-                                        "name": "Base charge"
-                                    },
-                                    {
-                                        "value": 2.15,
-                                        "name": "2.15% of package value"
-                                    }
-                                ]
-                            },
-                            "requirements": []
-                        },
-                        {
-                            "name": "delivery_damage",
-                            "available": false,
-                            "price": {
-                                "total": 4.6,
-                                "reasons": [
-                                    {
-                                        "value": 2.45,
-                                        "name": "Base charge"
-                                    },
-                                    {
-                                        "value": 2.15,
-                                        "name": "2.15% of package value"
-                                    }
-                                ]
-                            },
-                            "requirements": [
-                                {
-                                    "id": 15,
-                                    "name": "One Photo Request",
-                                    "fee": 2
-                                },
-                                {
-                                    "id": 17,
-                                    "name": "Multiple photo request",
-                                    "fee": 5
-                                }
-                            ]
-                        }
-                    ],
-                    "additionalInsurance": {
-                        "rate": 2,
-                        "requiredFor": "Electronics"
-                    },
-                    "isPromoted": false,
-                    "delivery": {
-                        "inDays": 10,
-                        "inWords": "6-10 business days"
-                    },
-                    "popularity": 5,
-                    "logo": "usps-priority.png"
-                },
-                {
-                    "alias": "FIRST_CLASS",
-                    "available": true,
-                    "shippingRate": 24.46,
-                    "insuranceRate": null,
-                    "insurance": null,
-                    "additionalInsurance": null,
-                    "isPromoted": true,
-                    "delivery": {
-                        "inDays": 15,
-                        "inWords": "varies by country"
-                    },
-                    "popularity": 3,
-                    "logo": "usps-first.png"
-                },
-                {
-                    "alias": "FLAT_RATE_ENVELOPE",
-                    "available": false,
-                    "shippingRate": null,
-                    "insuranceRate": null,
-                    "insurance": [],
-                    "additionalInsurance": null,
-                    "isPromoted": false,
-                    "delivery": {
-                        "inDays": 11,
-                        "inWords": "6-10 business days"
-                    },
-                    "popularity": 11,
-                    "logo": "usps-priority.png",
-                    "tracking": false,
-                    "errors": [
-                        "Weight must not exceed 4 lbs",
-                        "Length must not exceed 12\"",
-                        "Width must not exceed 9\"",
-                        "Height must not exceed 2\""
-                    ]
-                }
-            ]
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package has not been measured and weighted yet."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Shipping methods are available only for packages in warehouse."
-        }
-
-### Select [POST]
-
-+ Request (application/json)
-
-        {
-            "shippingMethod": "TNT_ECONOMY",
-            "insurance": "delivery"
-        }
-
-+ Response 200
-
-    [Package detail][]
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Shipping method can be selected only for packages in warehouse."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package is queued for a consolidation."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package is queued for an MPS."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Shipping method not found."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Shipping method not available."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package has to have content photos to select 'delivery & damage' insurance."
-        }
-
-## Mailout [/api/v1/packages/{packageId}/mailout]
-
-### Retrieve available last minute special requests and applied benefits [GET]
-
-+ Response 200 (application/json)
-
-    + Attributes
-
-        + status: `available | new` (string)
-
-    + Body
-
-            {
-                "benefits": [
-                    {
-                        "type": "free_mailout",
-                        "value": 8
-                    },
-                    {
-                        "type": "free_consolidation",
-                        "value": 6
-                    }
-                ],
-                "mailoutSpecialRequests": [
-                    {
-                        "alias": "remove_invoice",
-                        "name": "Remove Invoice",
-                        "info": "Remove store invoices from the package(s)",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 1,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "bubble_wrap",
-                        "name": "Extra Bubble Wrap",
-                        "info": "Put extra bubble wrap or packaging material to protect the items.",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 2,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "extra_tape",
-                        "name": "Extra Tape",
-                        "info": "Put extra tape on the package seams",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 1,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "security_tape",
-                        "name": "Security Tape",
-                        "info": "Put security tape on the package, so it's evident if the package has been opened after shipping",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 2,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "fragile_sticker",
-                        "name": "Fragile Sticker",
-                        "info": "Put fragile sticker onto the package, so it's clear package contains fragile items.",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 1,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "express_mailout",
-                        "name": "Express Mailout",
-                        "info": "Your Mailout Request will be moved to the top of the queue.",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 2,
-                        "benefitApplied": false,
-                        "status": "available"
-                    },
-                    {
-                        "alias": "mailout_photo",
-                        "name": "Mailout Photo",
-                        "info": "Take a photo of the package before giving it to the shipping company",
-                        "additionalInfo": null,
-                        "additionalInfoRequired": false,
-                        "fee": 2,
-                        "benefitApplied": false,
-                        "status": "available"
-                    }
-                ]
-            }
-
-### Request mailout [POST]
-
-+ Attributes
-
-    + lastMinuteSpecialRequests (object, optional)
-
-+ Request (application/json)
-
-        {
-            "lastMinuteSpecialRequests": {
-                "bubble_wrap": true,
-                "extra_tape": true
-            }
-        }
-
-+ Response 200
-
-    [Package detail][]
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Only packages in warehouse can be mailed out."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package is queued for a consolidation."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package is queued for an MPS."
-        }
-
-### Cancel scheduled mailout [DELETE]
-
-+ Response 200
-
-    [Package detail][]
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Mailout for package {packageId} has not been requested yet."
-        }
-
-+ Response 422 (application/json)
-
-        {
-            "message": "Package {packageId} has been already sent."
-        }
-
 ## Delivery [/api/v1/packages/{packageId}/confirm-delivery]
 ### Confirm delivery [POST]
 
@@ -2576,83 +1597,2696 @@ Status
 
 + Response 204
 
-# Group MPS
+# Group Warehouse Items
 
-Multi-piece Shipments.
+A warehouse item is either a package, a consolidation request or a shipment.
 
-## List [/api/v1/mps{?filter}]
+## Warehouse Items [/warehouse-items{?status,type,offset,limit}]
 
 + Parameters
 
-    + filter (enum[string], required)
+    + status (enum[string], optional)
 
         + Members
 
-            + confirmed
-            + sent
+            + `customer-action-required`
+            + `ready-to-ship`
+            + `warehouse-action-in-progress`
 
-### Retrieve [GET]
+    + type (enum[string], optional)
+
+        + Members
+
+            + `consolidation`
+            + `package`
+            + `shipment`
+
+### List [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "id": 42,
-                "status": "confirmed",
-                "requestTime": "2016-01-02T08:51:03-0800",
-                "mailoutTime": null,
-                "packages": [
-                    {
-                        "id": "A"
-                    },
-                    {
-                        "id": "B"
-                    },
-                    {
-                        "id": "C"
-                    }
-                ],
-                "warehouse": 7
+                {
+            "totalCount": 3,
+            "filterCount": {
+                "customerActionRequiredCount": 3,
+                "warehouseActionInProgressCount": 23,
+                "readyToShipCount": 4
             },
-            {
-                "id": 89,
-                "status": "confirmed",
-                "requestTime": "2016-01-02T08:51:03-0800",
-                "mailoutTime": null,
+            "items": [
+                {
+                    "type": "shipment",
+                    "shipment": {
+                        "id": 234,
+                        "warehouse": {
+                            "alias": "hawthorne"
+                        },
+                        "status": "confirmed",
+                        "shipmentPackages": [
+                            {
+                                "id": "ACR",
+                                "mailoutSpecialRequests": [],
+                                "benefits": []
+                            }
+                        ],
+                        "shippingInformation": {
+                            "address": {
+                                "firstName": "Ramsay",
+                                "lastName": "Snow",
+                                "company": null,
+                                "address": "Castle Black 1",
+                                "city": "Moscow",
+                                "zip": "129594",
+                                "state": null,
+                                "country": "RU",
+                                "phone": "+711111111111",
+                                "taxId": null
+                            },
+                            "shippingMethod": {
+                                "alias": "BOXBERRY_LOCAL_PICKUP",
+                                "name": "Boxberry Local Pickup"
+                            },
+                            "pickupInformation": {
+                                "regionCode": "Н00163162",
+                                "regionName": "Івано-Франковск",
+                                "pointCode": "04.1744",
+                                "pointName": "Отделение № 12 (до 15 кг) Мини-отделение: ул. Волчинецкая, 225м (маг.\"\"МЕТРО\")"
+                            },
+                            "insuranceType": null
+                        },
+                        "price": {
+                            "postage": 54.58,
+                            "insurance": 0,
+                            "total": 76.58
+                        },
+                        "trackingNumber": null,
+                        "createdTime": "2016-05-10T02:57:18-0700",
+                        "sentTime": null,
+                        "flags": {
+                            "hasSufficientDeposit": true,
+                            "isMailboxOnSecurityHold": false,
+                            "doesRequireTaxId": false,
+                            "hasTaxId": false,
+                            "hasDueFees": false,
+                            "doesRequireAdditionalInformation": true,
+                            "hasAdditionalInformation": false,
+                            "customerActionRequired": true,
+                            "warehouseActionInProgress": false,
+                            "canBeShipped": false,
+                            "readyToShip": false
+                        }
+                    },
+                    "packages": [
+                        {
+                            "id": "ACR",
+                            "otherName": 18751,
+                            "numericId": 6575479,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-03-21T06:05:29-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 40,
+                            "warehouse": 20,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 10.1,
+                                "length": 5,
+                                "width": 5,
+                                "height": 5
+                            },
+                            "price": {
+                                "processingFee": 8,
+                                "consolidationFee": 12,
+                                "specialRequestFee": 2,
+                                "mailoutSpecialRequestFee": 0,
+                                "total": 22
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 10,
+                                "contentType": "merchandise",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "Invisibility Cloak",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 10,
+                                        "origin": "US",
+                                        "value": 10
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": true,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": 1,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [
+                                {
+                                    "id": 2182310,
+                                    "alias": "consolidation_special_request",
+                                    "name": "Consolidation Special Request",
+                                    "description": "",
+                                    "fee": 0,
+                                    "status": "completed",
+                                    "additionalInfoRequired": false,
+                                    "additionalInfo": "Consolidation Special Request: Visual check that content is not damaged\n\n",
+                                    "response": null,
+                                    "files": [],
+                                    "cancelable": false
+                                }
+                            ],
+                            "specialInfo": "ACB + ACD + ",
+                            "shippingInformation": {
+                                "mailoutSpecialRequests": [],
+                                "additionalInformation": [
+                                    {
+                                        "id": "boxberry_local_pickup",
+                                        "valid": false
+                                    }
+                                ]
+                            },
+                            "flags": {
+                                "consolidation": true,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": true,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": true,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": true,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        }
+                    ]
+                },
+                {
+                    "type": "package",
+                    "packages": [
+                        {
+                            "id": "ADB",
+                            "otherName": null,
+                            "numericId": 6659748,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-04-19T06:22:36-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 69,
+                            "warehouse": 7,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 23,
+                                "length": 5,
+                                "width": 5,
+                                "height": 5
+                            },
+                            "price": {
+                                "processingFee": 2,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 2
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 0,
+                                "contentType": null,
+                                "items": [],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": null,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [],
+                            "specialInfo": null,
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": false,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": false,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": true
+                            },
+                            "photos": []
+                        }
+                    ]
+                },
+                {
+                    "type": "package",
+                    "packages": [
+                        {
+                            "id": "ACY",
+                            "otherName": null,
+                            "numericId": 6645901,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-04-14T05:25:03-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 64,
+                            "warehouse": 20,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 2,
+                                "length": 5,
+                                "width": 4,
+                                "height": 3
+                            },
+                            "price": {
+                                "processingFee": 2,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 2
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 0,
+                                "contentType": null,
+                                "items": [],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": null,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [],
+                            "specialInfo": null,
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": false,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": false,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": true
+                            },
+                            "photos": []
+                        }
+                    ]
+                }
+            ]
+        }
+
+
++ Response 200 (application/json)
+
+        {
+            "totalCount": 3,
+            "filterCount": {
+                "customerActionRequiredCount": 3,
+                "warehouseActionInProgressCount": 3,
+                "readyToShipCount": 4
+            },
+            "items": [
+                {
+                    "type": "package",
+                    "packages": [
+                        {
+                            "id": "ACO",
+                            "otherName": 23646,
+                            "numericId": 6542733,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-03-09T05:26:19-0800",
+                            "incomingTrackingNumber": "123456",
+                            "remainingFreeStorage": 28,
+                            "warehouse": 20,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 0,
+                                "length": 0,
+                                "width": 0,
+                                "height": 0
+                            },
+                            "price": {
+                                "processingFee": 0,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 0
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 50,
+                                "contentType": "gift",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "water bottle",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 50,
+                                        "origin": "US",
+                                        "value": 50
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": true,
+                                    "PI967": false
+                                },
+                                "batteryCount": 2,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [],
+                            "specialInfo": null,
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": true,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": false,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        }
+                    ]
+                },
+                {
+                    "type": "consolidation",
+                    "consolidation": {
+                        "id": 733204,
+                        "status": "new",
+                        "requestTime": "2016-05-09T08:22:13-0700",
+                        "completedTime": null,
+                        "box": {
+                            "size": "smallest_possible",
+                            "customSize": null,
+                            "notFittingPackagesAction": "another box"
+                        },
+                        "warehouse": 23,
+                        "packages": [
+                            {
+                                "id": "ADX",
+                                "otherName": null,
+                                "numericId": 6686697,
+                                "type": "box",
+                                "status": "in-warehouse",
+                                "note": null,
+                                "receiptDate": "2016-05-09T07:54:45-0700",
+                                "incomingTrackingNumber": null,
+                                "remainingFreeStorage": 179,
+                                "warehouse": 23,
+                                "attachments": [],
+                                "dimensions": {
+                                    "weight": 3,
+                                    "length": 3,
+                                    "width": 2,
+                                    "height": 1
+                                },
+                                "price": {
+                                    "processingFee": 2,
+                                    "consolidationFee": 0,
+                                    "specialRequestFee": 0,
+                                    "mailoutSpecialRequestFee": null,
+                                    "total": 2
+                                },
+                                "customsDeclaration": {
+                                    "totalValue": 20,
+                                    "contentType": "gift",
+                                    "items": [
+                                        {
+                                            "quantity": 1,
+                                            "description": "test",
+                                            "countryOfOrigin": "US",
+                                            "totalValue": 20,
+                                            "origin": "US",
+                                            "value": 20
+                                        }
+                                    ],
+                                    "dangerousMaterials": {
+                                        "PI965": false,
+                                        "PI966": false,
+                                        "PI967": false
+                                    },
+                                    "batteryCount": 0,
+                                    "eeiAction": null,
+                                    "eeiActionFinished": null,
+                                    "locked": false
+                                },
+                                "specialRequests": [],
+                                "specialInfo": "Do not touch",
+                                "shippingInformation": null,
+                                "flags": {
+                                    "consolidation": false,
+                                    "internalTransportScheduled": false,
+                                    "hasOpenIssue": false,
+                                    "hasContentPhotos": false,
+                                    "customsDeclarationFilled": true,
+                                    "receivedUnderOtherName": false,
+                                    "specialRequestInProgress": false,
+                                    "requiresNotarizedForm1583": false,
+                                    "hasNotarizedForm1583": false,
+                                    "hasDimensions": true,
+                                    "queuedForConsolidation": true,
+                                    "canBeMerged": false,
+                                    "lessThan30CustomsItems": true,
+                                    "isInShipment": false,
+                                    "warehouseActionInProgress": true,
+                                    "readyToRequestMailout": false,
+                                    "customerActionRequired": false
+                                },
+                                "photos": [],
+                                "packaging": "b",
+                                "mergedInto": null
+                            },
+                            {
+                                "id": "ADY",
+                                "otherName": null,
+                                "numericId": 6686698,
+                                "type": "box",
+                                "status": "in-warehouse",
+                                "note": null,
+                                "receiptDate": "2016-05-09T07:54:57-0700",
+                                "incomingTrackingNumber": null,
+                                "remainingFreeStorage": 179,
+                                "warehouse": 23,
+                                "attachments": [],
+                                "dimensions": {
+                                    "weight": 4,
+                                    "length": 4,
+                                    "width": 3,
+                                    "height": 2
+                                },
+                                "price": {
+                                    "processingFee": 2,
+                                    "consolidationFee": 0,
+                                    "specialRequestFee": 0,
+                                    "mailoutSpecialRequestFee": null,
+                                    "total": 2
+                                },
+                                "customsDeclaration": {
+                                    "totalValue": 12,
+                                    "contentType": "gift",
+                                    "items": [
+                                        {
+                                            "quantity": 1,
+                                            "description": "Test",
+                                            "countryOfOrigin": "US",
+                                            "totalValue": 12,
+                                            "origin": "US",
+                                            "value": 12
+                                        }
+                                    ],
+                                    "dangerousMaterials": {
+                                        "PI965": false,
+                                        "PI966": false,
+                                        "PI967": false
+                                    },
+                                    "batteryCount": 0,
+                                    "eeiAction": null,
+                                    "eeiActionFinished": null,
+                                    "locked": false
+                                },
+                                "specialRequests": [],
+                                "specialInfo": "Do not touch",
+                                "shippingInformation": null,
+                                "flags": {
+                                    "consolidation": false,
+                                    "internalTransportScheduled": false,
+                                    "hasOpenIssue": false,
+                                    "hasContentPhotos": false,
+                                    "customsDeclarationFilled": true,
+                                    "receivedUnderOtherName": false,
+                                    "specialRequestInProgress": false,
+                                    "requiresNotarizedForm1583": false,
+                                    "hasNotarizedForm1583": false,
+                                    "hasDimensions": true,
+                                    "queuedForConsolidation": true,
+                                    "canBeMerged": false,
+                                    "lessThan30CustomsItems": true,
+                                    "isInShipment": false,
+                                    "warehouseActionInProgress": true,
+                                    "readyToRequestMailout": false,
+                                    "customerActionRequired": false
+                                },
+                                "photos": [],
+                                "packaging": "b",
+                                "mergedInto": null
+                            }
+                        ],
+                        "removedPackages": [],
+                        "specialRequests": [
+                            {
+                                "alias": "visual_check_for_damage",
+                                "name": "Visual check that content is not damaged",
+                                "info": "",
+                                "additionalInfo": null,
+                                "additionalInfoRequired": false,
+                                "fee": 0,
+                                "status": "new"
+                            },
+                            {
+                                "alias": "consolidation_photo",
+                                "name": "Photos of consolidation process",
+                                "info": "",
+                                "additionalInfo": null,
+                                "additionalInfoRequired": false,
+                                "fee": 0,
+                                "status": "new"
+                            }
+                        ],
+                        "afterConsolidationAction": "SEND_IMMEDIATELY",
+                        "shipping": {
+                            "address": {
+                                "firstName": "Test",
+                                "lastName": "Test",
+                                "company": null,
+                                "address": "Moskevská 1848",
+                                "city": "Moscow",
+                                "zip": "12345",
+                                "state": null,
+                                "country": "RU",
+                                "phone": "+79121234567",
+                                "taxId": null
+                            },
+                            "method": "PRIORITY",
+                            "insure": true
+                        }
+                    },
+                    "packages": [
+                        {
+                            "id": "ADX",
+                            "otherName": null,
+                            "numericId": 6686697,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-05-09T07:54:45-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 179,
+                            "warehouse": 23,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 3,
+                                "length": 3,
+                                "width": 2,
+                                "height": 1
+                            },
+                            "price": {
+                                "processingFee": 2,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 2
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 20,
+                                "contentType": "gift",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "test",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 20,
+                                        "origin": "US",
+                                        "value": 20
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": 0,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [],
+                            "specialInfo": "Do not touch",
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": true,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        },
+                        {
+                            "id": "ADY",
+                            "otherName": null,
+                            "numericId": 6686698,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-05-09T07:54:57-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 179,
+                            "warehouse": 23,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 4,
+                                "length": 4,
+                                "width": 3,
+                                "height": 2
+                            },
+                            "price": {
+                                "processingFee": 2,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 2
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 12,
+                                "contentType": "gift",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "Test",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 12,
+                                        "origin": "US",
+                                        "value": 12
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": 0,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [],
+                            "specialInfo": "Do not touch",
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": true,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        }
+                    ]
+                },
+                {
+                    "type": "shipment",
+                    "shipment": {
+                        "id": 231,
+                        "warehouse": {
+                            "alias": "torrance"
+                        },
+                        "status": "confirmed",
+                        "shipmentPackages": [
+                            {
+                                "id": "WH",
+                                "mailoutSpecialRequests": [
+                                    {
+                                        "alias": "remove_bubble_wrap",
+                                        "fee": 1
+                                    }
+                                ],
+                                "benefits": [
+                                    {
+                                        "alias": "free_mailout",
+                                        "value": 2
+                                    }
+                                ]
+                            }
+                        ],
+                        "shippingInformation": {
+                            "address": {
+                                "firstName": "Test",
+                                "lastName": "Test",
+                                "company": null,
+                                "address": "Moskevská 1848",
+                                "city": "Moscow",
+                                "zip": "12345",
+                                "state": null,
+                                "country": "RU",
+                                "phone": "+79121234567",
+                                "taxId": null
+                            },
+                            "shippingMethod": {
+                                "alias": "EXPRESS",
+                                "name": "USPS Express Mail"
+                            },
+                            "pickupInformation": null,
+                            "insuranceType": "delivery_damage"
+                        },
+                        "price": {
+                            "postage": 106.65,
+                            "insurance": 4.27,
+                            "total": 268.42
+                        },
+                        "trackingNumber": null,
+                        "createdTime": "2016-05-09T09:09:41-0700",
+                        "sentTime": null,
+                        "flags": {
+                            "hasSufficientDeposit": true,
+                            "isMailboxOnSecurityHold": false,
+                            "doesRequireTaxId": false,
+                            "hasTaxId": false,
+                            "hasDueFees": false,
+                            "doesRequireAdditionalInformation": false,
+                            "hasAdditionalInformation": false,
+                            "customerActionRequired": false,
+                            "warehouseActionInProgress": true,
+                            "canBeShipped": true,
+                            "readyToShip": false
+                        }
+                    },
+                    "packages": [
+                        {
+                            "id": "WH",
+                            "otherName": null,
+                            "numericId": 5378213,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2015-02-20T02:30:29-0800",
+                            "incomingTrackingNumber": "12345678901234567890123456789012345678901234567890",
+                            "remainingFreeStorage": 10,
+                            "warehouse": 7,
+                            "attachments": [
+                                {
+                                    "type": "image",
+                                    "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                                }
+                            ],
+                            "dimensions": {
+                                "weight": 10.1,
+                                "length": 26,
+                                "width": 13,
+                                "height": 13
+                            },
+                            "price": {
+                                "processingFee": 0,
+                                "consolidationFee": 3,
+                                "specialRequestFee": 151.5,
+                                "mailoutSpecialRequestFee": 1,
+                                "total": 157.5
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 201,
+                                "contentType": "merchandise",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "race",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 2,
+                                        "value": 2
+                                    },
+                                    {
+                                        "quantity": 1,
+                                        "description": "item",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 200,
+                                        "value": 200
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": false,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": 0,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [
+                                {
+                                    "id": 1584154,
+                                    "alias": "consolidation_special_request",
+                                    "name": "Consolidation Special Request",
+                                    "description": "",
+                                    "fee": 2,
+                                    "status": "completed",
+                                    "additionalInfoRequired": false,
+                                    "additionalInfo": "Consolidation Special Request: Security Tape\n\nPut security tape on the package, so it's evident if the package has been opened after shipping",
+                                    "response": null,
+                                    "files": [],
+                                    "cancelable": false
+                                }
+                            ],
+                            "specialInfo": "VQ + VU + VV + VX + ",
+                            "shippingInformation": {
+                                "mailoutSpecialRequests": [],
+                                "additionalInformation": []
+                            },
+                            "flags": {
+                                "consolidation": true,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": true,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": true,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": [
+                                {
+                                    "type": "image",
+                                    "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "totalCount": 2,
+            "filterCount": {
+                "customerActionRequiredCount": 3,
+                "warehouseActionInProgressCount": 3,
+                "readyToShipCount": 2
+            },
+            "items": [
+                {
+                    "type": "package",
+                    "packages": [
+                        {
+                            "id": "XF",
+                            "otherName": null,
+                            "numericId": 5761630,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2015-06-18T12:00:24-0700",
+                            "incomingTrackingNumber": "JFBJDSHGFDLS",
+                            "remainingFreeStorage": 30,
+                            "warehouse": 7,
+                            "attachments": [
+                                {
+                                    "type": "image",
+                                    "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                                }
+                            ],
+                            "dimensions": {
+                                "weight": 15.65,
+                                "length": 22.5,
+                                "width": 17.5,
+                                "height": 14
+                            },
+                            "price": {
+                                "processingFee": 0,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 12.5,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 12.5
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 134,
+                                "contentType": "gift",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "a thing",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 134,
+                                        "origin": "US",
+                                        "value": 134
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": true,
+                                    "PI966": true,
+                                    "PI967": true
+                                },
+                                "batteryCount": 4,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [
+                                {
+                                    "id": 1809891,
+                                    "alias": "take_10_pictures",
+                                    "name": "Multiple Photo Request",
+                                    "description": "You will get more close up and detailed photos of items in the\npackage. We will also take photo of the invoice or packing list (if\nenclosed). We will also take photo of labels on the clothes so you can\ncheck if you are getting correct sizes. This can also show model\nnumber on iPad or computer. We will also take IMEI number on your\niPhone for better security (based on suggestion from one of our\ncustomers).",
+                                    "fee": 0,
+                                    "status": "canceled",
+                                    "additionalInfoRequired": false,
+                                    "additionalInfo": "Open the package and take multiple detailed photos of the content (A2768-XF)",
+                                    "response": "Cancel due to testing account. ",
+                                    "files": [],
+                                    "cancelable": false
+                                }
+                            ],
+                            "specialInfo": "wallmart",
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": true,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": false,
+                                "readyToRequestMailout": true,
+                                "customerActionRequired": false
+                            },
+                            "photos": [
+                                {
+                                    "type": "image",
+                                    "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                    "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "package",
+                    "packages": [
+                        {
+                            "id": "ADA",
+                            "otherName": null,
+                            "numericId": 6645903,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": "Note",
+                            "receiptDate": "2016-04-14T05:25:59-0700",
+                            "incomingTrackingNumber": "sgfgdfgfdgdfgdf",
+                            "remainingFreeStorage": 64,
+                            "warehouse": 20,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 4,
+                                "length": 16,
+                                "width": 13,
+                                "height": 10
+                            },
+                            "price": {
+                                "processingFee": 2,
+                                "consolidationFee": 0,
+                                "specialRequestFee": 0,
+                                "mailoutSpecialRequestFee": null,
+                                "total": 2
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 301,
+                                "contentType": "gift",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "item",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 1,
+                                        "origin": "US",
+                                        "value": 1
+                                    },
+                                    {
+                                        "quantity": 1,
+                                        "description": "item",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 3000,
+                                        "origin": "US",
+                                        "value": 300
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": true,
+                                    "PI966": true,
+                                    "PI967": true
+                                },
+                                "batteryCount": 3,
+                                "eeiAction": "prepare",
+                                "eeiActionFinished": true,
+                                "locked": true
+                            },
+                            "specialRequests": [],
+                            "specialInfo": "Amazon",
+                            "shippingInformation": null,
+                            "flags": {
+                                "consolidation": false,
+                                "internalTransportScheduled": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": false,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": false,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": true,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": false,
+                                "warehouseActionInProgress": false,
+                                "readyToRequestMailout": true,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        }
+                    ]
+                }
+            ]
+        }
+
+# Group Shipments
+
+## Shipments [/shipments]
+
+### Create a Shipment [POST]
+
++ Request (application/json)
+
+        {
+            "shipmentPackages": [
+                {
+                    "id": "SC",
+                    "mailoutSpecialRequests": [
+                        {
+                            "alias": "bubble_wrap"
+                        }
+                    ],
+                    "benefits": [
+                        {
+                            "alias": "free_mailout"
+                        }
+                    ]
+                }
+            ],
+            "shippingInformation": {
+                "address": {
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "address": "Ceska 15/1",
+                    "city": "Brno",
+                    "zip": "60200",
+                    "country": "CZ",
+                    "phone": "+4546587587"
+                },
+                "shippingMethod": {
+                    "alias": "DHL_EXPRESS"
+                },
+                "pickupInformation": null,
+                "insuranceType": "delivery_damage"
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "warehouseItem": {
+                "type": "shipment",
+                "shipment": {
+                    "id": 283630,
+                    "warehouse": {
+                        "alias": "torrance"
+                    },
+                    "status": "confirmed",
+                    "shipmentPackages": [
+                        {
+                            "id": "SC",
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "fee": 2
+                                }
+                            ],
+                            "benefits": [
+                                {
+                                    "alias": "free_mailout",
+                                    "value": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "shippingInformation": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": null,
+                            "address": "Ceska 15/1",
+                            "city": "Brno",
+                            "zip": "60200",
+                            "state": null,
+                            "country": "CZ",
+                            "phone": "+4546587587",
+                            "taxId": null
+                        },
+                        "shippingMethod": {
+                            "alias": "DHL_EXPRESS",
+                            "name": "DHL Express"
+                        },
+                        "pickupInformation": null,
+                        "insuranceType": "delivery"
+                    },
+                    "price": {
+                        "postage": 43.61,
+                        "insurance": 0,
+                        "total": 45.61
+                    },
+                    "trackingNumber": null,
+                    "createdTime": "2016-05-10T04:55:01-0700",
+                    "sentTime": null,
+                    "flags": {
+                        "hasSufficientDeposit": false,
+                        "isMailboxOnSecurityHold": false,
+                        "doesRequireTaxId": false,
+                        "hasTaxId": false,
+                        "hasDueFees": false,
+                        "doesRequireAdditionalInformation": true,
+                        "hasAdditionalInformation": false,
+                        "customerActionRequired": true,
+                        "warehouseActionInProgress": false,
+                        "canBeShipped": false,
+                        "readyToShip": false
+                    }
+                },
                 "packages": [
                     {
-                        "id": "A"
-                    },
-                    {
-                        "id": "B"
-                    },
-                    {
-                        "id": "C"
+                        "id": "QT",
+                        "otherName": null,
+                        "numericId": 3402896,
+                        "type": "box",
+                        "status": "in-warehouse",
+                        "note": null,
+                        "receiptDate": "2013-09-04T17:01:42-0700",
+                        "incomingTrackingNumber": null,
+                        "remainingFreeStorage": -888,
+                        "warehouse": 7,
+                        "attachments": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ],
+                        "dimensions": {
+                            "weight": 0.25,
+                            "length": 11.5,
+                            "width": 6.5,
+                            "height": 0.5
+                        },
+                        "price": {
+                            "processingFee": 0,
+                            "consolidationFee": 0,
+                            "specialRequestFee": 0,
+                            "mailoutSpecialRequestFee": 2,
+                            "total": 2
+                        },
+                        "customsDeclaration": {
+                            "totalValue": 536,
+                            "contentType": "merchandise",
+                            "items": [
+                                {
+                                    "quantity": 1,
+                                    "description": "item",
+                                    "countryOfOrigin": "US",
+                                    "totalValue": 31
+                                }
+                            ],
+                            "dangerousMaterials": {
+                                "PI965": false,
+                                "PI966": true,
+                                "PI967": true
+                            },
+                            "batteryCount": null,
+                            "eeiAction": null,
+                            "eeiActionFinished": null,
+                            "locked": false
+                        },
+                        "specialRequests": [],
+                        "specialInfo": null,
+                        "shippingInformation": {
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                                    "fee": 2,
+                                    "benefitApplied": false
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false
+                                }
+                            ]
+                        },
+                        "flags": {
+                            "consolidation": false,
+                            "internalTransportScheduled": false,
+                            "hasOpenIssue": false,
+                            "hasContentPhotos": false,
+                            "customsDeclarationFilled": true,
+                            "receivedUnderOtherName": false,
+                            "specialRequestInProgress": false,
+                            "requiresNotarizedForm1583": false,
+                            "hasNotarizedForm1583": true,
+                            "hasDimensions": true,
+                            "queuedForConsolidation": false,
+                            "canBeMerged": false,
+                            "lessThan30CustomsItems": true,
+                            "isInShipment": true,
+                            "warehouseActionInProgress": true,
+                            "readyToRequestMailout": false,
+                            "customerActionRequired": false
+                        },
+                        "photos": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ]
                     }
-                ],
-                "warehouse": 7
+                ]
             }
-        ]
+        }
 
-## MPS Detail [/api/v1/mps/{id}]
++ Request (application/json)
+
+        {
+            "shipmentPackages": [
+                {
+                    "id": "SC",
+                    "mailoutSpecialRequests": [
+                        {
+                            "alias": "bubble_wrap"
+                        }
+                    ],
+                    "benefits": [
+                        {
+                            "alias": "free_mailout"
+                        }
+                    ]
+                }
+            ],
+            "shippingInformation": {
+                "address": {
+                    "firstName": "Jon",
+                    "lastName": "Snow",
+                    "address": "Ceska 15/1",
+                    "city": "Brno",
+                    "zip": "60200",
+                    "country": "CZ",
+                    "phone": "+4546587587"
+                },
+                "shippingMethod": {
+                    "alias": "DHL_EXPRESS"
+                },
+                "pickupInformation": {
+                    "regionCode": "153",
+                    "pointCode": "1017"
+                },
+                "insuranceType": "delivery_damage"
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "warehouseItem": {
+                "type": "shipment",
+                "shipment": {
+                    "id": 283630,
+                    "warehouse": {
+                        "alias": "torrance"
+                    },
+                    "status": "confirmed",
+                    "shipmentPackages": [
+                        {
+                            "id": "SC",
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "fee": 2
+                                }
+                            ],
+                            "benefits": [
+                                {
+                                    "alias": "free_mailout",
+                                    "value": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "shippingInformation": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": null,
+                            "address": "Ceska 15/1",
+                            "city": "Brno",
+                            "zip": "60200",
+                            "state": null,
+                            "country": "CZ",
+                            "phone": "+4546587587",
+                            "taxId": null
+                        },
+                        "shippingMethod": {
+                            "alias": "DHL_EXPRESS",
+                            "name": "DHL Express"
+                        },
+                        "pickupInformation": {
+                            "regionName": "Region",
+                            "regionCode": "153",
+                            "pointName": "Point",
+                            "pointCode": "1017"
+                        },
+                        "insuranceType": "delivery"
+                    },
+                    "price": {
+                        "postage": 43.61,
+                        "insurance": 0,
+                        "total": 45.61
+                    },
+                    "trackingNumber": null,
+                    "createdTime": "2016-05-10T04:55:01-0700",
+                    "sentTime": null,
+                    "flags": {
+                        "hasSufficientDeposit": false,
+                        "isMailboxOnSecurityHold": false,
+                        "doesRequireTaxId": false,
+                        "hasTaxId": false,
+                        "hasDueFees": false,
+                        "doesRequireAdditionalInformation": true,
+                        "hasAdditionalInformation": false,
+                        "customerActionRequired": true,
+                        "warehouseActionInProgress": false,
+                        "canBeShipped": false,
+                        "readyToShip": false
+                    }
+                },
+                "packages": [
+                    {
+                        "id": "QT",
+                        "otherName": null,
+                        "numericId": 3402896,
+                        "type": "box",
+                        "status": "in-warehouse",
+                        "note": null,
+                        "receiptDate": "2013-09-04T17:01:42-0700",
+                        "incomingTrackingNumber": null,
+                        "remainingFreeStorage": -888,
+                        "warehouse": 7,
+                        "attachments": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ],
+                        "dimensions": {
+                            "weight": 0.25,
+                            "length": 11.5,
+                            "width": 6.5,
+                            "height": 0.5
+                        },
+                        "price": {
+                            "processingFee": 0,
+                            "consolidationFee": 0,
+                            "specialRequestFee": 0,
+                            "mailoutSpecialRequestFee": 2,
+                            "total": 2
+                        },
+                        "customsDeclaration": {
+                            "totalValue": 536,
+                            "contentType": "merchandise",
+                            "items": [
+                                {
+                                    "quantity": 1,
+                                    "description": "item",
+                                    "countryOfOrigin": "US",
+                                    "totalValue": 31
+                                }
+                            ],
+                            "dangerousMaterials": {
+                                "PI965": false,
+                                "PI966": true,
+                                "PI967": true
+                            },
+                            "batteryCount": null,
+                            "eeiAction": null,
+                            "eeiActionFinished": null,
+                            "locked": false
+                        },
+                        "specialRequests": [],
+                        "specialInfo": null,
+                        "shippingInformation": {
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                                    "fee": 2,
+                                    "benefitApplied": false
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false
+                                }
+                            ]
+                        },
+                        "flags": {
+                            "consolidation": false,
+                            "internalTransportScheduled": false,
+                            "hasOpenIssue": false,
+                            "hasContentPhotos": false,
+                            "customsDeclarationFilled": true,
+                            "receivedUnderOtherName": false,
+                            "specialRequestInProgress": false,
+                            "requiresNotarizedForm1583": false,
+                            "hasNotarizedForm1583": true,
+                            "hasDimensions": true,
+                            "queuedForConsolidation": false,
+                            "canBeMerged": false,
+                            "lessThan30CustomsItems": true,
+                            "isInShipment": true,
+                            "warehouseActionInProgress": true,
+                            "readyToRequestMailout": false,
+                            "customerActionRequired": false
+                        },
+                        "photos": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+
+## Available Shipping Methods [/shipments/shipping-methods]
+
+### Get Available [POST]
+
++ Request (application/json)
+
+        {
+            "shipmentPackages": [
+                {
+                    "id": "SC"
+                }
+            ],
+            "shippingAddress": {
+                "firstName": "Jon",
+                "lastName": "Snow",
+                "address": "Ceska 15/1",
+                "city": "Brno",
+                "zip": "60200",
+                "country": "CZ",
+                "phone": "+4201111111111"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shippingMethods": [
+                {
+                    "alias": "FEDEX_ECONOMY",
+                    "available": true,
+                    "shippingRate": 287.02,
+                    "insuranceRate": 0,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 0
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 0
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 5,
+                        "inWords": "2-5 business days"
+                    },
+                    "popularity": 1,
+                    "logo": "fedex-express.png",
+                    "tracking": true,
+                    "errors": []
+                },
+                {
+                    "alias": "FEDEX_PRIORITY",
+                    "available": true,
+                    "shippingRate": 371.98,
+                    "insuranceRate": 0,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 0
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 0
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 3,
+                        "inWords": "1-3 business days"
+                    },
+                    "popularity": 2,
+                    "logo": "fedex-express.png",
+                    "tracking": true,
+                    "errors": []
+                },
+                {
+                    "alias": "XPO_ECONOMY",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 7.02
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 7.02
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 45,
+                        "inWords": "20-45 business days"
+                    },
+                    "popularity": 3,
+                    "logo": "airmail.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Weight must not exceed 4.4 lbs",
+                        "Summary of width, height and length must not exceed 36\""
+                    ]
+                },
+                {
+                    "alias": "DHL_EXPRESS",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 3,
+                        "inWords": "2-4 business days"
+                    },
+                    "popularity": 4,
+                    "logo": "dhl.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains combination more type of a lithium battery",
+                        "Package contains too many batteries"
+                    ]
+                },
+                {
+                    "alias": "EXPRESS",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 2.66
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 2.66
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 6,
+                        "inWords": "5-6 business days"
+                    },
+                    "popularity": 5,
+                    "logo": "usps-express.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "TNT_ECONOMY",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 0
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 0
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 6,
+                        "inWords": "4-9 business days"
+                    },
+                    "popularity": 6,
+                    "logo": "tnt.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "FIRST_CLASS",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 15,
+                        "inWords": "varies by country"
+                    },
+                    "popularity": 7,
+                    "logo": "usps-first.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Weight must not exceed 4 lbs",
+                        "Summary of width, height and length must not exceed 36"
+                    ]
+                },
+                {
+                    "alias": "AT_POST_STANDARD",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 4.02
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 4.02
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 15,
+                        "inWords": "2-14 business days"
+                    },
+                    "popularity": 8,
+                    "logo": "at-post.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not available from this location",
+                        "This service is not delivering to requested country"
+                    ]
+                },
+                {
+                    "alias": "PRIORITY",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 5.33
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 5.33
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 10,
+                        "inWords": "6-10 business days"
+                    },
+                    "popularity": 9,
+                    "logo": "usps-priority.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "XPO_PRIORITY",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 3.65
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 3.65
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 40,
+                        "inWords": "20-40 business days"
+                    },
+                    "popularity": 10,
+                    "logo": "airmail.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "TNT_EXPRESS",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 0
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 0
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 3,
+                        "inWords": "2-7 business days"
+                    },
+                    "popularity": 11,
+                    "logo": "tnt.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "BOXBERRY_LOCAL_PICKUP",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 5,
+                        "inWords": "5-15 business days"
+                    },
+                    "popularity": 12,
+                    "logo": "boxberry.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not delivering to requested country"
+                    ]
+                },
+                {
+                    "alias": "ARAMEX",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 2.68
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 2.68
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 8,
+                        "inWords": "8-14 business days"
+                    },
+                    "popularity": 13,
+                    "logo": "aramex.png",
+                    "tracking": true,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "This service is not delivering to requested country"
+                    ]
+                },
+                {
+                    "alias": "GLOBAL_ACCESS_AUSTRALIA",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 2.68
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 2.68
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 4,
+                        "inWords": "4-9 business days"
+                    },
+                    "popularity": 14,
+                    "logo": "shipito-australia-preferred-carrier.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not delivering to requested country",
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "BOXBERRY_COURIER",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 5,
+                        "inWords": "5-15 business days"
+                    },
+                    "popularity": 15,
+                    "logo": "boxberry.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not delivering to requested country",
+                        "Boxberry is not available for this ZIP code"
+                    ]
+                },
+                {
+                    "alias": "XPO_SPSR",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 15,
+                        "inWords": "15-20 business days"
+                    },
+                    "popularity": 16,
+                    "logo": "spsr.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not delivering to requested country",
+                        "Package contains a lithium battery"
+                    ]
+                },
+                {
+                    "alias": "FEDEX_PRIORITY_FREIGHT",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 0
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 0
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 8,
+                        "inWords": "4-8 days"
+                    },
+                    "popularity": 17,
+                    "logo": "fedex-freight.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not available from this location"
+                    ]
+                },
+                {
+                    "alias": "FLAT_RATE_BOX2",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 11,
+                        "inWords": "6-10 business days"
+                    },
+                    "popularity": 18,
+                    "logo": "usps-priority.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Length must not exceed 13.62\"",
+                        "Width must not exceed 11.88\"",
+                        "Height must not exceed 3.38\""
+                    ]
+                },
+                {
+                    "alias": "FLAT_RATE_BOX",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 11,
+                        "inWords": "6-10 business days"
+                    },
+                    "popularity": 19,
+                    "logo": "usps-priority.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Length must not exceed 11\"",
+                        "Width must not exceed 8.5\"",
+                        "Height must not exceed 5.5\""
+                    ]
+                },
+                {
+                    "alias": "FLAT_RATE_ENVELOPE",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 11,
+                        "inWords": "6-10 business days"
+                    },
+                    "popularity": 20,
+                    "logo": "usps-priority.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Weight must not exceed 4 lbs",
+                        "Length must not exceed 12\"",
+                        "Width must not exceed 9\"",
+                        "Height must not exceed 2\""
+                    ]
+                },
+                {
+                    "alias": "FLAT_RATE_BOX_LARGE",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 11,
+                        "inWords": "6-10 days"
+                    },
+                    "popularity": 21,
+                    "logo": "usps-priority.png",
+                    "tracking": false,
+                    "errors": [
+                        "Package contains a lithium battery",
+                        "Length must not exceed 12\"",
+                        "Width must not exceed 12\"",
+                        "Height must not exceed 5.5\""
+                    ]
+                },
+                {
+                    "alias": "XPO_DELCON",
+                    "available": false,
+                    "shippingRate": null,
+                    "insuranceRate": null,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 1.34
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 1.34
+                            }
+                        }
+                    ],
+                    "isPromoted": false,
+                    "delivery": {
+                        "inDays": 15,
+                        "inWords": "15 business days"
+                    },
+                    "popularity": 22,
+                    "logo": "airmail.png",
+                    "tracking": true,
+                    "errors": [
+                        "This service is not available from this location",
+                        "Package contains a lithium battery",
+                        "This service is not delivering to requested country"
+                    ]
+                }
+            ]
+        }
+
++ Request (application/json)
+
+        {
+            "shipmentPackages": [
+                {
+                    "id": "SC"
+                }
+            ],
+            "shippingAddress": {
+                "firstName": "Jon",
+                "lastName": "Snow",
+                "address": "Sovetskaya ul.",
+                "city": "Pestyaki",
+                "zip": "155650",
+                "country": "RU",
+                "phone": "+7201111111111"
+            },
+            "shippingMethod": {
+                "alias": "BOXBERRY_LOCAL_PICKUP"
+            },
+            "pickupInformation": {
+                "regionCode": "153",
+                "pointCode": "1017"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shippingMethods": [
+                {
+                    "alias": "BOXBERRY_LOCAL_PICKUP",
+                    "available": true,
+                    "shippingRate": 158.62,
+                    "insuranceRate": 4.02,
+                    "insurance": [
+                        {
+                            "name": "delivery",
+                            "available": true,
+                            "price": {
+                                "total": 4.02
+                            }
+                        },
+                        {
+                            "name": "delivery_damage",
+                            "available": false,
+                            "price": {
+                                "total": 4.02
+                            }
+                        }
+                    ],
+                    "isPromoted": true,
+                    "delivery": {
+                        "inDays": 5,
+                        "inWords": "5-15 business days"
+                    },
+                    "popularity": 1,
+                    "logo": "boxberry.png",
+                    "tracking": true,
+                    "errors": []
+                }
+            ]
+        }
+
+
+## Boxberry Pickup Cities [/shipments/shipping-methods/boxberry/local-pickup-cities]
+
+### Get Available [GET]
+
++ Response 200 (application/json)
+
+        {
+            "cities": [
+                {
+                    "code": "00404",
+                    "name": "Ишимбай",
+                    "country": "643"
+                },
+                {
+                    "code": "03271",
+                    "name": "Гатчина",
+                    "country": "643"
+                },
+                {
+                    "code": "03353",
+                    "name": "Красногорск",
+                    "country": "643"
+                },
+                {
+                    "code": "03378",
+                    "name": "Пушкино",
+                    "country": "643"
+                },
+                {
+                    "code": "03385",
+                    "name": "Солнечногорск",
+                    "country": "643"
+                },
+                {
+                    "code": "03401",
+                    "name": "Балахна",
+                    "country": "643"
+                },
+                {
+                    "code": "03420",
+                    "name": "Лысково",
+                    "country": "643"
+                },
+                {
+                    "code": "04216",
+                    "name": "Невьянск",
+                    "country": "643"
+                },
+                {
+                    "code": "04220",
+                    "name": "Реж",
+                    "country": "643"
+                },
+                {
+                    "code": "04390",
+                    "name": "Горно-Алтайск",
+                    "country": "643"
+                }
+            ]
+        }
+
+## Boxberry Pickup Points [/shipments/shipping-methods/boxberry/local-pickup-points/{cityCode}]
+
+### Get Available [GET]
+
++ Response 200 (application/json)
+
+        {
+            "pickupPoints": [
+                {
+                    "code": "02171",
+                    "name": "Ишимбай Бульварная_0217_С",
+                    "address": "453200, Ишимбай г, Бульварная ул, д.14, оф. 8"
+                }
+            ]
+        }
+
+## Shipment Mailout Options [/shipments/mailout-options{?packages}]
+
+### Available Options [GET]
+
++ Response 200 (application/json)
+
+        {
+            "mailoutOptions": {
+                "packages": [
+                    {
+                        "package": {
+                            "id": "A"
+                        },
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "remove_invoice",
+                                "info": "Remove store invoices from the package(s)",
+                                "fee": 1,
+                                "benefitApplied": false
+                            }
+                        ],
+                        "benefits": [
+                            {
+                                "alias": "free_mailout_benefit",
+                                "value": 2,
+                                "available_uses": 3
+                            }
+                        ]
+                    },
+                    {
+                        "package": {
+                            "id": "B"
+                        },
+                        "mailoutSpecialRequests": [],
+                        "benefits": [
+                            {
+                                "alias": "free_consolidation_benefit",
+                                "value": 6,
+                                "available_uses": 2
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+
+## Single Shipment [/shipments/{id}]
 
 ### Cancel [DELETE]
 
-This action can be only performed before the MPS is processed in the warehouse.
-
-+ Response 204
-
-+ Response 422 (application/json)
++ Response 200 (application/json)
 
         {
-            "message": "MPS #{id} can not be canceled at this time."
+            "warehouseItem": {
+                "type": "shipment",
+                "shipment": {
+                    "id": 283630,
+                    "warehouse": {
+                        "alias": "torrance"
+                    },
+                    "status": "canceled",
+                    "shipmentPackages": [
+                        {
+                            "id": "SC",
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "fee": 2
+                                }
+                            ],
+                            "benefits": [
+                                {
+                                    "alias": "free_mailout",
+                                    "value": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "shippingInformation": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": null,
+                            "address": "Ceska 15/1",
+                            "city": "Brno",
+                            "zip": "60200",
+                            "state": null,
+                            "country": "CZ",
+                            "phone": "+4546587587",
+                            "taxId": null
+                        },
+                        "shippingMethod": {
+                            "alias": "DHL_EXPRESS",
+                            "name": "DHL Express"
+                        },
+                        "pickupInformation": null,
+                        "insuranceType": "delivery"
+                    },
+                    "price": {
+                        "postage": 43.61,
+                        "insurance": 0,
+                        "total": 45.61
+                    },
+                    "trackingNumber": null,
+                    "createdTime": "2016-05-10T04:55:01-0700",
+                    "sentTime": null,
+                    "flags": {
+                        "hasSufficientDeposit": false,
+                        "isMailboxOnSecurityHold": false,
+                        "doesRequireTaxId": false,
+                        "hasTaxId": false,
+                        "hasDueFees": false,
+                        "doesRequireAdditionalInformation": true,
+                        "hasAdditionalInformation": false,
+                        "customerActionRequired": true,
+                        "warehouseActionInProgress": false,
+                        "canBeShipped": false,
+                        "readyToShip": false
+                    }
+                },
+                "packages": [
+                    {
+                        "id": "QT",
+                        "otherName": null,
+                        "numericId": 3402896,
+                        "type": "box",
+                        "status": "in-warehouse",
+                        "note": null,
+                        "receiptDate": "2013-09-04T17:01:42-0700",
+                        "incomingTrackingNumber": null,
+                        "remainingFreeStorage": -888,
+                        "warehouse": 7,
+                        "attachments": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ],
+                        "dimensions": {
+                            "weight": 0.25,
+                            "length": 11.5,
+                            "width": 6.5,
+                            "height": 0.5
+                        },
+                        "price": {
+                            "processingFee": 0,
+                            "consolidationFee": 0,
+                            "specialRequestFee": 0,
+                            "mailoutSpecialRequestFee": 2,
+                            "total": 2
+                        },
+                        "customsDeclaration": {
+                            "totalValue": 536,
+                            "contentType": "merchandise",
+                            "items": [
+                                {
+                                    "quantity": 1,
+                                    "description": "item",
+                                    "countryOfOrigin": "US",
+                                    "totalValue": 31
+                                }
+                            ],
+                            "dangerousMaterials": {
+                                "PI965": false,
+                                "PI966": true,
+                                "PI967": true
+                            },
+                            "batteryCount": null,
+                            "eeiAction": null,
+                            "eeiActionFinished": null,
+                            "locked": false
+                        },
+                        "specialRequests": [],
+                        "specialInfo": null,
+                        "shippingInformation": {
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                                    "fee": 2,
+                                    "benefitApplied": false
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false
+                                }
+                            ]
+                        },
+                        "flags": {
+                            "consolidation": false,
+                            "internalTransportScheduled": false,
+                            "hasOpenIssue": false,
+                            "hasContentPhotos": false,
+                            "customsDeclarationFilled": true,
+                            "receivedUnderOtherName": false,
+                            "specialRequestInProgress": false,
+                            "requiresNotarizedForm1583": false,
+                            "hasNotarizedForm1583": true,
+                            "hasDimensions": true,
+                            "queuedForConsolidation": false,
+                            "canBeMerged": false,
+                            "lessThan30CustomsItems": true,
+                            "isInShipment": true,
+                            "warehouseActionInProgress": true,
+                            "readyToRequestMailout": false,
+                            "customerActionRequired": false
+                        },
+                        "photos": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ]
+                    }
+                ]
+            }
         }
 
-+ Response 422 (application/json)
+## Shipment Tax Id [/shipments/{id}/shipping-address/tax-id]
+
+### Edit a shipment tax id [PUT]
+
++ Request (application/json)
 
         {
-            "message": "MPS not found."
+            "taxId": "121345657"
         }
+
++ Response 200 (application/json)
+
+        {
+            "shipment": {
+                "id": 283630,
+                "warehouse": {
+                    "alias": "torrance"
+                },
+                "status": "canceled",
+                "shipmentPackages": [
+                    {
+                        "id": "SC",
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "bubble_wrap",
+                                "fee": 2
+                            }
+                        ],
+                        "benefits": [
+                            {
+                                "alias": "free_mailout",
+                                "value": 2
+                            }
+                        ]
+                    }
+                ],
+                "shippingInformation": {
+                    "address": {
+                        "firstName": "Jon",
+                        "lastName": "Snow",
+                        "company": null,
+                        "address": "Ceska 15/1",
+                        "city": "Brno",
+                        "zip": "60200",
+                        "state": null,
+                        "country": "CZ",
+                        "phone": "+4546587587",
+                        "taxId": "121345657"
+                    },
+                    "shippingMethod": {
+                        "alias": "DHL_EXPRESS",
+                        "name": "DHL Express"
+                    },
+                    "pickupInformation": null,
+                    "insuranceType": "delivery"
+                },
+                "price": {
+                    "postage": 43.61,
+                    "insurance": 0,
+                    "total": 45.61
+                },
+                "trackingNumber": null,
+                "createdTime": "2016-05-10T04:55:01-0700",
+                "sentTime": null,
+                "flags": {
+                    "hasSufficientDeposit": false,
+                    "isMailboxOnSecurityHold": false,
+                    "doesRequireTaxId": false,
+                    "hasTaxId": false,
+                    "hasDueFees": false,
+                    "doesRequireAdditionalInformation": true,
+                    "hasAdditionalInformation": false,
+                    "customerActionRequired": true,
+                    "warehouseActionInProgress": false,
+                    "canBeShipped": false,
+                    "readyToShip": false
+                }
+            }
+        }
+
 
 # Group News
 ## News [/api/v1/news{?page}]
