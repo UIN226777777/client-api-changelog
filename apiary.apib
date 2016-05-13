@@ -3194,8 +3194,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
                 ]
             }
         }
-
-
+        
 ## Available Shipping Methods [/shipments/shipping-methods]
 
 ### Get Available [POST]
@@ -4028,6 +4027,189 @@ A warehouse item is either a package, a consolidation request or a shipment.
 
 
 ## Single Shipment [/shipments/{id}]
+
+### Get detail [GET]
+
++ Response 200 (application/json)
+
+        {
+            "warehouseItem": {
+                "type": "shipment",
+                "shipment": {
+                    "id": 283630,
+                    "warehouse": {
+                        "alias": "torrance"
+                    },
+                    "status": "confirmed",
+                    "shipmentPackages": [
+                        {
+                            "id": "SC",
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "fee": 2
+                                }
+                            ],
+                            "benefits": [
+                                {
+                                    "alias": "free_mailout",
+                                    "value": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "shippingInformation": {
+                        "address": {
+                            "firstName": "Jon",
+                            "lastName": "Snow",
+                            "company": null,
+                            "address": "Ceska 15/1",
+                            "city": "Brno",
+                            "zip": "60200",
+                            "state": null,
+                            "country": "CZ",
+                            "phone": "+4546587587",
+                            "taxId": null
+                        },
+                        "shippingMethod": {
+                            "alias": "DHL_EXPRESS",
+                            "name": "DHL Express"
+                        },
+                        "pickupInformation": {
+                            "regionName": "Region",
+                            "regionCode": "153",
+                            "pointName": "Point",
+                            "pointCode": "1017"
+                        },
+                        "insuranceType": "delivery"
+                    },
+                    "price": {
+                        "postage": 43.61,
+                        "insurance": 0,
+                        "total": 45.61
+                    },
+                    "trackingNumber": null,
+                    "createdTime": "2016-05-10T04:55:01-0700",
+                    "sentTime": null,
+                    "flags": {
+                        "hasSufficientDeposit": false,
+                        "isMailboxOnSecurityHold": false,
+                        "doesRequireTaxId": false,
+                        "hasTaxId": false,
+                        "hasDueFees": false,
+                        "doesRequireAdditionalInformation": true,
+                        "hasAdditionalInformation": false,
+                        "customerActionRequired": true,
+                        "warehouseActionInProgress": false,
+                        "canBeShipped": false,
+                        "readyToShip": false
+                    }
+                },
+                "packages": [
+                    {
+                        "id": "QT",
+                        "otherName": null,
+                        "numericId": 3402896,
+                        "type": "box",
+                        "status": "in-warehouse",
+                        "note": null,
+                        "receiptDate": "2013-09-04T17:01:42-0700",
+                        "incomingTrackingNumber": null,
+                        "remainingFreeStorage": -888,
+                        "warehouse": 7,
+                        "attachments": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ],
+                        "dimensions": {
+                            "weight": 0.25,
+                            "length": 11.5,
+                            "width": 6.5,
+                            "height": 0.5
+                        },
+                        "price": {
+                            "processingFee": 0,
+                            "consolidationFee": 0,
+                            "specialRequestFee": 0,
+                            "mailoutSpecialRequestFee": 2,
+                            "total": 2
+                        },
+                        "customsDeclaration": {
+                            "totalValue": 536,
+                            "contentType": "merchandise",
+                            "items": [
+                                {
+                                    "quantity": 1,
+                                    "description": "item",
+                                    "countryOfOrigin": "US",
+                                    "totalValue": 31
+                                }
+                            ],
+                            "dangerousMaterials": {
+                                "PI965": false,
+                                "PI966": true,
+                                "PI967": true
+                            },
+                            "batteryCount": null,
+                            "eeiAction": null,
+                            "eeiActionFinished": null,
+                            "locked": false
+                        },
+                        "specialRequests": [],
+                        "specialInfo": null,
+                        "shippingInformation": {
+                            "mailoutSpecialRequests": [
+                                {
+                                    "alias": "bubble_wrap",
+                                    "info": "Put extra bubble wrap or packaging material to protect the items.",
+                                    "fee": 2,
+                                    "benefitApplied": false
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false
+                                }
+                            ]
+                        },
+                        "flags": {
+                            "consolidation": false,
+                            "internalTransportScheduled": false,
+                            "hasOpenIssue": false,
+                            "hasContentPhotos": false,
+                            "customsDeclarationFilled": true,
+                            "receivedUnderOtherName": false,
+                            "specialRequestInProgress": false,
+                            "requiresNotarizedForm1583": false,
+                            "hasNotarizedForm1583": true,
+                            "hasDimensions": true,
+                            "queuedForConsolidation": false,
+                            "canBeMerged": false,
+                            "lessThan30CustomsItems": true,
+                            "isInShipment": true,
+                            "warehouseActionInProgress": true,
+                            "readyToRequestMailout": false,
+                            "customerActionRequired": false
+                        },
+                        "photos": [
+                            {
+                                "type": "image",
+                                "thumbnail": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "small": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "large": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif",
+                                "original": "http://www.google.com/logos/doodles/2015/googles-new-logo-5078286822539264.3-hp2x.gif"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
 
 ### Cancel [DELETE]
 
