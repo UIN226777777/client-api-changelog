@@ -90,8 +90,6 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
             "accountInfo": {
                 "email": "john@doe.com",
                 "mailboxFull": 17,
-                "averageStorageShipito": 14,
-                "averageStorageYou": 67,
                 "program": {
                     "name": "Virtual Mailbox ANNUAL",
                     "virtualBox": true,
@@ -106,19 +104,7 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
             },
             "accountBalance": {
                 "deposit": 4040.72,
-                "youWillPay": 120.13,
                 "amountDue": 89.26,
-                "savings": {
-                    "consolidations": 1748.12,
-                    "postage": 1000.0,
-                    "total": 2748.12,
-                    "withoutDiscountPostage": 1500.0,
-                    "withoutConsolidationsPostage": 2300.51
-                },
-                "packages": {
-                    "processed": 109,
-                    "sent": 60
-                },
                 "storageDue": 0
             },
             "virtualAddress": [
@@ -224,8 +210,6 @@ Use the PHPSESSID cookie returned in the response to identify yourself in follow
                     "requiredPercentage": 65,
                     "fullReviewRequired": false
                 },
-                "requireCountryChangeReason": true,
-                "emailVerified": false,
                 "requireVerifiedCards": false
             },
             "inWarehousePackagesCount": 7,
@@ -787,13 +771,13 @@ This endpoint will be removed in the future. Use endpoint /warehouse-items to ac
     + page: 1 (integer, optional)
 
     + deliveryStatus (enum[string], optional)
-    
+
         + Members
-        
+
             + sent
             + received
             + claim-opened
-        
+
 
 ### Retrieve [GET]
 
@@ -3194,7 +3178,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
                 ]
             }
         }
-        
+
 ## Available Shipping Methods [/shipments/shipping-methods]
 
 ### Get Available [POST]
