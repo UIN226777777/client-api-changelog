@@ -488,55 +488,6 @@ do not change the address until it is confirmed by visiting the link.
             "message": "Your link expired. Send new verification link."
         }
 
-## Delivery Address [/api/v1/default-address]
-### Retrieve [GET]
-+ Response 200 (application/json)
-
-        {
-            "firstName": "John",
-            "lastName": "Doe",
-            "company": "John Doe",
-            "taxId": null,
-            "address": "Madison Ave 1",
-            "city": "New York",
-            "zip": "10018",
-            "state": "NY",
-            "country": "US",
-            "phone": "3256987412"
-        }
-
-### Change [PUT]
-
-+ Attributes
-
-    + company (string, optional)
-    + taxId (string, optional)
-    + reason (string, optional) - Required if default delivery address country is being changed
-
-+ Request (application/json)
-
-        {
-            "firstName": "John",
-            "lastName": "Doe",
-            "company": null,
-            "taxId": null,
-            "address": "Madison Ave 2",
-            "zip": "10018",
-            "city": "King's Landing",
-            "state": "NY",
-            "country": "US",
-            "phone": "3256987412",
-            "reason": null
-        }
-
-+ Response 204
-
-+ Response 422 (application/json)
-
-        {
-            "message": "You must specify a country change reason."
-        }
-
 # Group Account Verification
 ## Document Categories [/api/v1/documents/categories]
 ### Retrieve [GET]
