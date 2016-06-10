@@ -1561,7 +1561,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
 
 + Response 200 (application/json)
 
-                {
+        {
             "totalCount": 3,
             "filterCount": {
                 "customerActionRequiredCount": 3,
@@ -2703,6 +2703,179 @@ A warehouse item is either a package, a consolidation request or a shipment.
                 }
             ]
         }
+        
+## Search warehouse items [/warehouse-items/search{?term}]
+
+### List [GET]
+
++ Response 200 (application/json)
+
+        {
+            "totalCount": 1,
+            "items": [
+                {
+                    "type": "shipment",
+                    "shipment": {
+                        "id": 234,
+                        "warehouse": {
+                            "alias": "hawthorne"
+                        },
+                        "status": "confirmed",
+                        "shipmentPackages": [
+                            {
+                                "id": "ACR",
+                                "mailoutSpecialRequests": [],
+                                "benefits": []
+                            }
+                        ],
+                        "shippingInformation": {
+                            "address": {
+                                "firstName": "Ramsay",
+                                "lastName": "Snow",
+                                "company": null,
+                                "address": "Castle Black 1",
+                                "city": "Moscow",
+                                "zip": "129594",
+                                "state": null,
+                                "country": "RU",
+                                "phone": "+711111111111",
+                                "taxId": null
+                            },
+                            "shippingMethod": {
+                                "alias": "BOXBERRY_LOCAL_PICKUP",
+                                "name": "Boxberry Local Pickup"
+                            },
+                            "pickupInformation": {
+                                "regionCode": "Н00163162",
+                                "regionName": "Івано-Франковск",
+                                "pointCode": "04.1744",
+                                "pointName": "Отделение № 12 (до 15 кг) Мини-отделение: ул. Волчинецкая, 225м (маг.\"\"МЕТРО\")"
+                            },
+                            "insuranceType": null
+                        },
+                        "price": {
+                            "postage": 54.58,
+                            "insurance": 0,
+                            "total": 76.58
+                        },
+                        "trackingNumber": null,
+                        "createdTime": "2016-05-10T02:57:18-0700",
+                        "sentTime": null,
+                        "flags": {
+                            "hasSufficientDeposit": true,
+                            "isMailboxOnSecurityHold": false,
+                            "doesRequireTaxId": false,
+                            "hasTaxId": false,
+                            "hasDueFees": false,
+                            "doesRequireAdditionalInformation": true,
+                            "hasAdditionalInformation": false,
+                            "customerActionRequired": true,
+                            "warehouseActionInProgress": false,
+                            "canBeShipped": false,
+                            "readyToShip": false
+                        }
+                    },
+                    "packages": [
+                        {
+                            "id": "ACR",
+                            "otherName": 18751,
+                            "numericId": 6575479,
+                            "type": "box",
+                            "status": "in-warehouse",
+                            "note": null,
+                            "receiptDate": "2016-03-21T06:05:29-0700",
+                            "incomingTrackingNumber": null,
+                            "remainingFreeStorage": 40,
+                            "warehouse": 20,
+                            "attachments": [],
+                            "dimensions": {
+                                "weight": 10.1,
+                                "length": 5,
+                                "width": 5,
+                                "height": 5
+                            },
+                            "price": {
+                                "processingFee": 8,
+                                "consolidationFee": 12,
+                                "specialRequestFee": 2,
+                                "mailoutSpecialRequestFee": 0,
+                                "total": 22
+                            },
+                            "customsDeclaration": {
+                                "totalValue": 10,
+                                "contentType": "merchandise",
+                                "items": [
+                                    {
+                                        "quantity": 1,
+                                        "description": "Invisibility Cloak",
+                                        "countryOfOrigin": "US",
+                                        "totalValue": 10,
+                                        "origin": "US",
+                                        "value": 10
+                                    }
+                                ],
+                                "dangerousMaterials": {
+                                    "PI965": true,
+                                    "PI966": false,
+                                    "PI967": false
+                                },
+                                "batteryCount": 1,
+                                "eeiAction": null,
+                                "eeiActionFinished": null,
+                                "locked": false
+                            },
+                            "specialRequests": [
+                                {
+                                    "id": 2182310,
+                                    "alias": "consolidation_special_request",
+                                    "name": "Consolidation Special Request",
+                                    "description": "",
+                                    "fee": 0,
+                                    "status": "completed",
+                                    "additionalInfoRequired": false,
+                                    "additionalInfo": "Consolidation Special Request: Visual check that content is not damaged\n\n",
+                                    "response": null,
+                                    "files": [],
+                                    "cancelable": false
+                                }
+                            ],
+                            "specialInfo": "ACB + ACD + ",
+                            "shippingInformation": {
+                                "mailoutSpecialRequests": [],
+                                "additionalInformation": [
+                                    {
+                                        "id": "boxberry_local_pickup",
+                                        "valid": false
+                                    }
+                                ]
+                            },
+                            "flags": {
+                                "consolidation": true,
+                                "internalTransportScheduled": false,
+                                "internalTransportShipped": false,
+                                "hasOpenIssue": false,
+                                "hasContentPhotos": true,
+                                "customsDeclarationFilled": true,
+                                "receivedUnderOtherName": true,
+                                "specialRequestInProgress": false,
+                                "requiresNotarizedForm1583": false,
+                                "hasNotarizedForm1583": false,
+                                "hasDimensions": true,
+                                "queuedForConsolidation": false,
+                                "canBeMerged": false,
+                                "lessThan30CustomsItems": true,
+                                "isInShipment": true,
+                                "warehouseActionInProgress": true,
+                                "readyToRequestMailout": false,
+                                "customerActionRequired": false
+                            },
+                            "photos": []
+                        }
+                    ]
+                }
+            ]
+        }
+
 
 # Group Shipments
 
