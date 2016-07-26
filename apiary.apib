@@ -488,6 +488,23 @@ do not change the address until it is confirmed by visiting the link.
             "message": "Your link expired. Send new verification link."
         }
 
+## Language [/api/v1/settings/language]
+### Change language [POST]
+
++ Request (application/json)
+
+        {
+            "language": "en"
+        }
+
++ Response 204
+
++ Response 422 (application/json)
+
+        {
+            "message": "Language is not supported."
+        }
+
 # Group Account Verification
 ## Document Categories [/api/v1/documents/categories]
 ### Retrieve [GET]
