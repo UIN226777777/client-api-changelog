@@ -1097,6 +1097,31 @@ This endpoint will be removed in the future. Use endpoint /warehouse-items to ac
             "message": "You must specify EEI action for this package."
         }
 
+## Packages counts in filters [/api/v1/warehouse-items-sent-packages-filter-counts]
+### List [GET]
+
++ Response 200 (application/json)
+
+        {
+            "inWarehouse": {
+                "filterCount": {
+                    "customerActionRequiredCount": 0,
+                    "warehouseActionInProgressCount": 0,
+                    "readyToShipCount": 1
+                },
+                "totalCount": 1
+            },
+            "sent": {
+                "filterCount": {
+                    "sent": 0,
+                    "received": 0,
+                    "claimOpened": 0,
+                    "all": 0
+                }
+            }
+        }
+
+
 # Group Expected Packages
 
 Status
