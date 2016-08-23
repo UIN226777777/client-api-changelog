@@ -1301,7 +1301,6 @@ Status
             }
         }
 
-
 ### Edit Expected Package [PUT]
 
 + Request (application/json)
@@ -1629,6 +1628,16 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                 "benefits": []
                             }
                         ],
+                        "additionalInformation": [
+                            {
+                                "id": "boxberry_local_pickup",
+                                "valid": false,
+                                "filled": false,
+                                "packages": [
+                                    "ACR"
+                                ]
+                            }
+                        ],
                         "shippingInformation": {
                             "address": {
                                 "firstName": "Ramsay",
@@ -1668,8 +1677,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                             "doesRequireTaxId": false,
                             "hasTaxId": false,
                             "hasDueFees": false,
-                            "doesRequireAdditionalInformation": true,
-                            "hasAdditionalInformation": false,
                             "customerActionRequired": true,
                             "warehouseActionInProgress": false,
                             "canBeShipped": false,
@@ -1742,13 +1749,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
                             ],
                             "specialInfo": "ACB + ACD + ",
                             "shippingInformation": {
-                                "mailoutSpecialRequests": [],
-                                "additionalInformation": [
-                                    {
-                                        "id": "boxberry_local_pickup",
-                                        "valid": false
-                                    }
-                                ]
+                                "mailoutSpecialRequests": []
                             },
                             "flags": {
                                 "consolidation": true,
@@ -2382,6 +2383,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                 ]
                             }
                         ],
+                        "additionalInformation": [],
                         "shippingInformation": {
                             "address": {
                                 "firstName": "Test",
@@ -2416,8 +2418,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                             "doesRequireTaxId": false,
                             "hasTaxId": false,
                             "hasDueFees": false,
-                            "doesRequireAdditionalInformation": false,
-                            "hasAdditionalInformation": false,
                             "customerActionRequired": false,
                             "warehouseActionInProgress": true,
                             "canBeShipped": true,
@@ -2770,7 +2770,24 @@ A warehouse item is either a package, a consolidation request or a shipment.
                             {
                                 "id": "ACR",
                                 "mailoutSpecialRequests": [],
-                                "benefits": []
+                                "benefits": [],
+                                "additionalInformation": [
+                                    {
+                                        "id": "boxberry_local_pickup",
+                                        "valid": false,
+                                        "filled": false
+                                    }
+                                ]
+                            }
+                        ],
+                        "additionalInformation": [
+                            {
+                                "id": "boxberry_local_pickup",
+                                "valid": false,
+                                "filled": false,
+                                "packages": [
+                                    "ACR"
+                                ]
                             }
                         ],
                         "shippingInformation": {
@@ -2886,13 +2903,7 @@ A warehouse item is either a package, a consolidation request or a shipment.
                             ],
                             "specialInfo": "ACB + ACD + ",
                             "shippingInformation": {
-                                "mailoutSpecialRequests": [],
-                                "additionalInformation": [
-                                    {
-                                        "id": "boxberry_local_pickup",
-                                        "valid": false
-                                    }
-                                ]
+                                "mailoutSpecialRequests": []
                             },
                             "flags": {
                                 "consolidation": true,
@@ -2988,6 +2999,13 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                 {
                                     "alias": "free_mailout",
                                     "value": 2
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false,
+                                    "filled": false
                                 }
                             ]
                         }
@@ -3099,12 +3117,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                     "fee": 2,
                                     "benefitApplied": false
                                 }
-                            ],
-                            "additionalInformation": [
-                                {
-                                    "id": "msds",
-                                    "valid": false
-                                }
                             ]
                         },
                         "flags": {
@@ -3204,6 +3216,13 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                 {
                                     "alias": "free_mailout",
                                     "value": 2
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false,
+                                    "filled": false
                                 }
                             ]
                         }
@@ -3319,12 +3338,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                     "info": "Put extra bubble wrap or packaging material to protect the items.",
                                     "fee": 2,
                                     "benefitApplied": false
-                                }
-                            ],
-                            "additionalInformation": [
-                                {
-                                    "id": "msds",
-                                    "valid": false
                                 }
                             ]
                         },
@@ -4222,6 +4235,13 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                     "alias": "free_mailout",
                                     "value": 2
                                 }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false,
+                                    "filled": false
+                                }
                             ]
                         }
                     ],
@@ -4337,12 +4357,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                     "fee": 2,
                                     "benefitApplied": false
                                 }
-                            ],
-                            "additionalInformation": [
-                                {
-                                    "id": "msds",
-                                    "valid": false
-                                }
                             ]
                         },
                         "flags": {
@@ -4405,6 +4419,13 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                 {
                                     "alias": "free_mailout",
                                     "value": 2
+                                }
+                            ],
+                            "additionalInformation": [
+                                {
+                                    "id": "msds",
+                                    "valid": false,
+                                    "filled": false
                                 }
                             ]
                         }
@@ -4515,12 +4536,6 @@ A warehouse item is either a package, a consolidation request or a shipment.
                                     "info": "Put extra bubble wrap or packaging material to protect the items.",
                                     "fee": 2,
                                     "benefitApplied": false
-                                }
-                            ],
-                            "additionalInformation": [
-                                {
-                                    "id": "msds",
-                                    "valid": false
                                 }
                             ]
                         },
@@ -4633,6 +4648,518 @@ A warehouse item is either a package, a consolidation request or a shipment.
                     "customerActionRequired": true,
                     "warehouseActionInProgress": false,
                     "canBeShipped": false,
+                    "readyToShip": false
+                }
+            }
+        }
+
+
+# Group Additional information
+
+## SPSR [/shipments/{shipmentId}/additional-information/spsr]
+
+### Read existing already filled additional information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "spsr": {
+                "name": "Jachym",
+                "passport": {
+                    "number": "1234567",
+                    "issueDate": "2013-11-11"
+                }
+            }
+        }
+
+### Fill additional information [PUT]
+
++ Request (application/json)
+
+        {
+            "name": "Jachym",
+            "passport": {
+                "number": "1234567",
+                "issueDate": "2013-11-11"
+            }
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shipment": {
+                "id": 1906187,
+                "warehouse": {
+                    "id": 10,
+                    "alias": "tualatin"
+                },
+                "status": "confirmed",
+                "shipmentPackages": [
+                    {
+                        "id": "ADZ",
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "content_photo",
+                                "fee": 2
+                            }
+                        ],
+                        "benefits": []
+                    }
+                ],
+                "additionalInformation": [
+                    {
+                        "alias": "spsr",
+                        "filled": true,
+                        "valid": true,
+                        "packages": []
+                    }
+                ],
+                "shippingInformation": {
+                    "address": {
+                        "firstName": "Russia",
+                        "lastName": "Boxberry local pickup range",
+                        "company": null,
+                        "address": "Zheleznodorozhnaya street. 2-232",
+                        "city": "Khimki",
+                        "zip": "141431",
+                        "state": null,
+                        "country": "RU",
+                        "phone": "+79258294057",
+                        "taxId": null
+                    },
+                    "shippingMethod": {
+                        "alias": "BOXBERRY_COURIER",
+                        "name": "Boxberry Courier"
+                    },
+                    "pickupInformation": null,
+                    "insuranceType": "delivery_damage"
+                },
+                "price": {
+                    "postage": 53.34,
+                    "insurance": 0.03,
+                    "total": 57.37
+                },
+                "trackingNumber": null,
+                "createdTime": "2016-07-28T14:50:12-0700",
+                "sentTime": null,
+                "flags": {
+                    "doesContainTooManyBatteries": false,
+                    "hasSufficientDeposit": true,
+                    "isMailboxOnSecurityHold": false,
+                    "doesRequireTaxId": false,
+                    "hasTaxId": false,
+                    "hasDueFees": false,
+                    "customerActionRequired": false,
+                    "warehouseActionInProgress": true,
+                    "canBeShipped": true,
+                    "readyToShip": false
+                }
+            }
+        }
+
+## Boxberry [/shipments/{shipmentId}/additional-information/boxberry]
+
+### Read existing already filled additional information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "boxberry": {
+                "firstName": "Отделение",
+                "middleName": "Мини-отделение",
+                "lastName": "ул",
+                "street": "ВолчинецкаяЗ",
+                "city": "Отделение",
+                "passport": {
+                    "number": "1234567",
+                    "issueDate": "2013-11-11",
+                    "issuer": "NOthing",
+                    "issuerAuthority": "NOthing"
+                },
+                "packages": [
+                    {
+                        "package": {
+                            "id": "ADT"
+                        },
+                        "invoiceNumber": "trotl11",
+                        "items": [
+                            {
+                                "customsDeclarationItem": {
+                                    "id": "18879283"
+                                },
+                                "producer": "123",
+                                "model": "Czechia",
+                                "itemId": "ISCФMMIЙG",
+                                "itemUrl": "http://nato.org",
+                                "description": "ИЦCLЗДЯ ЬФMЪ",
+                                "photoUrl": null,
+                                "electronicDevice": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+### Fill additional information [PUT]
+
++ Request (application/json)
+
+        {
+            "firstName": "Отделение",
+            "middleName": "Мини-отделение",
+            "lastName": "ул",
+            "street": "ВолчинецкаяЗ",
+            "city": "Отделение",
+            "passport": {
+                "number": "1234567",
+                "issueDate": "2013-11-11",
+                "issuer": "CZ",
+                "issuerAuthority": "Prague"
+            },
+            "packages": [
+                {
+                    "package": {
+                        "id": "ADT"
+                    },
+                    "invoiceNumber": "Abraka",
+                    "items": [
+                        {
+                            "customsDeclarationItem": {
+                                "id": "18879283"
+                            },
+                            "producer": "Czechia",
+                            "model": "ISCФMMIЙG",
+                            "itemId": "123",
+                            "itemUrl": "http://nato.org",
+                            "description": "ИЦCLЗДЯ ЬФMЪ",
+                            "photoUrl": "http://neco.com",
+                            "electronicDevice": false
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shipment": {
+                "id": 1907666,
+                "warehouse": {
+                    "id": 23,
+                    "alias": "minden"
+                },
+                "status": "confirmed",
+                "shipmentPackages": [
+                    {
+                        "id": "ADT",
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "content_photo",
+                                "fee": 2
+                            }
+                        ],
+                        "benefits": []
+                    }
+                ],
+                "additionalInformation": [
+                    {
+                        "alias": "boxberry",
+                        "filled": true,
+                        "valid": false,
+                        "packages": []
+                    }
+                ],
+                "shippingInformation": {
+                    "address": {
+                        "firstName": "Test",
+                        "lastName": "Test",
+                        "company": null,
+                        "address": "Moscow 1",
+                        "city": "Moscow",
+                        "zip": "119002",
+                        "state": null,
+                        "country": "RU",
+                        "phone": "+79121234567",
+                        "taxId": null
+                    },
+                    "shippingMethod": {
+                        "alias": "BOXBERRY_COURIER",
+                        "name": "Boxberry Courier"
+                    },
+                    "pickupInformation": null,
+                    "insuranceType": "delivery_damage"
+                },
+                "price": {
+                    "postage": 168.64,
+                    "insurance": 11.52,
+                    "total": 184.16
+                },
+                "trackingNumber": null,
+                "createdTime": "2016-08-01T06:08:06-0700",
+                "sentTime": null,
+                "flags": {
+                    "doesContainTooManyBatteries": false,
+                    "hasSufficientDeposit": true,
+                    "isMailboxOnSecurityHold": true,
+                    "doesRequireTaxId": false,
+                    "hasTaxId": false,
+                    "hasDueFees": false,
+                    "customerActionRequired": true,
+                    "warehouseActionInProgress": false,
+                    "canBeShipped": false,
+                    "readyToShip": false
+                }
+            }
+        }
+
+## MSDS [/shipments/{shipmentId}/additional-information/msds]
+
+### Read existing already filled additional information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "msds": {
+                "packages": [
+                    {
+                        "package": {
+                            "id": "AZD"
+                        },
+                        "files": [
+                            {
+                                "downloadUrl": "http://"
+                            }
+                        ],
+                        "documents": [
+                            {
+                                "id": 51416,
+                                "downloadUrl": "http://"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+### Fill additional information [PUT]
+
++ Request (application/json)
+
+        {
+            "packages": [
+                {
+                    "package": {
+                        "id": "AZD"
+                    },
+                    "files": [
+                        {
+                            "fileId": 16391
+                        }
+                    ],
+                    "documents": [
+                        {
+                            "id": 51416
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shipment": {
+                "id": 1906187,
+                "warehouse": {
+                    "id": 10,
+                    "alias": "tualatin"
+                },
+                "status": "confirmed",
+                "shipmentPackages": [
+                    {
+                        "id": "ADZ",
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "content_photo",
+                                "fee": 2
+                            }
+                        ],
+                        "benefits": []
+                    }
+                ],
+                "additionalInformation": [
+                    {
+                        "alias": "msds",
+                        "filled": true,
+                        "valid": true,
+                        "packages": [
+                            "ADZ"
+                        ]
+                    }
+                ],
+                "shippingInformation": {
+                    "address": {
+                        "firstName": "Russia",
+                        "lastName": "Boxberry local pickup range",
+                        "company": null,
+                        "address": "Zheleznodorozhnaya street. 2-232",
+                        "city": "Khimki",
+                        "zip": "141431",
+                        "state": null,
+                        "country": "RU",
+                        "phone": "+79258294057",
+                        "taxId": null
+                    },
+                    "shippingMethod": {
+                        "alias": "BOXBERRY_COURIER",
+                        "name": "Boxberry Courier"
+                    },
+                    "pickupInformation": null,
+                    "insuranceType": "delivery_damage"
+                },
+                "price": {
+                    "postage": 53.34,
+                    "insurance": 0.03,
+                    "total": 57.37
+                },
+                "trackingNumber": null,
+                "createdTime": "2016-07-28T14:50:12-0700",
+                "sentTime": null,
+                "flags": {
+                    "doesContainTooManyBatteries": false,
+                    "hasSufficientDeposit": true,
+                    "isMailboxOnSecurityHold": false,
+                    "doesRequireTaxId": false,
+                    "hasTaxId": false,
+                    "hasDueFees": false,
+                    "customerActionRequired": false,
+                    "warehouseActionInProgress": true,
+                    "canBeShipped": true,
+                    "readyToShip": false
+                }
+            }
+        }
+
+## TNT Australia [/shipments/{shipmentId}/additional-information/tnt-australia]
+
+### Read existing already filled additional information [GET]
+
++ Response 200 (application/json)
+
+        {
+            "tntAustralia": {
+                "packages": [
+                    {
+                        "package": {
+                            "id": "AZP"
+                        },
+                        "documents": [
+                            {
+                                "id": 51415,
+                                "downloadUrl": "http://"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+
+### Fill additional information [PUT]
+
++ Request (application/json)
+
+        {
+            "packages": [
+                {
+                    "package": {
+                        "id": "AZP"
+                    },
+                    "files": [
+                        {
+                            "fileId": 16392
+                        }
+                    ],
+                    "documents": [
+                        {
+                            "id": 51415
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "shipment": {
+                "id": 1906187,
+                "warehouse": {
+                    "id": 10,
+                    "alias": "tualatin"
+                },
+                "status": "confirmed",
+                "shipmentPackages": [
+                    {
+                        "id": "ADZ",
+                        "mailoutSpecialRequests": [
+                            {
+                                "alias": "content_photo",
+                                "fee": 2
+                            }
+                        ],
+                        "benefits": []
+                    }
+                ],
+                "additionalInformation": [
+                    {
+                        "alias": "tnt-australia",
+                        "filled": true,
+                        "valid": true,
+                        "packages": [
+                            "ADZ"
+                        ]
+                    }
+                ],
+                "shippingInformation": {
+                    "address": {
+                        "firstName": "Russia",
+                        "lastName": "Boxberry local pickup range",
+                        "company": null,
+                        "address": "Zheleznodorozhnaya street. 2-232",
+                        "city": "Khimki",
+                        "zip": "141431",
+                        "state": null,
+                        "country": "RU",
+                        "phone": "+79258294057",
+                        "taxId": null
+                    },
+                    "shippingMethod": {
+                        "alias": "BOXBERRY_COURIER",
+                        "name": "Boxberry Courier"
+                    },
+                    "pickupInformation": null,
+                    "insuranceType": "delivery_damage"
+                },
+                "price": {
+                    "postage": 53.34,
+                    "insurance": 0.03,
+                    "total": 57.37
+                },
+                "trackingNumber": null,
+                "createdTime": "2016-07-28T14:50:12-0700",
+                "sentTime": null,
+                "flags": {
+                    "doesContainTooManyBatteries": false,
+                    "hasSufficientDeposit": true,
+                    "isMailboxOnSecurityHold": false,
+                    "doesRequireTaxId": false,
+                    "hasTaxId": false,
+                    "hasDueFees": false,
+                    "customerActionRequired": false,
+                    "warehouseActionInProgress": true,
+                    "canBeShipped": true,
                     "readyToShip": false
                 }
             }
